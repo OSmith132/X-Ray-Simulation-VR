@@ -13,7 +13,7 @@ PluginImporter:
   validateReferences: 1
   platformData:
   - first:
-      '': WP8
+      : WP8
     second:
       enabled: 0
       settings:
