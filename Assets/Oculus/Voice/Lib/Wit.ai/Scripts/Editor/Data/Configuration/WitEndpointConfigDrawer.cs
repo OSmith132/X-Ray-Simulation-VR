@@ -1,94 +1,102 @@
 ﻿/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- * All rights reserved.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
 using UnityEditor;
-using System.Reflection;
-using Meta.WitAi.Configuration;
+using UnityEngine;
 
-namespace Meta.WitAi.Windows
+namespace Facebook.WitAi.Configuration
 {
+
     [CustomPropertyDrawer(typeof(WitEndpointConfig))]
-    public class WitEndpointConfigDrawer : WitPropertyDrawer
+    public class WitEndpointConfigDrawer : PropertyDrawer
     {
-        // All WitEndpointConfig parameters
-        private const string FIELD_URISCHEME = "_uriScheme";
-        private const string FIELD_AUTHORITY = "_authority";
-        private const string FIELD_PORT = "_port";
-        private const string FIELD_API = "_witApiVersion";
-        private const string FIELD_SPEECH = "_speech";
-        private const string FIELD_MESSAGE = "_message";
-        private const string FIELD_DICTATION = "_dictation";
-        private const string FIELD_SYNTHESIZE = "_synthesize";
+        private string editing;
+        private Vector2 scroll;
 
-        // Allow edit with lock
-        protected override WitPropertyEditType EditType => WitPropertyEditType.LockEdit;
-        // Get default fields
-        protected override string GetDefaultFieldValue(SerializedProperty property, FieldInfo subfield)
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            // Iterate options
-            switch (subfield.Name)
-            {
-                case FIELD_URISCHEME:
-                    return WitConstants.URI_SCHEME;
-                case FIELD_AUTHORITY:
-                    return WitConstants.URI_AUTHORITY;
-                case FIELD_PORT:
-                    return "0";
-                case FIELD_API:
-                    return WitConstants.API_VERSION;
-                case FIELD_SPEECH:
-                    return WitConstants.ENDPOINT_SPEECH;
-                case FIELD_MESSAGE:
-                    return WitConstants.ENDPOINT_MESSAGE;
-                case FIELD_DICTATION:
-                    return WitConstants.ENDPOINT_DICTATION;
-                case FIELD_SYNTHESIZE:
-                    return WitConstants.ENDPOINT_TTS;
-                case "_event":
-                    return WitConstants.ENDPOINT_COMPOSER_MESSAGE;
-                case "_converse":
-                    return WitConstants.ENDPOINT_COMPOSER_SPEECH;
-            }
-
-            // Return base
-            return base.GetDefaultFieldValue(property, subfield);
+            return 0;
         }
-        // Use name value for title if possible
-        protected override string GetLocalizedText(SerializedProperty property, string key)
+
+        private void DrawProperty(SerializedProperty propery, string name,
+            string label, string defaultValue)
         {
-            // Iterate options
-            switch (key)
+            var propValue = propery.FindPropertyRelative(name);
+            GUILayout.BeginHorizontal();
+            if (editing == name)
             {
-                case LocalizedTitleKey:
-                    return WitTexts.Texts.ConfigurationEndpointTitleLabel;
-                case FIELD_URISCHEME:
-                    return WitTexts.Texts.ConfigurationEndpointUriLabel;
-                case FIELD_AUTHORITY:
-                    return WitTexts.Texts.ConfigurationEndpointAuthLabel;
-                case FIELD_PORT:
-                    return WitTexts.Texts.ConfigurationEndpointPortLabel;
-                case FIELD_API:
-                    return WitTexts.Texts.ConfigurationEndpointApiLabel;
-                case FIELD_SPEECH:
-                    return WitTexts.Texts.ConfigurationEndpointSpeechLabel;
-                case FIELD_MESSAGE:
-                    return WitTexts.Texts.ConfigurationEndpointMessageLabel;
-                case FIELD_DICTATION:
-                    return WitTexts.Texts.ConfigurationEndpointDictationLabel;
-                case FIELD_SYNTHESIZE:
-                    return WitTexts.Texts.ConfigurationEndpointSynthesizeLabel;
-                case "_event":
-                    return WitTexts.Texts.ConfigurationEndpointComposerEventLabel;
-                case "_converse":
-                    return WitTexts.Texts.ConfigurationEndpointComposerConverseLabel;
+
+                EditorGUILayout.PropertyField(propValue, new GUIContent(label));
+
+                WitStyles.ResetIcon.tooltip = $"Reset to default values ({defaultValue})";
+                if (GUILayout.Button(WitStyles.ResetIcon, WitStyles.ImageIcon))
+                {
+                    editing = string.Empty;
+
+                    switch (propValue.type)
+                    {
+                        case "string":
+                            propValue.stringValue = defaultValue;
+                            break;
+                        case "int":
+                            propValue.intValue = int.Parse(defaultValue);
+                            break;
+                    }
+                }
+
+                if (GUILayout.Button(WitStyles.AcceptIcon, WitStyles.ImageIcon))
+                {
+                    editing = string.Empty;
+                }
             }
-            // Default to base
-            return base.GetLocalizedText(property, key);
+            else
+            {
+                switch (propValue.type)
+                {
+                    case "string":
+                        defaultValue = string.IsNullOrEmpty(propValue.stringValue)
+                            ? defaultValue
+                            : propValue.stringValue;
+                        break;
+                    case "int":
+                        defaultValue = propValue.intValue.ToString();
+                        break;
+                }
+
+                EditorGUI.BeginDisabledGroup(editing != name);
+                EditorGUILayout.TextField(label, defaultValue);
+                EditorGUI.EndDisabledGroup();
+
+                if (GUILayout.Button(WitStyles.EditIcon, WitStyles.ImageIcon))
+                {
+                    if (editing == name)
+                    {
+                        editing = string.Empty;
+                    }
+                    else
+                    {
+                        editing = name;
+                    }
+                }
+            }
+
+            GUILayout.EndHorizontal();
+        }
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            scroll = GUILayout.BeginScrollView(scroll, GUILayout.Height(100));
+            DrawProperty(property, "uriScheme", "Uri Scheme", WitRequest.URI_SCHEME);
+            DrawProperty(property, "authority", "Host", WitRequest.URI_AUTHORITY);
+            DrawProperty(property, "port", "Port", "80");
+            DrawProperty(property, "witApiVersion", "Wit Api Version", WitRequest.WIT_API_VERSION);
+            DrawProperty(property, "speech", "Speech", WitRequest.WIT_ENDPOINT_SPEECH);
+            DrawProperty(property, "message", "Message", WitRequest.WIT_ENDPOINT_MESSAGE);
+            GUILayout.EndScrollView();
         }
     }
 }

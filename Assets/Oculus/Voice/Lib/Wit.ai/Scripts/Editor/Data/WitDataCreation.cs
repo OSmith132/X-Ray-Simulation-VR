@@ -1,6 +1,5 @@
 ﻿/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- * All rights reserved.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
@@ -8,13 +7,13 @@
 
 using System.Globalization;
 using System.Text.RegularExpressions;
-using Meta.WitAi.Configuration;
-using Meta.WitAi.Data.Configuration;
+using Facebook.WitAi.Configuration;
+using Facebook.WitAi.Data.Configuration;
 using UnityEditor;
 using UnityEngine;
 
 
-namespace Meta.WitAi.Data
+namespace Facebook.WitAi.Data
 {
     public class WitDataCreation
     {
@@ -34,16 +33,19 @@ namespace Meta.WitAi.Data
 
         public static void AddWitToScene()
         {
-            var witGo = new GameObject
-            {
-                name = "Wit"
-            };
+            var witGo = new GameObject();
+            witGo.name = "Wit";
             var wit = witGo.AddComponent<Wit>();
             var runtimeConfiguration = new WitRuntimeConfiguration()
             {
                 witConfiguration = FindDefaultWitConfig()
             };
             wit.RuntimeConfiguration = runtimeConfiguration;
+        }
+
+        public static void WitStringValue()
+        {
+            CreateStringValue("");
         }
 
         public static WitStringValue CreateStringValue(string path)
@@ -53,11 +55,21 @@ namespace Meta.WitAi.Data
             return asset;
         }
 
+        public static void WitFloatValue()
+        {
+            CreateFloatValue("");
+        }
+
         public static WitFloatValue CreateFloatValue(string path)
         {
             var asset = ScriptableObject.CreateInstance<WitFloatValue>();
             CreateValueAsset("Create Float Value", path, asset);
             return asset;
+        }
+
+        public static void WitIntValue()
+        {
+            CreateStringValue("");
         }
 
         public static WitIntValue CreateIntValue(string path)
@@ -84,18 +96,22 @@ namespace Meta.WitAi.Data
                 name = asset.GetType().Name;
             }
 
-            var filePath = EditorUtility.SaveFilePanelInProject(label, name, "asset", "Please select a location for your asset.");
+            var filePath = EditorUtility.SaveFilePanel(label, saveDir, name, "asset");
             if (!string.IsNullOrEmpty(filePath))
             {
                 EditorPrefs.SetString(PATH_KEY, filePath);
-                if (filePath.StartsWith("Assets/StreamingAssets"))
+                if (filePath.StartsWith(Application.dataPath))
                 {
-                    EditorUtility.DisplayDialog("Restricted Folder","Cannot use StreamingAssets folder for saving normal assets. \nPlease select another folder inside Assets.", "OK");
-                    return;
+                    filePath = filePath.Substring(Application.dataPath.Length - 6);
                 }
                 AssetDatabase.CreateAsset(asset, filePath);
                 AssetDatabase.SaveAssets();
             }
+        }
+
+        public static void CreateWitConfiguration()
+        {
+            WitConfigurationEditor.CreateWitConfiguration(WitAuthUtility.ServerToken, null);
         }
     }
 }

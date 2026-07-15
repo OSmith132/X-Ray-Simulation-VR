@@ -26,3 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HEE Light Field Alignment.unity
     guid: 58d5de107c89a01408c87f8cbec1c0ad
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 06ee07b8bfe858d459b4a7a4fe4faad9,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ea6c44dbf4cbf4248b8339d44f125e97,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 1692e0c054f42344d917ce37f96d0cc0,
+      type: 2}

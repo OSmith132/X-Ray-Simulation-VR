@@ -1,29 +1,20 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- * All rights reserved.
+/**************************************************************************************************
+ * Copyright : Copyright (c) Facebook Technologies, LLC and its affiliates. All rights reserved.
  *
- * Licensed under the Oculus SDK License Agreement (the "License");
- * you may not use the Oculus SDK except in compliance with the License,
- * which is provided at the time of installation or download, or which
- * otherwise accompanies this software in either electronic or hard copy form.
- *
- * You may obtain a copy of the License at
- *
+ * Your use of this SDK or tool is subject to the Oculus SDK License Agreement, available at
  * https://developer.oculus.com/licenses/oculussdk/
  *
- * Unless required by applicable law or agreed to in writing, the Oculus SDK
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+ * Unless required by applicable law or agreed to in writing, the Utilities SDK distributed
+ * under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ * ANY KIND, either express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ **************************************************************************************************/
 
 using System;
-using Meta.WitAi;
-using Meta.WitAi.Configuration;
-using Meta.WitAi.Data;
-using Meta.WitAi.Data.Configuration;
-using Meta.WitAi.Windows;
+using Facebook.WitAi;
+using Facebook.WitAi.Configuration;
+using Facebook.WitAi.Data;
+using Facebook.WitAi.Data.Configuration;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,7 +23,8 @@ namespace Oculus.Voice.Data
     [Serializable]
     public class VoiceSDKDataCreation
     {
-        [MenuItem("Assets/Create/Voice SDK/Add App Voice Experience to Scene", false, 100)]
+
+        [MenuItem("Assets/Create/Voice SDK/Add App Voice Experience to Scene")]
         public static void AddVoiceCommandServiceToScene()
         {
             var witGo = new GameObject();
@@ -56,16 +48,21 @@ namespace Oculus.Voice.Data
             WitDataCreation.CreateFloatValue("");
         }
 
+        public static WitFloatValue CreateFloatValue(string path)
+        {
+            return WitDataCreation.CreateFloatValue(path);
+        }
+
         [MenuItem("Assets/Create/Voice SDK/Values/Int Value")]
         public static void WitIntValue()
         {
-            WitDataCreation.CreateIntValue("");
+            WitDataCreation.CreateStringValue("");
         }
 
-        [MenuItem("Assets/Create/Voice SDK/Configuration", false, 200)]
+        [MenuItem("Assets/Create/Voice SDK/Configuration")]
         public static void CreateWitConfiguration()
         {
-            WitWindowUtility.OpenSetupWindow(null);
+            WitConfigurationEditor.CreateWitConfiguration(WitAuthUtility.ServerToken, null);
         }
     }
 }

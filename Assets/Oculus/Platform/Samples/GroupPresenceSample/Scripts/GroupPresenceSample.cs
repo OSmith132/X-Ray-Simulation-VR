@@ -93,7 +93,7 @@ public class GroupPresenceSample : MonoBehaviour
       options.SetMatchSessionId(MatchSessionID);
     }
 
-    if (!string.IsNullOrEmpty(LobbySessionID))
+    if (!string.IsNullOrEmpty(MatchSessionID))
     {
       options.SetLobbySessionId(LobbySessionID);
     }
