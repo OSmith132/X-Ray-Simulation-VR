@@ -2,7 +2,7 @@
 	using System.Collections.Generic;
 	using UnityEngine;
 	using UnityEngine.SceneManagement;
-	using UnityEngine.XR.Interaction.Toolkit;
+	
 
 public class MenuControl : MonoBehaviour 
 	{
@@ -160,7 +160,7 @@ public class MenuControl : MonoBehaviour
 				}
 
 				anatcube.GetComponent<MeshRenderer> ().material.color = Color.grey;
-				anatcube.GetComponent<XRGrabInteractable>().enabled = false;
+				anatcube.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().enabled = false;
 				anatcube.GetComponent<BoxCollider> ().enabled = false;
 
 				float score = PlayerPrefs.GetFloat ("PhantomsCorrect1") + PlayerPrefs.GetFloat ("PhantomsCorrect2") + PlayerPrefs.GetFloat ("DAPCorrect") + PlayerPrefs.GetFloat ("HVLCorrect1") + PlayerPrefs.GetFloat ("HVLCorrect2") + PlayerPrefs.GetFloat ("AssembleCorrect2") + PlayerPrefs.GetFloat ("AssembleCorrect1") ;
@@ -169,7 +169,7 @@ public class MenuControl : MonoBehaviour
 				if (score == 7) 
 				{
 					anatcube.GetComponent<MeshRenderer> ().material.color = Color.green;
-					anatcube.GetComponent<XRGrabInteractable>().enabled = true;
+					anatcube.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().enabled = true;
 					anatcube.GetComponent<BoxCollider> ().enabled = true;
 
 					PlayerPrefs.SetFloat ("FaultsActivated", 0.0f);
