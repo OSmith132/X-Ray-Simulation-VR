@@ -123,6 +123,8 @@ MonoBehaviour:
   optimizeBufferDiscards: 1
   lateLatchingMode: 0
   lateLatchingDebug: 0
+  optimizeMultiviewRenderRegions: 0
+  spacewarpMotionVectorTextureFormat: 0
 --- !u!114 &-5794543240798302887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,27 +571,28 @@ MonoBehaviour:
   m_Name: Android
   m_EditorClassIdentifier: 
   features:
+  - {fileID: -460915211079545009}
   - {fileID: -443526553273918101}
+  - {fileID: -7772725808339064430}
   - {fileID: -8968316665749794668}
   - {fileID: 7541732676493813412}
-  - {fileID: 6971006928023611415}
-  - {fileID: 2955985831938823500}
-  - {fileID: 8528519346451207852}
-  - {fileID: -460915211079545009}
-  - {fileID: -7772725808339064430}
   - {fileID: -1535876122860893784}
   - {fileID: -6646099931776427261}
+  - {fileID: 6971006928023611415}
   - {fileID: 777353331341245201}
   - {fileID: 548261135623529915}
   - {fileID: -2886229794000404412}
   - {fileID: 9099342258157804368}
   - {fileID: -3029294540841335151}
+  - {fileID: 2955985831938823500}
   - {fileID: 7622992706702100035}
+  - {fileID: 8528519346451207852}
   m_renderMode: 1
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
     m_List: 00000000
   m_depthSubmissionMode: 0
+  m_spacewarpMotionVectorTextureFormat: 0
   m_optimizeBufferDiscards: 0
   m_symmetricProjection: 0
 --- !u!114 &1158093162595591028
@@ -868,29 +871,30 @@ MonoBehaviour:
   m_Name: Standalone
   m_EditorClassIdentifier: 
   features:
+  - {fileID: -9141585071848936333}
   - {fileID: -4634505352877362470}
+  - {fileID: -7916124269874168715}
   - {fileID: -343571881493273396}
   - {fileID: -2054082640974392489}
   - {fileID: 3981702139017461148}
-  - {fileID: -3177573373607617504}
-  - {fileID: 465972124876359902}
-  - {fileID: 6330347598274421925}
-  - {fileID: -9141585071848936333}
-  - {fileID: -7916124269874168715}
   - {fileID: 1558937506638028184}
   - {fileID: 5158414472507166617}
+  - {fileID: -3177573373607617504}
   - {fileID: 1158093162595591028}
   - {fileID: -1808017353142370869}
   - {fileID: 7104607188245668507}
   - {fileID: 4628130478450100289}
   - {fileID: 5277017835536643732}
+  - {fileID: 465972124876359902}
   - {fileID: -2535589392841831144}
   - {fileID: 1331553866299977973}
+  - {fileID: 6330347598274421925}
   m_renderMode: 1
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
     m_List: 00000000
   m_depthSubmissionMode: 0
+  m_spacewarpMotionVectorTextureFormat: 0
   m_optimizeBufferDiscards: 0
   m_symmetricProjection: 0
 --- !u!114 &8528519346451207852
