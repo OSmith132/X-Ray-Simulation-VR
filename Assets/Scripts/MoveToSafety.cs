@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MoveToSafety : MonoBehaviour {
+public class MoveToSafety : MonoBehaviour
+{
 
 	Vector3 TransportIntPos;
 	Vector3 TransportShieldPosReturn;
@@ -15,30 +14,22 @@ public class MoveToSafety : MonoBehaviour {
 	public GameObject TransportShieldPos;
 	public Transform TransportShieldPosAnchor;
 
-	GameObject rightHandtransform;
+	[SerializeField] Transform rightHandTransform; // the right controller under XR Origin
 
-
-	// Use this for initialization
-	void Start () 
-
+	void Start()
 	{
-
-		rightHandtransform = GameObject.Find ("RightHandAnchor");
-
 		TransportIntPos = TransportPos.transform.position;
 		TransportShieldPosReturn = TransportShieldPos.transform.position;
-
-
-		
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-		float distTransport = Vector3.Distance (TransportPos.transform.position, TransportPosAnchor.position);
-		float distTransportShield = Vector3.Distance (TransportShieldPos.transform.position, TransportShieldPosAnchor.position);
-		float distHandTransport = Vector3.Distance (rightHandtransform.transform.position, TransportPos.transform.position);
-		float distHandTransportShield = Vector3.Distance (rightHandtransform.transform.position, TransportShieldPos.transform.position);
+	void Update()
+	{
+
+		float distTransport = Vector3.Distance(TransportPos.transform.position, TransportPosAnchor.position);
+		float distTransportShield = Vector3.Distance(TransportShieldPos.transform.position, TransportShieldPosAnchor.position);
+		float distHandTransport = Vector3.Distance(rightHandTransform.position, TransportPos.transform.position);
+		float distHandTransportShield = Vector3.Distance(rightHandTransform.position, TransportShieldPos.transform.position);
+
 
 		if (distTransport >= 0.2)
 		{
