@@ -2,8 +2,9 @@
 	using System.Collections.Generic;
 	using UnityEngine;
 	using UnityEngine.SceneManagement;
+	using UnityEngine.XR.Interaction.Toolkit;
 
-	public class MenuControl : MonoBehaviour 
+public class MenuControl : MonoBehaviour 
 	{
 
 		//this code is attached to Gameobject Transport in the Menu Secene, it controls navigation in the menu scene and controls fault scoring, faulst are set in Faultcontroller script and then called back into this script where they are tallied up  
@@ -159,7 +160,7 @@
 				}
 
 				anatcube.GetComponent<MeshRenderer> ().material.color = Color.grey;
-				//anatcube.GetComponent<OVRGrabbable> ().enabled = false;
+				anatcube.GetComponent<XRGrabInteractable>().enabled = false;
 				anatcube.GetComponent<BoxCollider> ().enabled = false;
 
 				float score = PlayerPrefs.GetFloat ("PhantomsCorrect1") + PlayerPrefs.GetFloat ("PhantomsCorrect2") + PlayerPrefs.GetFloat ("DAPCorrect") + PlayerPrefs.GetFloat ("HVLCorrect1") + PlayerPrefs.GetFloat ("HVLCorrect2") + PlayerPrefs.GetFloat ("AssembleCorrect2") + PlayerPrefs.GetFloat ("AssembleCorrect1") ;
@@ -168,7 +169,7 @@
 				if (score == 7) 
 				{
 					anatcube.GetComponent<MeshRenderer> ().material.color = Color.green;
-					//anatcube.GetComponent<OVRGrabbable> ().enabled = true;
+					anatcube.GetComponent<XRGrabInteractable>().enabled = true;
 					anatcube.GetComponent<BoxCollider> ().enabled = true;
 
 					PlayerPrefs.SetFloat ("FaultsActivated", 0.0f);
