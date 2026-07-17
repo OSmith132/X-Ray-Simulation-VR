@@ -18,7 +18,10 @@ public class AntiRotation : MonoBehaviour {
 
 
 
-	GameObject rightHand;
+	//GameObject rightHand;
+	[SerializeField] GameObject rightHandPokePoint; // This is likely set to the fingertip. Check if collision is weird.
+
+	DetectTouch detectTouch;
 
 	float step;
 	float speed = 0.5f;
@@ -28,8 +31,10 @@ public class AntiRotation : MonoBehaviour {
 		OriginalUnpressed = FreeButton.GetComponent<Renderer> ().material.color;
 		gameObject.GetComponent<MeshCollider> ().enabled = false;
 
-		rightHand = GameObject.Find ("RightHandAnchor");
+		//rightHand = GameObject.Find ("RightHandAnchor");
 		//DetectTouch detectTouch = rightHand.GetComponent<DetectTouch> ();
+
+		detectTouch = rightHandPokePoint.GetComponent<DetectTouch>();
 	}
 	
 	// Update is called once per frame
@@ -39,32 +44,32 @@ public class AntiRotation : MonoBehaviour {
 		//transform.localPosition = new Vector3 (0.035f, Mathf.Clamp (transform.localPosition.y, 0.354f, 0.903f), 0.0697f);
 		step = speed * Time.deltaTime;
 
-		if (rightHand.GetComponent<DetectTouch>().controlF == 1) 
+		if (detectTouch.controlF == 1) 
 		{
 			gameObject.GetComponent<MeshCollider> ().enabled = true;
 			transform.localPosition = new Vector3 (transform.localPosition.x, Mathf.Clamp (transform.localPosition.y, 0.335f, 1.037f), transform.localPosition.z);
 			FreeButton.GetComponent<Renderer> ().material.color = Color.green;
 			VerticalButton.GetComponent<Renderer> ().material.color = OriginalUnpressed;
-			rightHand.GetComponent<DetectTouch>().controlV = 0;
+			detectTouch.controlV = 0;
 		}
 
-		if (rightHand.GetComponent<DetectTouch> ().returntocent == 1) 
+		if (rightHandPokePoint.GetComponent<DetectTouch> ().returntocent == 1) 
 		{
 			transform.position = Vector3.MoveTowards (transform.position, targetPosVert.position, step);
 
 			if (transform.position.x == targetPosVert.position.x)
 			{
-				rightHand.GetComponent<DetectTouch> ().returntocent = 0;
+				rightHandPokePoint.GetComponent<DetectTouch> ().returntocent = 0;
 			}
 		}
 
-		if (rightHand.GetComponent<DetectTouch>().controlV == 1 && rightHand.GetComponent<DetectTouch> ().returntocent == 0)
+		if (detectTouch.controlV == 1 && rightHandPokePoint.GetComponent<DetectTouch> ().returntocent == 0)
 		{
 			gameObject.GetComponent<MeshCollider> ().enabled = true;
 			transform.localPosition = new Vector3 (0.035f, Mathf.Clamp (transform.localPosition.y, 0.335f, 1.037f), 0.0697f);
 			FreeButton.GetComponent<Renderer> ().material.color = OriginalUnpressed;
 			VerticalButton.GetComponent<Renderer> ().material.color = Color.green;
-			rightHand.GetComponent<DetectTouch>().controlF = 0;
+			detectTouch.controlF = 0;
 		}
 
 	}

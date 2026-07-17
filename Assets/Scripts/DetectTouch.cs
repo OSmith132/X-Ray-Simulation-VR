@@ -4,9 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
+
+
+/// <summary>
+/// NOTE: It might be worth replacing this script with some instances of the XRPokeInteractor component from the OpenXR package to unify with the rest of the system.
+/// I have set up this poke interactor to run this script and work with the current hand model and it works fine for now.
+/// - Oliver (17/07/2026)
+/// 
+/// </summary>
 public class DetectTouch : MonoBehaviour {
 
-	//this code is attahced to righthandachor in OVRCameraRig
+	//this code is attahced to Poke Point on the index finger of the right hand model
 
 	float Menudist;
 	float HVLdist;
@@ -73,6 +82,11 @@ public class DetectTouch : MonoBehaviour {
 	Vector3 SourcePos;
 
 	//main game objects
+
+	[Header("XR Rig References")]
+	[SerializeField] Transform leftHandTransform;
+	[SerializeField] Transform xrOriginTransform;
+
 	public GameObject HVL;
 	GameObject PhantomMoveScript;
 	GameObject PrimeButton;
@@ -95,7 +109,6 @@ public class DetectTouch : MonoBehaviour {
 	GameObject Detector;
 	GameObject Handle;
 	GameObject HandleRef;
-	GameObject LeftHand;
 	GameObject Source;
 	GameObject Table;
 	GameObject click;
@@ -136,7 +149,6 @@ public class DetectTouch : MonoBehaviour {
 	GameObject ResetRef;
 	GameObject Office;
 	GameObject OfficeRef;
-	GameObject OVRCAM;
 	GameObject OfficeLight1;
 	GameObject OfficeLight2;
 	GameObject ReturnScreen;
@@ -144,6 +156,8 @@ public class DetectTouch : MonoBehaviour {
 	GameObject SubmitAnswers;
 	GameObject SubmitAnswersRef;
 	GameObject DeadPixel;
+	GameObject LeftHand;
+	GameObject OVRCAM;
 
 	//Colours
 	Color OriginalArrowColor;
@@ -220,7 +234,9 @@ public class DetectTouch : MonoBehaviour {
 		Tray = GameObject.Find ("Handle");
 		TrayAnchor = GameObject.Find ("Tray Anchor");
 		PhantomMoveScript = GameObject.Find ("PhantomBase");
-		LeftHand = GameObject.Find ("LeftHandAnchor");
+
+		LeftHand = leftHandTransform.gameObject; // now OpenXR
+
 		Table = GameObject.Find ("Table Ref");
 		Source = GameObject.Find ("Source Position");
 		ColUp = GameObject.Find ("Collimator Vertical Out");
@@ -240,7 +256,9 @@ public class DetectTouch : MonoBehaviour {
 		ResetRef = GameObject.Find ("Reset base");
 		Office = GameObject.Find ("Office");
 		OfficeRef = GameObject.Find ("OfficeRef");
-		OVRCAM = GameObject.Find ("OVRCameraRig");
+
+		OVRCAM = xrOriginTransform.gameObject; // now OpenXR
+
 		OfficeLight1 = GameObject.Find ("Office Light");
 		OfficeLight2 = GameObject.Find ("Office Light 2");
 		ReturnScreen = GameObject.Find ("ReturnScreen");
