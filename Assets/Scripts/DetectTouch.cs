@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 
 
 /// <summary>
-/// NOTE: It might be worth replacing this script with some instances of the XRPokeInteractor component from the OpenXR package to unify with the rest of the system.
-/// I have set up this poke interactor to run this script and work with the current hand model and it works fine for now.
+/// NOTE: It might be worth replacing this script with some instances of the XRPokeInteractor and some individual scripts attached to the new XRGrabInteractable component to unify with the rest of the system.
+/// I have replaced all instances of the OculusXR package with OpenXR and it works fine for now.
 /// - Oliver (17/07/2026)
 /// 
 /// </summary>
@@ -157,7 +157,7 @@ public class DetectTouch : MonoBehaviour {
 	GameObject SubmitAnswersRef;
 	GameObject DeadPixel;
 	GameObject LeftHand;
-	GameObject OVRCAM;
+	GameObject XRCAM;
 
 	//Colours
 	Color OriginalArrowColor;
@@ -254,10 +254,10 @@ public class DetectTouch : MonoBehaviour {
 		MenuCubeBase = GameObject.Find ("Menubase");
 		Reset = GameObject.Find ("Reset");
 		ResetRef = GameObject.Find ("Reset base");
-		Office = GameObject.Find ("Office");
+		Office = GameObject.Find ("Enter Office Cube");
 		OfficeRef = GameObject.Find ("OfficeRef");
 
-		OVRCAM = xrOriginTransform.gameObject; // now OpenXR
+		XRCAM = xrOriginTransform.gameObject; // now OpenXR
 
 		OfficeLight1 = GameObject.Find ("Office Light");
 		OfficeLight2 = GameObject.Find ("Office Light 2");
@@ -423,7 +423,7 @@ public class DetectTouch : MonoBehaviour {
 		{
 			OfficeLight1.GetComponent<Light> ().enabled = true;
 			OfficeLight2.GetComponent<Light> ().enabled = true;
-			OVRCAM.transform.position = new Vector3 (5.35f, 1.4f, 0.094f);
+			XRCAM.transform.position = new Vector3 (5.35f, 0f, 0.094f);
 			Office.transform.position = OfficeRef.transform.position;
 			Office.transform.rotation = OfficeRef.transform.rotation;
 		}
@@ -432,7 +432,7 @@ public class DetectTouch : MonoBehaviour {
 
 		if (ReturnDist >= 0.1) 
 		{
-			OVRCAM.transform.position = new Vector3 (2.35f, 1.4f, 0.094f);
+			XRCAM.transform.position = new Vector3 (2.35f, 0f, 0.094f);
 			ReturnScreen.transform.position = ReturnScreenRef.transform.position;
 			ReturnScreen.transform.rotation = ReturnScreenRef.transform.rotation;
 		}

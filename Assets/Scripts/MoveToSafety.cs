@@ -33,14 +33,14 @@ public class MoveToSafety : MonoBehaviour
 
 		if (distTransport >= 0.2)
 		{
-			gameObject.transform.position = new Vector3 (2.35f, 1.4f, 0.094f);
+			gameObject.transform.position = new Vector3 (2.35f, 0f, 0.094f);
 			TransportPos.transform.position = TransportIntPos;
 
 		}
 
 		if (distTransportShield >= 0.2) {
 
-			gameObject.transform.position = new Vector3 (-0.1f, 1.4f, 0.094f);
+			gameObject.transform.position = new Vector3 (-0.1f, 0f, 0.094f);
 			TransportShieldPos.transform.position = TransportShieldPosReturn;
 
 		}
