@@ -25,6 +25,8 @@ public class MoveToSafety : MonoBehaviour
 	void Update()
 	{
 
+		Debug.Log("moving to safety!");
+
 		float distTransport = Vector3.Distance(TransportPos.transform.position, TransportPosAnchor.position);
 		float distTransportShield = Vector3.Distance(TransportShieldPos.transform.position, TransportShieldPosAnchor.position);
 		float distHandTransport = Vector3.Distance(rightHandTransform.position, TransportPos.transform.position);
