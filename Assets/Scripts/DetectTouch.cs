@@ -40,7 +40,7 @@ public class DetectTouch : MonoBehaviour
 	float Upper1m;
 	float FOV;
 	float SFOV;
-	float OfficeDist;
+
 	float ReturnDist;
 	float SubmitAnsDist;
 	float kVError;
@@ -152,10 +152,10 @@ public class DetectTouch : MonoBehaviour
 	GameObject bodyHollow;
 	GameObject Reset;
 	GameObject ResetRef;
-	GameObject Office;
-	GameObject OfficeRef;
-	GameObject OfficeLight1;
-	GameObject OfficeLight2;
+	//GameObject Office;
+	//GameObject OfficeRef;
+	//GameObject OfficeLight1;
+	//GameObject OfficeLight2;
 	GameObject ReturnScreen;
 	GameObject ReturnScreenRef;
 	GameObject SubmitAnswers;
@@ -259,13 +259,13 @@ public class DetectTouch : MonoBehaviour
 		MenuCubeBase = GameObject.Find("Menubase");
 		Reset = GameObject.Find("Reset");
 		ResetRef = GameObject.Find("Reset base");
-		Office = GameObject.Find("Enter Office Cube");
-		OfficeRef = GameObject.Find("OfficeRef");
+		//Office = GameObject.Find("Enter Office Cube");
+		//OfficeRef = GameObject.Find("OfficeRef");
 
 		XRCAM = xrOriginTransform.gameObject; // now OpenXR
 
-		OfficeLight1 = GameObject.Find("Office Light");
-		OfficeLight2 = GameObject.Find("Office Light 2");
+		//OfficeLight1 = GameObject.Find("Office Light");
+		//OfficeLight2 = GameObject.Find("Office Light 2");
 		ReturnScreen = GameObject.Find("ReturnScreen");
 		ReturnScreenRef = GameObject.Find("ReturnScreenRef");
 		SubmitAnswers = GameObject.Find("SubmitAns");
@@ -351,8 +351,8 @@ public class DetectTouch : MonoBehaviour
 
 		//Checks
 		returntocent = 0;
-		OfficeLight1.GetComponent<Light>().enabled = false;
-		OfficeLight2.GetComponent<Light>().enabled = false;
+		//OfficeLight1.GetComponent<Light>().enabled = false;
+		//OfficeLight2.GetComponent<Light>().enabled = false;
 
 		//Other
 
@@ -422,43 +422,58 @@ public class DetectTouch : MonoBehaviour
 			}
 		}
 
-		//Transport into Office space
-		OfficeDist = Vector3.Distance(Office.transform.position, OfficeRef.transform.position);
+		////Transport into Office space
+		//OfficeDist = Vector3.Distance(Office.transform.position, OfficeRef.transform.position);
 
-		if (OfficeDist >= 0.1)
-		{
-			OfficeLight1.GetComponent<Light>().enabled = true;
-			OfficeLight2.GetComponent<Light>().enabled = true;
-			XRCAM.transform.position = new Vector3(5.35f, 0f, 0.094f);
-			Office.transform.position = OfficeRef.transform.position;
-			Office.transform.rotation = OfficeRef.transform.rotation;
-		}
+		//if (OfficeDist >= 0.1)
+		//{
+		//	OfficeLight1.GetComponent<Light>().enabled = true;
+		//	OfficeLight2.GetComponent<Light>().enabled = true;
+		//	XRCAM.transform.position = new Vector3(5.35f, 0f, 0.094f);
+		//	Office.transform.position = OfficeRef.transform.position;
+		//	Office.transform.rotation = OfficeRef.transform.rotation;
+		//}
 
-		ReturnDist = Vector3.Distance(ReturnScreen.transform.position, ReturnScreenRef.transform.position);
+		//ReturnDist = Vector3.Distance(ReturnScreen.transform.position, ReturnScreenRef.transform.position);
 
-		if (ReturnDist >= 0.1)
-		{
-			XRCAM.transform.position = new Vector3(2.35f, 0f, 0.094f);
-			ReturnScreen.transform.position = ReturnScreenRef.transform.position;
-			ReturnScreen.transform.rotation = ReturnScreenRef.transform.rotation;
-		}
-
-		SubmitAnsDist = Vector3.Distance(SubmitAnswers.transform.position, SubmitAnswersRef.transform.position);
-
-		if (SubmitAnsDist >= 0.1)
-		{
-			SceneManager.LoadScene("HEE Menu", LoadSceneMode.Single);
-			SubmitAnswers.transform.position = SubmitAnswersRef.transform.position;
-		}
+		//if (ReturnDist >= 0.1)
+		//{
+		//	XRCAM.transform.position = new Vector3(2.35f, 0f, 0.094f);
+		//	ReturnScreen.transform.position = ReturnScreenRef.transform.position;
+		//	ReturnScreen.transform.rotation = ReturnScreenRef.transform.rotation;
+		//}
 
 
-		traydist = Vector3.Distance(Tray.transform.position, TrayAnchor.transform.position);
-		//Pull tray out from table
-		if (traydist <= 0.1)
-		{
-			Tray.transform.position = TrayAnchor.transform.position;
-			Tray.transform.rotation = TrayAnchor.transform.rotation;
-		}
+
+
+
+
+
+		// NOTE: This might do something important other than just teleport? ===================================================================================== !!!
+
+		//SubmitAnsDist = Vector3.Distance(SubmitAnswers.transform.position, SubmitAnswersRef.transform.position);
+
+		//if (SubmitAnsDist >= 0.1)
+		//{
+		//	SceneManager.LoadScene("HEE Menu", LoadSceneMode.Single);
+		//	SubmitAnswers.transform.position = SubmitAnswersRef.transform.position;
+		//}
+
+
+
+
+
+
+
+
+
+		//traydist = Vector3.Distance(Tray.transform.position, TrayAnchor.transform.position);
+		////Pull tray out from table
+		//if (traydist <= 0.1)
+		//{
+		//	Tray.transform.position = TrayAnchor.transform.position;
+		//	Tray.transform.rotation = TrayAnchor.transform.rotation;
+		//}
 
 
 
@@ -481,7 +496,10 @@ public class DetectTouch : MonoBehaviour
 		}
 
 
-		//Boolians to Impose a delay between prime and scan, giving a double press feel
+
+
+
+		//Booleans to Impose a delay between prime and scan, giving a double press feel
 		if (primedown == 1)
 		{
 
