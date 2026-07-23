@@ -79246,8 +79246,8 @@ GameObject:
   - component: {fileID: 1245468106}
   - component: {fileID: 1245468105}
   - component: {fileID: 1245468104}
-  - component: {fileID: 1245468103}
   - component: {fileID: 1245468108}
+  - component: {fileID: 1245468109}
   m_Layer: 0
   m_Name: VR Player
   m_TagString: Untagged
@@ -79255,25 +79255,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1245468103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245468101}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885f6d4d3efc796478cd45bd7cc04bee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShieldedPos: {fileID: 1352924198}
-  ScanningPos: {fileID: 1306486679}
-  TransportPos: {fileID: 259398052}
-  TransportPosAnchor: {fileID: 2089082813}
-  TransportShieldPos: {fileID: 1625662070}
-  TransportShieldPosAnchor: {fileID: 1687430003}
-  rightHandTransform: {fileID: 621752996}
 --- !u!114 &1245468104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79359,6 +79340,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1245468109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245468101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e900f946459f243b341504ff4107f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1247204854
 GameObject:
   m_ObjectHideFlags: 0
