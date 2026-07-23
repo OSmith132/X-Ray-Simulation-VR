@@ -4,20 +4,14 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using Unity.XR.CoreUtils;
 
-
-
-/// <summary>
-/// Generic class used for teleporting the player, changing scene, resetting the scene,
-/// or triggering an arbitrary event, once it has been dragged a set distance from its home anchor.
-/// Replaces the per-cube distance checks previously duplicated across DetectTouch.Update().
-/// Attach to each cube; configure the behaviour toggles per instance in the Inspector.
-/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class SceneInteractor : MonoBehaviour
 {
 	[Header("Anchor")]
-	[SerializeField, Tooltip("Reference transform the interactor snaps back to")] Transform homeAnchor; 
+	[SerializeField, Tooltip("Reference transform the interactor snaps back to")] Transform homeAnchor;
 	[SerializeField, Tooltip("How far to pull interactor before firing")] float triggerDistance = 0.1f;
 
 	[Header("Scene Behaviour")]
@@ -27,8 +21,9 @@ public class SceneInteractor : MonoBehaviour
 
 	[Header("Player Teleport")]
 	[SerializeField, Tooltip("Enable to teleport the player")] bool teleportPlayer;
-	[SerializeField, Tooltip("Reference to the player rig (e.g. XROrigin)")] Transform playerRig;
+	[SerializeField, Tooltip("Reference to the player rig's XROrigin component")] XROrigin xrOrigin;
 	[SerializeField, Tooltip("Where the player will be teleported to")] Transform playerDestination;
+	[SerializeField, Tooltip("Also move any objects currently held by the player's controllers")] bool teleportHeldObjects = true;
 
 	[Header("Extra Effects")]
 	[SerializeField, Tooltip("Runs a script for adition")] UnityEvent onTriggered;
@@ -61,7 +56,6 @@ public class SceneInteractor : MonoBehaviour
 
 	void OnGrabbed(SelectEnterEventArgs args)
 	{
-		// Allow the cube to fire again the next time it's picked up and pulled.
 		hasTriggered = false;
 	}
 
@@ -79,10 +73,17 @@ public class SceneInteractor : MonoBehaviour
 
 	void Fire()
 	{
-		if (teleportPlayer && playerRig != null && playerDestination != null)
+		if (teleportPlayer && xrOrigin != null && playerDestination != null)
 		{
-			playerRig.position = playerDestination.position;
+			// Move held objects the same distance
+			Vector3 moved_dist = playerDestination.position - xrOrigin.Camera.transform.position;
 
+			if (teleportHeldObjects)
+			{
+				TeleportHeldObjects(moved_dist);
+			}
+
+			xrOrigin.MoveCameraToWorldLocation(playerDestination.position);
 		}
 
 		if (loadScene && !string.IsNullOrEmpty(sceneToLoad))
@@ -97,6 +98,38 @@ public class SceneInteractor : MonoBehaviour
 		onTriggered?.Invoke();
 	}
 
+	void TeleportHeldObjects(Vector3 delta)
+	{
+		if (xrOrigin == null) return;
+
+		// Find every interactor (controller) and move whatever it's holding.
+		var interactors = xrOrigin.GetComponentsInChildren<XRBaseInteractor>();
+
+		foreach (var interactor in interactors)
+		{
+			if (interactor is not IXRSelectInteractor selectInteractor) continue;
+
+			foreach (var interactable in selectInteractor.interactablesSelected)
+			{
+				if (interactable == null) continue;
+
+				if ((object)interactable == grabInteractable) continue; // don't move the cube
+
+				Transform heldTransform = interactable.transform;
+				Rigidbody heldRb = heldTransform.GetComponent<Rigidbody>();
+
+				heldTransform.position += delta;
+
+				if (heldRb != null)
+				{
+					heldRb.linearVelocity = Vector3.zero;
+					heldRb.angularVelocity = Vector3.zero;
+				}
+			}
+		}
+	}
+
+
 
 
 
@@ -110,6 +143,9 @@ public class SceneInteractor : MonoBehaviour
 				(IXRSelectInteractable)grabInteractable);
 		}
 
+
+
+		//hasTriggered = false;  // Only if we don't mind the cube being knocked
 
 
 		// UNCOMMENT IF NOT USING A CONFIGURABLE JOINT TO RETURN TO ORIGIN!!!!
