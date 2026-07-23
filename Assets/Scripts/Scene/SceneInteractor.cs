@@ -97,6 +97,11 @@ public class SceneInteractor : MonoBehaviour
 		onTriggered?.Invoke();
 	}
 
+
+
+
+
+
 	void ResetCube()
 	{
 		if (grabInteractable != null && grabInteractable.isSelected)
@@ -105,13 +110,17 @@ public class SceneInteractor : MonoBehaviour
 				(IXRSelectInteractable)grabInteractable);
 		}
 
-		if (rb != null)
-		{
-			rb.linearVelocity = Vector3.zero;
-			rb.angularVelocity = Vector3.zero;
-		}
 
-		transform.position = homeAnchor.position;
-		transform.rotation = homeAnchor.rotation;
+
+		// UNCOMMENT IF NOT USING A CONFIGURABLE JOINT TO RETURN TO ORIGIN!!!!
+
+		//if (rb != null)
+		//{
+		//	rb.linearVelocity = Vector3.zero;
+		//	rb.angularVelocity = Vector3.zero;
+		//}
+
+		//transform.position = homeAnchor.position;
+		//transform.rotation = homeAnchor.rotation;
 	}
 }
