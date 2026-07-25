@@ -149,7 +149,7 @@ public class DetectTouch : MonoBehaviour
 	GameObject TVXray;
 	GameObject xrayCam;
 	GameObject body;
-	GameObject bodyHollow;
+	//GameObject bodyHollow;
 	GameObject Reset;
 	GameObject ResetRef;
 	//GameObject Office;
@@ -276,7 +276,7 @@ public class DetectTouch : MonoBehaviour
 		{
 
 			body = GameObject.Find("Body");
-			bodyHollow = GameObject.Find("BodyHollow");
+			//bodyHollow = GameObject.Find("BodyHollow");
 
 			TVXray = GameObject.Find("TV Xray");
 			xrayCam = GameObject.Find("XrayCam");
@@ -284,7 +284,7 @@ public class DetectTouch : MonoBehaviour
 			TVXrayStartSize = TVXray.transform.localScale;
 			TVXray.GetComponent<Renderer>().enabled = false;
 			SFOV = xrayCam.GetComponent<Camera>().fieldOfView;
-			bodyHollow.SetActive(false);
+			//bodyHollow.SetActive(false);
 
 			controlFreeMode = true;
 
@@ -379,48 +379,48 @@ public class DetectTouch : MonoBehaviour
 		}
 
 
-		//Cube menu left of shielding, allows you to transport between scenes by pulling cubes
-		Menudist = Vector3.Distance(MenuCube.transform.position, MenuCubeBase.transform.position);
-		if (Menudist >= 0.1)
-		{
-			SceneManager.LoadScene("HEE Menu", LoadSceneMode.Single);
-			MenuCube.transform.position = MenuCubeBase.transform.position;
-		}
+		////Cube menu left of shielding, allows you to transport between scenes by pulling cubes
+		//Menudist = Vector3.Distance(MenuCube.transform.position, MenuCubeBase.transform.position);
+		//if (Menudist >= 0.1)
+		//{
+		//	SceneManager.LoadScene("HEE Menu", LoadSceneMode.Single);
+		//	MenuCube.transform.position = MenuCubeBase.transform.position;
+		//}
 
-		//Reset Scene
-		ResetDist = Vector3.Distance(Reset.transform.position, ResetRef.transform.position);
-		if (ResetDist >= 0.1)
-		{
-			if (sceneName == "HEE Anatomy")
-			{
-				SceneManager.LoadScene("HEE Anatomy", LoadSceneMode.Single);
-				Reset.transform.position = ResetRef.transform.position;
-				Reset.transform.rotation = ResetRef.transform.rotation;
+		////Reset Scene
+		//ResetDist = Vector3.Distance(Reset.transform.position, ResetRef.transform.position);
+		//if (ResetDist >= 0.1)
+		//{
+		//	if (sceneName == "HEE Anatomy")
+		//	{
+		//		SceneManager.LoadScene("HEE Anatomy", LoadSceneMode.Single);
+		//		Reset.transform.position = ResetRef.transform.position;
+		//		Reset.transform.rotation = ResetRef.transform.rotation;
 
-			}
-			if (sceneName == "HEE Light Field Alignment")
-			{
-				SceneManager.LoadScene("HEE Light Field Alignment", LoadSceneMode.Single);
-				Reset.transform.position = ResetRef.transform.position;
-				Reset.transform.rotation = ResetRef.transform.rotation;
+		//	}
+		//	if (sceneName == "HEE Light Field Alignment")
+		//	{
+		//		SceneManager.LoadScene("HEE Light Field Alignment", LoadSceneMode.Single);
+		//		Reset.transform.position = ResetRef.transform.position;
+		//		Reset.transform.rotation = ResetRef.transform.rotation;
 
-			}
-			if (sceneName == "HVL Xray Room Oculus Touch")
-			{
-				SceneManager.LoadScene("HVL Xray Room Oculus Touch", LoadSceneMode.Single);
-				Reset.transform.position = ResetRef.transform.position;
-				Reset.transform.rotation = ResetRef.transform.rotation;
+		//	}
+		//	if (sceneName == "HVL Xray Room Oculus Touch")
+		//	{
+		//		SceneManager.LoadScene("HVL Xray Room Oculus Touch", LoadSceneMode.Single);
+		//		Reset.transform.position = ResetRef.transform.position;
+		//		Reset.transform.rotation = ResetRef.transform.rotation;
 
-			}
+		//	}
 
-			if (sceneName == "Inverse Square Law Room")
-			{
-				SceneManager.LoadScene("Inverse Square Law Room", LoadSceneMode.Single);
-				Reset.transform.position = ResetRef.transform.position;
-				Reset.transform.rotation = ResetRef.transform.rotation;
+		//	if (sceneName == "Inverse Square Law Room")
+		//	{
+		//		SceneManager.LoadScene("Inverse Square Law Room", LoadSceneMode.Single);
+		//		Reset.transform.position = ResetRef.transform.position;
+		//		Reset.transform.rotation = ResetRef.transform.rotation;
 
-			}
-		}
+		//	}
+		//}
 
 		////Transport into Office space
 		//OfficeDist = Vector3.Distance(Office.transform.position, OfficeRef.transform.position);
@@ -898,7 +898,7 @@ public class DetectTouch : MonoBehaviour
 			if (sceneName == "HEE Anatomy")
 			{
 				body.SetActive(true);
-				bodyHollow.SetActive(false);
+				//bodyHollow.SetActive(false);
 			}
 		}
 
@@ -907,7 +907,7 @@ public class DetectTouch : MonoBehaviour
 			if (sceneName == "HEE Anatomy")
 			{
 				body.SetActive(false);
-				bodyHollow.SetActive(true);
+				//bodyHollow.SetActive(true);
 				//TVXray.GetComponent<MeshRenderer> ().enabled = false;
 			}
 
