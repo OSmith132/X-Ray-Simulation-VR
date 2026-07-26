@@ -58,7 +58,6 @@ public class DetectTouch : MonoBehaviour
 
 	//used public as these floats are called in other scripts
 	public bool controlFreeMode;
-	public float returntocent;
 	public float primedown;
 	public float primeup;
 
@@ -346,14 +345,6 @@ public class DetectTouch : MonoBehaviour
 		kVText.text = string.Concat(kV.ToString(), " kV");
 		kVText1.text = kVText.text;
 
-		//Functions
-		//SetLightGuideMax ();
-
-		//Checks
-		returntocent = 0;
-		//OfficeLight1.GetComponent<Light>().enabled = false;
-		//OfficeLight2.GetComponent<Light>().enabled = false;
-
 		//Other
 
 		//DR Physics engine code parameter values
@@ -377,108 +368,6 @@ public class DetectTouch : MonoBehaviour
 			}
 
 		}
-
-
-		////Cube menu left of shielding, allows you to transport between scenes by pulling cubes
-		//Menudist = Vector3.Distance(MenuCube.transform.position, MenuCubeBase.transform.position);
-		//if (Menudist >= 0.1)
-		//{
-		//	SceneManager.LoadScene("HEE Menu", LoadSceneMode.Single);
-		//	MenuCube.transform.position = MenuCubeBase.transform.position;
-		//}
-
-		////Reset Scene
-		//ResetDist = Vector3.Distance(Reset.transform.position, ResetRef.transform.position);
-		//if (ResetDist >= 0.1)
-		//{
-		//	if (sceneName == "HEE Anatomy")
-		//	{
-		//		SceneManager.LoadScene("HEE Anatomy", LoadSceneMode.Single);
-		//		Reset.transform.position = ResetRef.transform.position;
-		//		Reset.transform.rotation = ResetRef.transform.rotation;
-
-		//	}
-		//	if (sceneName == "HEE Light Field Alignment")
-		//	{
-		//		SceneManager.LoadScene("HEE Light Field Alignment", LoadSceneMode.Single);
-		//		Reset.transform.position = ResetRef.transform.position;
-		//		Reset.transform.rotation = ResetRef.transform.rotation;
-
-		//	}
-		//	if (sceneName == "HVL Xray Room Oculus Touch")
-		//	{
-		//		SceneManager.LoadScene("HVL Xray Room Oculus Touch", LoadSceneMode.Single);
-		//		Reset.transform.position = ResetRef.transform.position;
-		//		Reset.transform.rotation = ResetRef.transform.rotation;
-
-		//	}
-
-		//	if (sceneName == "Inverse Square Law Room")
-		//	{
-		//		SceneManager.LoadScene("Inverse Square Law Room", LoadSceneMode.Single);
-		//		Reset.transform.position = ResetRef.transform.position;
-		//		Reset.transform.rotation = ResetRef.transform.rotation;
-
-		//	}
-		//}
-
-		////Transport into Office space
-		//OfficeDist = Vector3.Distance(Office.transform.position, OfficeRef.transform.position);
-
-		//if (OfficeDist >= 0.1)
-		//{
-		//	OfficeLight1.GetComponent<Light>().enabled = true;
-		//	OfficeLight2.GetComponent<Light>().enabled = true;
-		//	XRCAM.transform.position = new Vector3(5.35f, 0f, 0.094f);
-		//	Office.transform.position = OfficeRef.transform.position;
-		//	Office.transform.rotation = OfficeRef.transform.rotation;
-		//}
-
-		//ReturnDist = Vector3.Distance(ReturnScreen.transform.position, ReturnScreenRef.transform.position);
-
-		//if (ReturnDist >= 0.1)
-		//{
-		//	XRCAM.transform.position = new Vector3(2.35f, 0f, 0.094f);
-		//	ReturnScreen.transform.position = ReturnScreenRef.transform.position;
-		//	ReturnScreen.transform.rotation = ReturnScreenRef.transform.rotation;
-		//}
-
-
-
-
-
-
-
-		// NOTE: This might do something important other than just teleport? ===================================================================================== !!!
-
-		//SubmitAnsDist = Vector3.Distance(SubmitAnswers.transform.position, SubmitAnswersRef.transform.position);
-
-		//if (SubmitAnsDist >= 0.1)
-		//{
-		//	SceneManager.LoadScene("HEE Menu", LoadSceneMode.Single);
-		//	SubmitAnswers.transform.position = SubmitAnswersRef.transform.position;
-		//}
-
-
-
-
-
-
-
-
-
-		//traydist = Vector3.Distance(Tray.transform.position, TrayAnchor.transform.position);
-		////Pull tray out from table
-		//if (traydist <= 0.1)
-		//{
-		//	Tray.transform.position = TrayAnchor.transform.position;
-		//	Tray.transform.rotation = TrayAnchor.transform.rotation;
-		//}
-
-
-
-
-
 
 
 
@@ -556,8 +445,6 @@ public class DetectTouch : MonoBehaviour
 		float horizD = Right1m + Left1m;
 		float vertD = Lower1m + Upper1m;
 
-		//		FOV = vertDist * horizDist * 100;
-		//		float adjFOV = SFOV + FOV; 
 
 		//Calculate the FOV angle for the camera to match the light field
 		float hFOV = 2.0f * (Mathf.Atan(0.5f * horizD) * Mathf.Rad2Deg);
@@ -874,13 +761,6 @@ public class DetectTouch : MonoBehaviour
 
 		
 
-
-
-
-		//if (touch.gameObject.name == "fixedpos")
-		//{
-		//	returntocent = 1;
-		//}
 
 		if (touch.gameObject.name == "Collimator Vertical Out")
 		{

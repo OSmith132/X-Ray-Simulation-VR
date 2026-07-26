@@ -32,8 +32,6 @@ public class LimitMovement : MonoBehaviour
             Vector3 offsetWorldPos = minObject.position - new Vector3(0f, handleAxisOffset, 0f);
             float minObjectLocalY = transform.parent.InverseTransformPoint(offsetWorldPos).y;
 
-            Debug.Log($"minObject world Y: {minObject.position.y}, offset local Y: {minObjectLocalY}");
-
             minY = Mathf.Max(minLocalPosition.y, minObjectLocalY);
         }
 
