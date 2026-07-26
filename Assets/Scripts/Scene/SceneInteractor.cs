@@ -145,7 +145,7 @@ public class SceneInteractor : MonoBehaviour
 
 
 
-		//hasTriggered = false;  // Only if we don't mind the cube being knocked
+		hasTriggered = false;  // Only if we don't mind the cube being knocked
 
 
 		// UNCOMMENT IF NOT USING A CONFIGURABLE JOINT TO RETURN TO ORIGIN!!!!
