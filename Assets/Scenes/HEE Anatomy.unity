@@ -22080,7 +22080,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 124
+  m_Constraints: 118
   m_CollisionDetection: 0
 --- !u!1 &346917945
 GameObject:
@@ -94941,7 +94941,7 @@ Transform:
   m_GameObject: {fileID: 1474797760}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -11.4, y: 14.1, z: -8.1}
+  m_LocalPosition: {x: -11.4, y: 14.1, z: -4}
   m_LocalScale: {x: 0.32014644, y: 0.3201463, z: 0.32014644}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95049,9 +95049,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 118
+  m_Constraints: 124
   m_CollisionDetection: 0
 --- !u!114 &1474797767
 MonoBehaviour:
@@ -95129,10 +95129,10 @@ MonoBehaviour:
   m_ParentInteractableObject: {fileID: 1980614573}
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
-  m_SnapToColliderVolume: 1
+  m_SnapToColliderVolume: 0
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
   m_MovementType: 0
@@ -95179,9 +95179,9 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
-  m_LimitLinearVelocity: 0
+  m_LimitLinearVelocity: 1
   m_LimitAngularVelocity: 0
-  m_MaxLinearVelocityDelta: 10
+  m_MaxLinearVelocityDelta: 0.5
   m_MaxAngularVelocityDelta: 20
 --- !u!153 &1474797768
 ConfigurableJoint:
@@ -95191,16 +95191,16 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474797760}
   serializedVersion: 4
-  m_ConnectedBody: {fileID: 0}
+  m_ConnectedBody: {fileID: 1980614574}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 32.4425, z: 0}
+  m_Anchor: {x: 0, y: 0, z: -26.5}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: -11.4, y: 14.1, z: -12.16191}
   m_SecondaryAxis: {x: 0, y: 0, z: 1}
   m_XMotion: 1
-  m_YMotion: 0
-  m_ZMotion: 0
+  m_YMotion: 1
+  m_ZMotion: 1
   m_AngularXMotion: 0
   m_AngularYMotion: 0
   m_AngularZMotion: 0
@@ -95208,7 +95208,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 5
+    limit: 0.17
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -95239,19 +95239,19 @@ ConfigurableJoint:
     serializedVersion: 4
     positionSpring: 0
     positionDamper: 0
-    maximumForce: 5
+    maximumForce: 0.5
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
     positionSpring: 0
     positionDamper: 0
-    maximumForce: 5
+    maximumForce: 0.5
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
     positionSpring: 0
     positionDamper: 0
-    maximumForce: 5
+    maximumForce: 0.5
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
