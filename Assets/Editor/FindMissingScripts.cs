@@ -27,11 +27,6 @@ public static class FindMissingScripts
 
 
 
-
-
-
-
-
     private static void FindInGameObject(GameObject g, ref int goCount, ref int componentsCount, ref int missingCount)
     {
         goCount++;
