@@ -370,33 +370,36 @@ public class DetectTouch : MonoBehaviour
 		}
 
 
-
-		//Light up handle when either left or right hand is near
-		float distHandle = Vector3.Distance(this.gameObject.transform.position, Handle.transform.position);
-		float distHandleL = Vector3.Distance(LeftHand.transform.position, Handle.transform.position);
-
-		if (distHandle <= 0.25 || distHandleL <= 0.25)
+		if (Handle)
 		{
-			Handle.GetComponent<Renderer>().material.color = Color.white;
+			//Light up handle when either left or right hand is near
+			float distHandle = Vector3.Distance(this.gameObject.transform.position, Handle.transform.position);
+			float distHandleL = Vector3.Distance(LeftHand.transform.position, Handle.transform.position);
+
+			if (distHandle <= 0.25 || distHandleL <= 0.25)
+			{
+				Handle.GetComponent<Renderer>().material.color = Color.white;
+			}
+			else
+			{
+				Handle.GetComponent<Renderer>().material.color = OriginalHandleColor;
+			}
 		}
-		else
+
+
+		if (Table)
 		{
-			Handle.GetComponent<Renderer>().material.color = OriginalHandleColor;
-		}
-
-
-
-
-		//Light up table handle when either left or right hand is near
-		float distTable = Vector3.Distance(this.gameObject.transform.position, VerticalTable.transform.position);
-		float distTableL = Vector3.Distance(LeftHand.transform.position, VerticalTable.transform.position);
-		if (distTable <= 0.25 || distTableL <= 0.25)
-		{
-			VerticalTable.GetComponent<Renderer>().material.color = Color.blue;
-		}
-		else
-		{
-			VerticalTable.GetComponent<Renderer>().material.color = OriginalTable;
+			//Light up table handle when either left or right hand is near
+			float distTable = Vector3.Distance(this.gameObject.transform.position, VerticalTable.transform.position);
+			float distTableL = Vector3.Distance(LeftHand.transform.position, VerticalTable.transform.position);
+			if (distTable <= 0.25 || distTableL <= 0.25)
+			{
+				VerticalTable.GetComponent<Renderer>().material.color = Color.blue;
+			}
+			else
+			{
+				VerticalTable.GetComponent<Renderer>().material.color = OriginalTable;
+			}
 		}
 
 
