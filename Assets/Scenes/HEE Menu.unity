@@ -275,6 +275,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9567940}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &44624393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44624394}
+  m_Layer: 0
+  m_Name: Logos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &44624394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44624393}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.226, y: 1.289, z: -0.599}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1353167022}
+  - {fileID: 1847352887}
+  - {fileID: 461570682}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &89414354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -293,12 +327,12 @@ PrefabInstance:
     - target: {fileID: 3981255849413427494, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: m_fontSize
-      value: 1.7
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 3981255849413427494, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 1.7
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 3981255849413427494, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -368,7 +402,7 @@ PrefabInstance:
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: sceneToLoad
-      value: Scenes/HEE Light Field Alignment.unity
+      value: Scenes/HEE Light Field Alignment
       objectReference: {fileID: 0}
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -1541,11 +1575,11 @@ Transform:
   m_GameObject: {fileID: 461570678}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -1.226, y: 1.289, z: -0.599}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.09205095, y: 0.925858, z: 0.040533826}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 44624394}
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!1001 &463375892
 PrefabInstance:
@@ -1723,7 +1757,7 @@ PrefabInstance:
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: sceneToLoad
-      value: Scenes/HVL Xray Room Oculus Touch.unityv
+      value: Scenes/HVL Xray Room Oculus Touch
       objectReference: {fileID: 0}
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -1934,6 +1968,7 @@ Transform:
   - {fileID: 1911603376}
   - {fileID: 1887043461}
   - {fileID: 2091574459}
+  - {fileID: 1680657734}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &642924781
@@ -2776,6 +2811,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1010550144}
+  - component: {fileID: 1010550145}
   m_Layer: 0
   m_Name: Interactable Cubes
   m_TagString: Untagged
@@ -2804,6 +2840,18 @@ Transform:
   - {fileID: 1838533919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1010550145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010550143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d027959e6aad934c809e3fad08db9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1012122138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,7 +3489,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275970749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e85c338dbf414b48807bf158178d9ff, type: 3}
   m_Name: 
@@ -3553,11 +3601,11 @@ Transform:
   m_GameObject: {fileID: 1353167018}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -1.206, y: 1.683, z: -0.189}
+  m_LocalPosition: {x: 0.01999998, y: 0.39399993, z: 0.40999997}
   m_LocalScale: {x: 0.09706822, y: 0.42203563, z: 0.021101784}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 44624394}
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!1 &1464798457
 GameObject:
@@ -4269,7 +4317,12 @@ PrefabInstance:
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: sceneToLoad
-      value: Scenes/Assemble Xray Room Oculus Touch.unity
+      value: Scenes/Assemble Xray Room Oculus Touch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
+        type: 3}
+      propertyPath: playerDestination
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -4529,7 +4582,7 @@ PrefabInstance:
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: sceneToLoad
-      value: Scenes/Inverse Square Law Room.unity
+      value: Scenes/Inverse Square Law Room
       objectReference: {fileID: 0}
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -4576,16 +4629,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680657733}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.45419714, y: 0.521, z: -0.006786123}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.94795704, y: -0.12574494, z: -0.199435}
+  m_LocalScale: {x: 0.90909094, y: 0.90909094, z: 0.90909094}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 453032630}
   - {fileID: 772501252}
   - {fileID: 655338321}
   - {fileID: 2121597279}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 631790205}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1690171648
 GameObject:
@@ -4795,10 +4848,11 @@ PrefabInstance:
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: sceneToLoad
-      value: Scenes/HEE Anatomy.unity
+      value: Scenes/HEE Anatomy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5036893568803221908, guid: 5536e344e8550704781e248581ecec30, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8883734115106463283, guid: 5536e344e8550704781e248581ecec30,
@@ -4919,11 +4973,11 @@ Transform:
   m_GameObject: {fileID: 1847352883}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -1.226, y: 1.308, z: 0.294}
+  m_LocalPosition: {x: 0, y: 0.018999934, z: 0.893}
   m_LocalScale: {x: 0.07989252, y: 0.925858, z: 0.040533826}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 44624394}
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!1 &1865315066
 GameObject:
@@ -5912,11 +5966,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 414517032}
   - {fileID: 631790205}
-  - {fileID: 1680657734}
   - {fileID: 1010550144}
   - {fileID: 1275970750}
   - {fileID: 825323483}
-  - {fileID: 1353167022}
-  - {fileID: 1847352887}
-  - {fileID: 461570682}
+  - {fileID: 44624394}
   - {fileID: 1490150745}
