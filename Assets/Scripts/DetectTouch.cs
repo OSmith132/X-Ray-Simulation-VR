@@ -26,7 +26,7 @@ public class DetectTouch : MonoBehaviour
 	float traydist;
 	float time;
 	float DetectorSize;
-	float incrament = 0.075f;
+	//float incrament = 0.075f;
 	float ImageLeft;
 	float ImageRight;
 	float ImageLower;
@@ -57,16 +57,16 @@ public class DetectTouch : MonoBehaviour
 	float Dose;
 
 	//used public as these floats are called in other scripts
-	public bool controlFreeMode;
+	//public bool controlFreeMode;
 	public float primedown;
 	public float primeup;
 
 
 
-	Text mAsText;
-	Text kVText;
-	Text mAsText1;
-	Text kVText1;
+	//Text mAsText;
+	//Text kVText;
+	//Text mAsText1;
+	//Text kVText1;
 	public Text DAPText;
 	public Text DoseText;
 	public Text DoseonMeter;
@@ -88,7 +88,7 @@ public class DetectTouch : MonoBehaviour
 
 
 	// XRay machine panel handle
-	[SerializeField] XRayHandleController xrayHandleController;
+	//[SerializeField] XRayHandleController xrayHandleController;
 
 
 	public GameObject HVL;
@@ -97,32 +97,32 @@ public class DetectTouch : MonoBehaviour
 	GameObject ScanButton;
 	GameObject ScanReady;
 	GameObject Yind;
-	GameObject arrow1;
-	GameObject arrow2;
-	GameObject arrow3;
-	GameObject arrow4;
-	GameObject arrow1s;
-	GameObject arrow2s;
-	GameObject arrow3s;
-	GameObject arrow4s;
+	//GameObject arrow1;
+	//GameObject arrow2;
+	//GameObject arrow3;
+	//GameObject arrow4;
+	//GameObject arrow1s;
+	//GameObject arrow2s;
+	//GameObject arrow3s;
+	//GameObject arrow4s;
 	GameObject xraySource;
 	GameObject LeftX;
 	GameObject RightX;
 	GameObject LowerY;
 	GameObject UpperY;
 	GameObject Detector;
-	GameObject Handle;
-	GameObject HandleRef;
+	//GameObject Handle;
+	//GameObject HandleRef;
 	GameObject Source;
 	GameObject Table;
-	GameObject click;
-	GameObject clickL;
+	//GameObject click;
+	//GameObject clickL;
 	//GameObject Hum;
 	GameObject primesound;
 	GameObject VerticalTable;
-	GameObject FreeButton;
-	GameObject VerticalButton;
-	GameObject XrayHead;
+	//GameObject FreeButton;
+	//GameObject VerticalButton;
+	//GameObject XrayHead;
 	GameObject HVLcube;
 	GameObject HVLcubeBase;
 	GameObject Assemblecube;
@@ -132,14 +132,14 @@ public class DetectTouch : MonoBehaviour
 	GameObject Tray;
 	GameObject TrayAnchor;
 	GameObject radiograph;
-	GameObject ColUp;
-	GameObject ColDown;
-	GameObject ColLeft;
-	GameObject ColRight;
-	GameObject Col1;
-	GameObject Col2;
-	GameObject Col3;
-	GameObject Col4;
+	//GameObject ColUp;
+	//GameObject ColDown;
+	//GameObject ColLeft;
+	//GameObject ColRight;
+	//GameObject Col1;
+	//GameObject Col2;
+	//GameObject Col3;
+	//GameObject Col4;
 	GameObject ISLcube;
 	GameObject ISLcubeBase;
 	GameObject LargeIonisationChamber;
@@ -164,13 +164,13 @@ public class DetectTouch : MonoBehaviour
 	GameObject XRCAM;
 
 	//Colours
-	Color OriginalArrowColor;
-	Color OriginalHandleColor;
-	Color OriginalUnpressed;
+	//Color OriginalArrowColor;
+	//Color OriginalHandleColor;
+	//Color OriginalUnpressed;
 	Color ScanRed;
 	Color PrimeYellow;
 	Color OriginalTable;
-	Color OriginalColButton;
+	//Color OriginalColButton;
 
 
 	Scene currentScene;
@@ -195,10 +195,10 @@ public class DetectTouch : MonoBehaviour
 		sceneName = currentScene.name;
 
 		//Gameobject Finding
-		mAsText = GameObject.Find("mAsText").GetComponent<Text>();
-		kVText = GameObject.Find("kVText").GetComponent<Text>();
-		mAsText1 = GameObject.Find("mAsText1").GetComponent<Text>();
-		kVText1 = GameObject.Find("kVText1").GetComponent<Text>();
+		//mAsText = GameObject.Find("mAsText").GetComponent<Text>();
+		//kVText = GameObject.Find("kVText").GetComponent<Text>();
+		//mAsText1 = GameObject.Find("mAsText1").GetComponent<Text>();
+		//kVText1 = GameObject.Find("kVText1").GetComponent<Text>();
 
 		radiograph = GameObject.Find("RadiographImg");
 		xraySource = GameObject.Find("Collimator Guide Light");
@@ -207,23 +207,23 @@ public class DetectTouch : MonoBehaviour
 		LowerY = GameObject.Find("Col 1 (Near)");
 		UpperY = GameObject.Find("Col 2 (Far)");
 		Detector = GameObject.Find("Detector");
-		arrow1 = GameObject.Find("a1");
-		arrow2 = GameObject.Find("a2");
-		arrow3 = GameObject.Find("a3");
-		arrow4 = GameObject.Find("a4");
-		arrow1s = GameObject.Find("a1s");
-		arrow2s = GameObject.Find("a2s");
-		arrow3s = GameObject.Find("a3s");
-		arrow4s = GameObject.Find("a4s");
-		FreeButton = GameObject.Find("Free Roam Button");
-		VerticalButton = GameObject.Find("Vertical Button");
-		XrayHead = GameObject.Find("PanelHandle");
-		mAsText.text = string.Concat(mAs.ToString(), " mAs");
-		kVText.text = string.Concat(kV.ToString(), " kV");
-		Handle = GameObject.Find("PanelHandle");
-		HandleRef = GameObject.Find("PanelRef");
-		click = GameObject.Find("Click");
-		clickL = GameObject.Find("ClickL");
+		//arrow1 = GameObject.Find("a1");
+		//arrow2 = GameObject.Find("a2");
+		//arrow3 = GameObject.Find("a3");
+		//arrow4 = GameObject.Find("a4");
+		//arrow1s = GameObject.Find("a1s");
+		//arrow2s = GameObject.Find("a2s");
+		//arrow3s = GameObject.Find("a3s");
+		//arrow4s = GameObject.Find("a4s");
+		//FreeButton = GameObject.Find("Free Roam Button");
+		//VerticalButton = GameObject.Find("Vertical Button");
+		//XrayHead = GameObject.Find("PanelHandle");
+		//mAsText.text = string.Concat(mAs.ToString(), " mAs");
+		//kVText.text = string.Concat(kV.ToString(), " kV");
+		//Handle = GameObject.Find("PanelHandle");
+		//HandleRef = GameObject.Find("PanelRef");
+		//click = GameObject.Find("Click");
+		//clickL = GameObject.Find("ClickL");
 		//Hum = GameObject.Find ("XRAYON");
 		primesound = GameObject.Find("primeON");
 		PrimeButton = GameObject.Find("Prime");
@@ -244,14 +244,14 @@ public class DetectTouch : MonoBehaviour
 
 		Table = GameObject.Find("Table Ref");
 		Source = GameObject.Find("Source Position");
-		ColUp = GameObject.Find("Collimator Vertical Out");
-		ColDown = GameObject.Find("Collimator Vertical In");
-		ColLeft = GameObject.Find("Collimator Horizontal Out");
-		ColRight = GameObject.Find("Collimator Horizontal In");
-		Col1 = GameObject.Find("Col 1 (Near)");
-		Col2 = GameObject.Find("Col 2 (Far)");
-		Col3 = GameObject.Find("Col 3 (Left)");
-		Col4 = GameObject.Find("Col 4 (Right)");
+		//ColUp = GameObject.Find("Collimator Vertical Out");
+		//ColDown = GameObject.Find("Collimator Vertical In");
+		//ColLeft = GameObject.Find("Collimator Horizontal Out");
+		//ColRight = GameObject.Find("Collimator Horizontal In");
+		//Col1 = GameObject.Find("Col 1 (Near)");
+		//Col2 = GameObject.Find("Col 2 (Far)");
+		//Col3 = GameObject.Find("Col 3 (Left)");
+		//Col4 = GameObject.Find("Col 4 (Right)");
 		ISLcube = GameObject.Find("TransportISL");
 		ISLcubeBase = GameObject.Find("Transport ISL base");
 		LargeIonisationChamber = GameObject.Find("Detector Visible");
@@ -286,7 +286,7 @@ public class DetectTouch : MonoBehaviour
 			SFOV = xrayCam.GetComponent<Camera>().fieldOfView;
 			//bodyHollow.SetActive(false);
 
-			controlFreeMode = true;
+			//controlFreeMode = true;
 
 			//			mAsRef = 10;
 			//			kVRef = 60;
@@ -297,7 +297,7 @@ public class DetectTouch : MonoBehaviour
 		}
 		else
 		{
-			controlFreeMode = false;
+			//controlFreeMode = false;
 		}
 
 		if (sceneName == "HEE Light Field Alignment")
@@ -331,20 +331,20 @@ public class DetectTouch : MonoBehaviour
 
 
 		//Get Renderer
-		OriginalArrowColor = arrow1.GetComponent<Renderer>().material.color;
-		OriginalHandleColor = Handle.GetComponent<Renderer>().material.color;
-		OriginalUnpressed = FreeButton.GetComponent<Renderer>().material.color;
+		//OriginalArrowColor = arrow1.GetComponent<Renderer>().material.color;
+		//OriginalHandleColor = Handle.GetComponent<Renderer>().material.color;
+		//OriginalUnpressed = FreeButton.GetComponent<Renderer>().material.color;
 		ScanRed = ScanButton.GetComponent<Renderer>().material.color;
 		PrimeYellow = PrimeButton.GetComponent<Renderer>().material.color;
 		OriginalTable = VerticalTable.GetComponent<Renderer>().material.color;
-		OriginalColButton = ColUp.GetComponent<Renderer>().material.color;
+		//OriginalColButton = ColUp.GetComponent<Renderer>().material.color;
 
 
 		//Set initial mAs and kV text on touch screen panels
-		mAsText.text = string.Concat(mAs.ToString(), " mAs");
-		mAsText1.text = mAsText.text;
-		kVText.text = string.Concat(kV.ToString(), " kV");
-		kVText1.text = kVText.text;
+		//mAsText.text = string.Concat(mAs.ToString(), " mAs");
+		//mAsText1.text = mAsText.text;
+		//kVText.text = string.Concat(kV.ToString(), " kV");
+		//kVText1.text = kVText.text;
 
 		//Other
 
@@ -371,21 +371,21 @@ public class DetectTouch : MonoBehaviour
 		}
 
 
-		if (Handle)
-		{
-			//Light up handle when either left or right hand is near
-			float distHandle = Vector3.Distance(this.gameObject.transform.position, Handle.transform.position);
-			float distHandleL = Vector3.Distance(LeftHand.transform.position, Handle.transform.position);
+		//if (Handle)
+		//{
+		//Light up handle when either left or right hand is near
+		//	float distHandle = Vector3.Distance(this.gameObject.transform.position, Handle.transform.position);
+		//	float distHandleL = Vector3.Distance(LeftHand.transform.position, Handle.transform.position);
 
-			if (distHandle <= 0.25 || distHandleL <= 0.25)
-			{
-				Handle.GetComponent<Renderer>().material.color = Color.white;
-			}
-			else
-			{
-				Handle.GetComponent<Renderer>().material.color = OriginalHandleColor;
-			}
-		}
+		//	if (distHandle <= 0.25 || distHandleL <= 0.25)
+		//	{
+		//		Handle.GetComponent<Renderer>().material.color = Color.white;
+		//	}
+		//	else
+		//	{
+		//		Handle.GetComponent<Renderer>().material.color = OriginalHandleColor;
+		//	}
+		//}
 
 
 		if (Table)
@@ -432,7 +432,7 @@ public class DetectTouch : MonoBehaviour
 		// Ensure source is defined in Unity Engine
 		if (xraySource == null)
 		{
-			Debug.Log("xraySource not defined. No light field will be shown.");
+			//Debug.Log("xraySource not defined. No light field will be shown.");
 			return;
 		}
 
@@ -646,74 +646,74 @@ public class DetectTouch : MonoBehaviour
 
 	void OnTriggerEnter(Collider touch)
 	{
-		if (touch.gameObject.name == "mAs_up")
-		{
-			if (mAs <= 69)
-			{
-				mAs = mAs + 1;
-				mAsText.text = string.Concat(mAs.ToString(), " mAs");
-				mAsText1.text = mAsText.text;
-				arrow3.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-				arrow3s.GetComponent<Renderer>().material.color = Color.white;
-				click.GetComponent<AudioSource>().Play();
-			}
-		}
-		if (touch.gameObject.name == "mAs_down")
-		{
-			if (mAs >= 2)
-			{
-				mAs = mAs - 1;
-				mAsText.text = string.Concat(mAs.ToString(), " mAs");
-				mAsText1.text = mAsText.text;
-				arrow1.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-				arrow1s.GetComponent<Renderer>().material.color = Color.white;
-				clickL.GetComponent<AudioSource>().Play();
-			}
-		}
+		//if (touch.gameObject.name == "mAs_up")
+		//{
+		//	if (mAs <= 69)
+		//	{
+		//		mAs = mAs + 1;
+		//		mAsText.text = string.Concat(mAs.ToString(), " mAs");
+		//		mAsText1.text = mAsText.text;
+		//		arrow3.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
+		//		arrow3s.GetComponent<Renderer>().material.color = Color.white;
+		//		click.GetComponent<AudioSource>().Play();
+		//	}
+		//}
+		//if (touch.gameObject.name == "mAs_down")
+		//{
+		//	if (mAs >= 2)
+		//	{
+		//		mAs = mAs - 1;
+		//		mAsText.text = string.Concat(mAs.ToString(), " mAs");
+		//		mAsText1.text = mAsText.text;
+		//		arrow1.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
+		//		arrow1s.GetComponent<Renderer>().material.color = Color.white;
+		//		clickL.GetComponent<AudioSource>().Play();
+		//	}
+		//}
 
-		if (touch.gameObject.name == "kV_up")
-		{
-			if (kV <= 90)
-			{
-				kV = kV + 1;
-				kVText.text = string.Concat(kV.ToString(), " kV");
-				kVText1.text = kVText.text;
-				arrow4.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-				arrow4s.GetComponent<Renderer>().material.color = Color.white;
-				click.GetComponent<AudioSource>().Play();
-			}
-		}
-		if (touch.gameObject.name == "kV_down")
-		{
-			if (kV >= 30)
-			{
-				kV = kV - 1;
-				kVText.text = string.Concat(kV.ToString(), " kV");
-				kVText1.text = kVText.text;
-				arrow2.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-				arrow2s.GetComponent<Renderer>().material.color = Color.white;
-				clickL.GetComponent<AudioSource>().Play();
-			}
-		}
-
-
+		//if (touch.gameObject.name == "kV_up")
+		//{
+		//	if (kV <= 90)
+		//	{
+		//		kV = kV + 1;
+		//		kVText.text = string.Concat(kV.ToString(), " kV");
+		//		kVText1.text = kVText.text;
+		//		arrow4.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
+		//		arrow4s.GetComponent<Renderer>().material.color = Color.white;
+		//		click.GetComponent<AudioSource>().Play();
+		//	}
+		//}
+		//if (touch.gameObject.name == "kV_down")
+		//{
+		//	if (kV >= 30)
+		//	{
+		//		kV = kV - 1;
+		//		kVText.text = string.Concat(kV.ToString(), " kV");
+		//		kVText1.text = kVText.text;
+		//		arrow2.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
+		//		arrow2s.GetComponent<Renderer>().material.color = Color.white;
+		//		clickL.GetComponent<AudioSource>().Play();
+		//	}
+		//}
 
 
 
 
-		if (touch.gameObject.name == "freetog")
-		{
-			xrayHandleController.SetFreeMode();
-			controlFreeMode = true;
-			click.GetComponent<AudioSource>().Play();
-		}
 
-		if (touch.gameObject.name == "verticaltog")
-		{
-			xrayHandleController.SetVerticalMode();
-			controlFreeMode = false;
-			click.GetComponent<AudioSource>().Play();
-		}
+
+		//if (touch.gameObject.name == "freetog")
+		//{
+		//	xrayHandleController.SetFreeMode();
+		//	controlFreeMode = true;
+		//	click.GetComponent<AudioSource>().Play();
+		//}
+
+		//if (touch.gameObject.name == "verticaltog")
+		//{
+		//	xrayHandleController.SetVerticalMode();
+		//	controlFreeMode = false;
+		//	click.GetComponent<AudioSource>().Play();
+		//}
 
 
 
@@ -724,7 +724,7 @@ public class DetectTouch : MonoBehaviour
 		if (touch.gameObject.name == "Scan")
 		{
 			ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
-			click.GetComponent<AudioSource>().Play();
+			//click.GetComponent<AudioSource>().Play();
 			primeup = 1;
 			primedown = 0;
 
@@ -758,7 +758,7 @@ public class DetectTouch : MonoBehaviour
 		{
 			primedown = 1;
 			PrimeButton.GetComponent<Renderer>().material.color = new Color32(254, 161, 0, 1);
-			click.GetComponent<AudioSource>().Play();
+			//click.GetComponent<AudioSource>().Play();
 			primesound.GetComponent<AudioSource>().Play();
 			ScanButton.GetComponent<Collider>().enabled = false;
 			time = Time.time + 0.8f;
@@ -776,37 +776,37 @@ public class DetectTouch : MonoBehaviour
 
 
 
-		
 
 
-		if (touch.gameObject.name == "Collimator Vertical Out")
-		{
-			Col1.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
-			Col2.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
-			ColUp.GetComponent<Renderer>().material.color = Color.blue;
 
-		}
+		//if (touch.gameObject.name == "Collimator Vertical Out")
+		//{
+		//	Col1.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
+		//	Col2.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
+		//	ColUp.GetComponent<Renderer>().material.color = Color.blue;
 
-		if (touch.gameObject.name == "Collimator Vertical In")
-		{
-			Col1.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
-			Col2.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
-			ColDown.GetComponent<Renderer>().material.color = Color.blue;
-		}
+		//}
 
-		if (touch.gameObject.name == "Collimator Horizontal Out")
-		{
-			Col3.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
-			Col4.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
-			ColLeft.GetComponent<Renderer>().material.color = Color.blue;
-		}
+		//if (touch.gameObject.name == "Collimator Vertical In")
+		//{
+		//	Col1.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
+		//	Col2.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
+		//	ColDown.GetComponent<Renderer>().material.color = Color.blue;
+		//}
 
-		if (touch.gameObject.name == "Collimator Horizontal In")
-		{
-			Col3.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
-			Col4.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
-			ColRight.GetComponent<Renderer>().material.color = Color.blue;
-		}
+		//if (touch.gameObject.name == "Collimator Horizontal Out")
+		//{
+		//	Col3.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
+		//	Col4.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
+		//	ColLeft.GetComponent<Renderer>().material.color = Color.blue;
+		//}
+
+		//if (touch.gameObject.name == "Collimator Horizontal In")
+		//{
+		//	Col3.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
+		//	Col4.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
+		//	ColRight.GetComponent<Renderer>().material.color = Color.blue;
+		//}
 
 		if (touch.gameObject.name == "Transport")
 		{
@@ -832,28 +832,28 @@ public class DetectTouch : MonoBehaviour
 
 	void OnTriggerExit(Collider notouch)
 	{
-		if (notouch.gameObject.name == "mAs_up")
-		{
-			arrow3.GetComponent<Renderer>().material.color = OriginalArrowColor;
-			arrow3s.GetComponent<Renderer>().material.color = Color.black;
+		//if (notouch.gameObject.name == "mAs_up")
+		//{
+		//	arrow3.GetComponent<Renderer>().material.color = OriginalArrowColor;
+		//	arrow3s.GetComponent<Renderer>().material.color = Color.black;
 
-		}
-		if (notouch.gameObject.name == "mAs_down")
-		{
-			arrow1.GetComponent<Renderer>().material.color = OriginalArrowColor;
-			arrow1s.GetComponent<Renderer>().material.color = Color.black;
-		}
+		//}
+		//if (notouch.gameObject.name == "mAs_down")
+		//{
+		//	arrow1.GetComponent<Renderer>().material.color = OriginalArrowColor;
+		//	arrow1s.GetComponent<Renderer>().material.color = Color.black;
+		//}
 
-		if (notouch.gameObject.name == "kV_up")
-		{
-			arrow4.GetComponent<Renderer>().material.color = OriginalArrowColor;
-			arrow4s.GetComponent<Renderer>().material.color = Color.black;
-		}
-		if (notouch.gameObject.name == "kV_down")
-		{
-			arrow2.GetComponent<Renderer>().material.color = OriginalArrowColor;
-			arrow2s.GetComponent<Renderer>().material.color = Color.black;
-		}
+		//if (notouch.gameObject.name == "kV_up")
+		//{
+		//	arrow4.GetComponent<Renderer>().material.color = OriginalArrowColor;
+		//	arrow4s.GetComponent<Renderer>().material.color = Color.black;
+		//}
+		//if (notouch.gameObject.name == "kV_down")
+		//{
+		//	arrow2.GetComponent<Renderer>().material.color = OriginalArrowColor;
+		//	arrow2s.GetComponent<Renderer>().material.color = Color.black;
+		//}
 
 		if (notouch.gameObject.name == "Prime")
 		{
@@ -866,26 +866,26 @@ public class DetectTouch : MonoBehaviour
 			ScanButton.GetComponent<Renderer>().material.color = ScanRed;
 		}
 
-		if (notouch.gameObject.name == "Collimator Vertical Out")
-		{
-			ColUp.GetComponent<Renderer>().material.color = OriginalColButton;
+		//if (notouch.gameObject.name == "Collimator Vertical Out")
+		//{
+		//	ColUp.GetComponent<Renderer>().material.color = OriginalColButton;
 
-		}
+		//}
 
-		if (notouch.gameObject.name == "Collimator Vertical In")
-		{
-			ColDown.GetComponent<Renderer>().material.color = OriginalColButton;
-		}
+		//if (notouch.gameObject.name == "Collimator Vertical In")
+		//{
+		//	ColDown.GetComponent<Renderer>().material.color = OriginalColButton;
+		//}
 
-		if (notouch.gameObject.name == "Collimator Horizontal Out")
-		{
-			ColLeft.GetComponent<Renderer>().material.color = OriginalColButton;
-		}
+		//if (notouch.gameObject.name == "Collimator Horizontal Out")
+		//{
+		//	ColLeft.GetComponent<Renderer>().material.color = OriginalColButton;
+		//}
 
-		if (notouch.gameObject.name == "Collimator Horizontal In")
-		{
-			ColRight.GetComponent<Renderer>().material.color = OriginalColButton;
-		}
+		//if (notouch.gameObject.name == "Collimator Horizontal In")
+		//{
+		//	ColRight.GetComponent<Renderer>().material.color = OriginalColButton;
+		//}
 
 	}
 
