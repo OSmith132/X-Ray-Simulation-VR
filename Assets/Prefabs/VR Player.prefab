@@ -632,7 +632,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4443454673457036674}
-  - component: {fileID: 655758771474600348}
   - component: {fileID: 3981667435057388200}
   m_Layer: 0
   m_Name: Poke Point
@@ -656,29 +655,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5091815302190090696}
   m_LocalEulerAnglesHint: {x: 10, y: -90, z: 100}
---- !u!114 &655758771474600348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4139731250307415785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0bc922933cae24db6a010d368d94ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlFreeMode: 0
-  primedown: 0
-  primeup: 0
-  DAPText: {fileID: 0}
-  DoseText: {fileID: 0}
-  DoseonMeter: {fileID: 0}
-  LFarea: {fileID: 0}
-  leftHandTransform: {fileID: 4388534805621917920}
-  xrOriginTransform: {fileID: 4274614170061586766}
-  xrayHandleController: {fileID: 0}
-  HVL: {fileID: 0}
 --- !u!135 &3981667435057388200
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -711,7 +687,6 @@ GameObject:
   - component: {fileID: 3918235612711690521}
   - component: {fileID: 7067309649032003866}
   - component: {fileID: 5232827058893726623}
-  - component: {fileID: 269066352554368400}
   m_Layer: 0
   m_Name: Poke Point
   m_TagString: Untagged
@@ -782,29 +757,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &269066352554368400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4147067240324866479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0bc922933cae24db6a010d368d94ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlFreeMode: 0
-  primedown: 0
-  primeup: 0
-  DAPText: {fileID: 0}
-  DoseText: {fileID: 0}
-  DoseonMeter: {fileID: 0}
-  LFarea: {fileID: 0}
-  leftHandTransform: {fileID: 4388534805621917920}
-  xrOriginTransform: {fileID: 4274614170061586766}
-  xrayHandleController: {fileID: 0}
-  HVL: {fileID: 0}
 --- !u!1 &4250743868281909576
 GameObject:
   m_ObjectHideFlags: 0

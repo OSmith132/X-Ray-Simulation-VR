@@ -12,18 +12,20 @@ using UnityEngine.SceneManagement;
 /// I have replaced all instances of the OculusXR package with OpenXR and it works fine for now.
 /// - Oliver (17/07/2026)
 /// 
+/// NOTE 2: This is in progress currently! (09/08/2026)
+/// 
 /// </summary>
 public class DetectTouch : MonoBehaviour
 {
 
-	//this code is attahced to Poke Point on the index finger of the right hand model
 
-	float Menudist;
-	float HVLdist;
-	float Assembledist;
-	float Maindist;
-	float ResetDist;
-	float traydist;
+
+	//float Menudist;
+	//float HVLdist;
+	//float Assembledist;
+	//float Maindist;
+	//float ResetDist;
+	//float traydist;
 	float time;
 	float DetectorSize;
 	//float incrament = 0.075f;
@@ -31,25 +33,25 @@ public class DetectTouch : MonoBehaviour
 	float ImageRight;
 	float ImageLower;
 	float ImageUpper;
-	float ISLDist;
+	//float ISLDist;
 	float NoErrorDose;
 	float NoErrorDAP;
 	float Left1m;
 	float Right1m;
 	float Lower1m;
 	float Upper1m;
-	float FOV;
-	float SFOV;
+	//float FOV;
+	//float SFOV;
 
-	float ReturnDist;
-	float SubmitAnsDist;
+	//float ReturnDist;
+	//float SubmitAnsDist;
 	float kVError;
 	float DAPCumlative;
 
 
-	private bool onoff;
-	private bool onoff2;
-	bool sceneLoader = false;
+	//private bool onoff;
+	//private bool onoff2;
+	//bool sceneLoader = false;
 	float distTable;
 	public static int mAs = 10;
 	public static int kV = 70;
@@ -82,9 +84,9 @@ public class DetectTouch : MonoBehaviour
 
 	//main game objects
 
-	[Header("XR Rig References")]
-	[SerializeField] Transform leftHandTransform;
-	[SerializeField] Transform xrOriginTransform;
+	//[Header("XR Rig References")]
+	//[SerializeField] Transform leftHandTransform;
+	//[SerializeField] Transform xrOriginTransform;
 
 
 	// XRay machine panel handle
@@ -92,11 +94,11 @@ public class DetectTouch : MonoBehaviour
 
 
 	public GameObject HVL;
-	GameObject PhantomMoveScript;
+	//GameObject PhantomMoveScript;
 	GameObject PrimeButton;
 	GameObject ScanButton;
 	GameObject ScanReady;
-	GameObject Yind;
+	//GameObject Yind;
 	//GameObject arrow1;
 	//GameObject arrow2;
 	//GameObject arrow3;
@@ -113,24 +115,32 @@ public class DetectTouch : MonoBehaviour
 	GameObject Detector;
 	//GameObject Handle;
 	//GameObject HandleRef;
-	GameObject Source;
+	//GameObject Source;
+
+
+
 	GameObject Table;
+	GameObject VerticalTable;
+	Color OriginalTable;
+
+
+
 	//GameObject click;
 	//GameObject clickL;
 	//GameObject Hum;
 	GameObject primesound;
-	GameObject VerticalTable;
+	
 	//GameObject FreeButton;
 	//GameObject VerticalButton;
 	//GameObject XrayHead;
-	GameObject HVLcube;
-	GameObject HVLcubeBase;
-	GameObject Assemblecube;
-	GameObject AssemblecubeBase;
-	GameObject MainCube;
-	GameObject MainCubeBase;
-	GameObject Tray;
-	GameObject TrayAnchor;
+	//GameObject HVLcube;
+	//GameObject HVLcubeBase;
+	//GameObject Assemblecube;
+	//GameObject AssemblecubeBase;
+	//GameObject MainCube;
+	//GameObject MainCubeBase;
+	//GameObject Tray;
+	//GameObject TrayAnchor;
 	GameObject radiograph;
 	//GameObject ColUp;
 	//GameObject ColDown;
@@ -140,28 +150,28 @@ public class DetectTouch : MonoBehaviour
 	//GameObject Col2;
 	//GameObject Col3;
 	//GameObject Col4;
-	GameObject ISLcube;
-	GameObject ISLcubeBase;
+	//GameObject ISLcube;
+	//GameObject ISLcubeBase;
 	GameObject LargeIonisationChamber;
-	GameObject MenuCube;
-	GameObject MenuCubeBase;
+	//GameObject MenuCube;
+	//GameObject MenuCubeBase;
 	GameObject TVXray;
 	GameObject xrayCam;
 	GameObject body;
 	//GameObject bodyHollow;
-	GameObject Reset;
-	GameObject ResetRef;
+	//GameObject Reset;
+	//GameObject ResetRef;
 	//GameObject Office;
 	//GameObject OfficeRef;
 	//GameObject OfficeLight1;
 	//GameObject OfficeLight2;
-	GameObject ReturnScreen;
-	GameObject ReturnScreenRef;
-	GameObject SubmitAnswers;
-	GameObject SubmitAnswersRef;
-	GameObject DeadPixel;
-	GameObject LeftHand;
-	GameObject XRCAM;
+	//GameObject ReturnScreen;
+	//GameObject ReturnScreenRef;
+	//GameObject SubmitAnswers;
+	//GameObject SubmitAnswersRef;
+	//GameObject DeadPixel;
+	//GameObject LeftHand;
+	//GameObject XRCAM;
 
 	//Colours
 	//Color OriginalArrowColor;
@@ -169,7 +179,7 @@ public class DetectTouch : MonoBehaviour
 	//Color OriginalUnpressed;
 	Color ScanRed;
 	Color PrimeYellow;
-	Color OriginalTable;
+
 	//Color OriginalColButton;
 
 
@@ -225,25 +235,29 @@ public class DetectTouch : MonoBehaviour
 		//click = GameObject.Find("Click");
 		//clickL = GameObject.Find("ClickL");
 		//Hum = GameObject.Find ("XRAYON");
+
+
 		primesound = GameObject.Find("primeON");
 		PrimeButton = GameObject.Find("Prime");
 		ScanButton = GameObject.Find("Scan");
 		ScanReady = GameObject.Find("Scan Ready");
-		VerticalTable = GameObject.Find("Vertical Control");
+
+
+		//VerticalTable = GameObject.Find("Vertical Control");
 		//HVLcube = GameObject.Find("TransportHVL");
 		//HVLcubeBase = GameObject.Find("Transport HVL base");
 		//Assemblecube = GameObject.Find("Transport build");
 		//AssemblecubeBase = GameObject.Find("Transport build base");
 		//MainCube = GameObject.Find("Transport main");
 		//MainCubeBase = GameObject.Find("Transport main base");
-		Tray = GameObject.Find("Handle");
-		TrayAnchor = GameObject.Find("Tray Anchor");
-		PhantomMoveScript = GameObject.Find("PhantomBase");
+		//Tray = GameObject.Find("Handle");
+		//TrayAnchor = GameObject.Find("Tray Anchor");
+		//PhantomMoveScript = GameObject.Find("PhantomBase");
 
-		LeftHand = leftHandTransform.gameObject; // now OpenXR
+		//LeftHand = leftHandTransform.gameObject; // now OpenXR
 
-		Table = GameObject.Find("Table Ref");
-		Source = GameObject.Find("Source Position");
+		//Table = GameObject.Find("Table Ref");
+		//Source = GameObject.Find("Source Position");
 		//ColUp = GameObject.Find("Collimator Vertical Out");
 		//ColDown = GameObject.Find("Collimator Vertical In");
 		//ColLeft = GameObject.Find("Collimator Horizontal Out");
@@ -262,7 +276,7 @@ public class DetectTouch : MonoBehaviour
 		//Office = GameObject.Find("Enter Office Cube");
 		//OfficeRef = GameObject.Find("OfficeRef");
 
-		XRCAM = xrOriginTransform.gameObject; // now OpenXR
+		//XRCAM = xrOriginTransform.gameObject; // now OpenXR
 
 		//OfficeLight1 = GameObject.Find("Office Light");
 		//OfficeLight2 = GameObject.Find("Office Light 2");
@@ -283,7 +297,7 @@ public class DetectTouch : MonoBehaviour
 
 			TVXrayStartSize = TVXray.transform.localScale;
 			TVXray.GetComponent<Renderer>().enabled = false;
-			SFOV = xrayCam.GetComponent<Camera>().fieldOfView;
+			//SFOV = xrayCam.GetComponent<Camera>().fieldOfView;
 			//bodyHollow.SetActive(false);
 
 			//controlFreeMode = true;
@@ -306,12 +320,12 @@ public class DetectTouch : MonoBehaviour
 
 			TVXray = GameObject.Find("TV Xray");
 			xrayCam = GameObject.Find("XrayCam");
-			DeadPixel = GameObject.Find("DeadPixel");
-			DeadPixel.gameObject.SetActive(false);
+			//DeadPixel = GameObject.Find("DeadPixel");
+			//DeadPixel.gameObject.SetActive(false);
 
 			TVXrayStartSize = TVXray.transform.localScale;
 			TVXray.GetComponent<Renderer>().enabled = false;
-			SFOV = xrayCam.GetComponent<Camera>().fieldOfView;
+			//SFOV = xrayCam.GetComponent<Camera>().fieldOfView;
 
 			//			mAsRef = 20;
 			//			kVRef = 70;
@@ -336,7 +350,7 @@ public class DetectTouch : MonoBehaviour
 		//OriginalUnpressed = FreeButton.GetComponent<Renderer>().material.color;
 		ScanRed = ScanButton.GetComponent<Renderer>().material.color;
 		PrimeYellow = PrimeButton.GetComponent<Renderer>().material.color;
-		OriginalTable = VerticalTable.GetComponent<Renderer>().material.color;
+		//OriginalTable = VerticalTable.GetComponent<Renderer>().material.color;
 		//OriginalColButton = ColUp.GetComponent<Renderer>().material.color;
 
 
@@ -361,14 +375,14 @@ public class DetectTouch : MonoBehaviour
 	void Update()
 	{
 
-		if (PlayerPrefs.GetFloat("FaultsActivated") == 1.0f)
-		{
-			if (sceneName == "HEE Light Field Alignment")
-			{
-				DeadPixel.gameObject.SetActive(true);
-			}
+		//if (PlayerPrefs.GetFloat("FaultsActivated") == 1.0f)
+		//{
+		//	if (sceneName == "HEE Light Field Alignment")
+		//	{
+		//		DeadPixel.gameObject.SetActive(true);
+		//	}
 
-		}
+		//}
 
 
 		//if (Handle)
@@ -388,20 +402,20 @@ public class DetectTouch : MonoBehaviour
 		//}
 
 
-		if (Table)
-		{
-			//Light up table handle when either left or right hand is near
-			float distTable = Vector3.Distance(this.gameObject.transform.position, VerticalTable.transform.position);
-			float distTableL = Vector3.Distance(LeftHand.transform.position, VerticalTable.transform.position);
-			if (distTable <= 0.25 || distTableL <= 0.25)
-			{
-				VerticalTable.GetComponent<Renderer>().material.color = Color.blue;
-			}
-			else
-			{
-				VerticalTable.GetComponent<Renderer>().material.color = OriginalTable;
-			}
-		}
+		//if (Table)
+		//{
+		//	//Light up table handle when either left or right hand is near
+		//	float distTable = Vector3.Distance(this.gameObject.transform.position, VerticalTable.transform.position);
+		//	float distTableL = Vector3.Distance(LeftHand.transform.position, VerticalTable.transform.position);
+		//	if (distTable <= 0.25 || distTableL <= 0.25)
+		//	{
+		//		VerticalTable.GetComponent<Renderer>().material.color = Color.blue;
+		//	}
+		//	else
+		//	{
+		//		VerticalTable.GetComponent<Renderer>().material.color = OriginalTable;
+		//	}
+		//}
 
 
 
@@ -754,6 +768,10 @@ public class DetectTouch : MonoBehaviour
 		}
 
 
+
+
+
+
 		if (touch.gameObject.name == "Prime")
 		{
 			primedown = 1;
@@ -772,6 +790,9 @@ public class DetectTouch : MonoBehaviour
 
 
 		}
+
+
+
 
 
 

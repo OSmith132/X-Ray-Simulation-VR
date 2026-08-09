@@ -18,11 +18,11 @@ public class XRayControlPanel : MonoBehaviour
 	public static XRayControlPanel Instance { get; private set; }
 
 	[Header("Hands (for panel handle proximity highlight)")]
-	
+
 	[SerializeField, Tooltip("Drag both the left and right hand transforms in here.")] Transform[] handTransforms;
 
-	[Header("Panel Handle"), Tooltip("The X-Ray panel handle ")]
-	[SerializeField] XRayHandleController xrayHandleController;
+	[Header("Panel Handle")]
+	[SerializeField, Tooltip("The X-Ray panel handle ")] XRayHandleController xrayHandleController;
 
 	// Static so DetectTouch (and anything else) can still read the current
 	// exposure settings.
@@ -54,7 +54,6 @@ public class XRayControlPanel : MonoBehaviour
 	GameObject VerticalButton;
 
 	GameObject Handle;
-	GameObject HandleRef;
 	GameObject XrayHead;
 
 	GameObject ColUp;
@@ -88,6 +87,8 @@ public class XRayControlPanel : MonoBehaviour
 
 	void Start()
 	{
+
+		// We can probably get rid of lots of these, but for now I just copied all from DetectTouch.cs
 		mAsText = GameObject.Find("mAsText").GetComponent<Text>();
 		kVText = GameObject.Find("kVText").GetComponent<Text>();
 		mAsText1 = GameObject.Find("mAsText1").GetComponent<Text>();
@@ -109,7 +110,6 @@ public class XRayControlPanel : MonoBehaviour
 		VerticalButton = GameObject.Find("Vertical Button");
 
 		Handle = GameObject.Find("Panel Handle");
-		HandleRef = GameObject.Find("PanelRef");
 		XrayHead = GameObject.Find("PanelHandle");
 
 		ColUp = GameObject.Find("Collimator Vertical Out");
@@ -130,6 +130,8 @@ public class XRayControlPanel : MonoBehaviour
 		OriginalHandleColor = Handle.GetComponent<Renderer>().material.color;
 		OriginalUnpressed = FreeButton.GetComponent<Renderer>().material.color;
 		OriginalColButton = ColUp.GetComponent<Renderer>().material.color;
+
+		FreeButton.GetComponent<Renderer>().material.color = Color.green; // Set to green as this is the default option.
 	}
 
 
@@ -140,8 +142,7 @@ public class XRayControlPanel : MonoBehaviour
 	{
 		if (Handle)
 		{
-			// Light up the panel handle when ANY registered hand is near it,
-			// rather than checking one hardcoded hand transform.
+
 			float minDist = float.MaxValue;
 			for (int i = 0; i < handTransforms.Length; i++)
 			{
@@ -150,8 +151,7 @@ public class XRayControlPanel : MonoBehaviour
 				if (d < minDist) minDist = d;
 			}
 
-			Handle.GetComponent<Renderer>().material.color =
-				(minDist <= 0.25f) ? Color.white : OriginalHandleColor;
+			Handle.GetComponent<Renderer>().material.color = (minDist <= 0.25f) ? Color.white : OriginalHandleColor;
 		}
 	}
 
@@ -331,4 +331,37 @@ public class XRayControlPanel : MonoBehaviour
 	{
 		ColRight.GetComponent<Renderer>().material.color = OriginalColButton;
 	}
+
+
+
+
+	// --- Prime and scan buttons ---
+
+
+
+	//public void PressPrimeButton()
+	//{
+
+	//	primedown = 1;
+	//	PrimeButton.GetComponent<Renderer>().material.color = new Color32(254, 161, 0, 1);
+	//	//click.GetComponent<AudioSource>().Play();
+	//	primesound.GetComponent<AudioSource>().Play();
+	//	ScanButton.GetComponent<Collider>().enabled = false;
+	//	time = Time.time + 0.8f;
+	//	ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
+
+	//	if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
+	//	{
+	//		TVXray.GetComponent<Renderer>().enabled = false;
+	//		TakeScan();
+
+
+
+	//	}
+
+	//}
+
+
+
+	
 }

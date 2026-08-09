@@ -2,7 +2,9 @@ using UnityEngine;
 
 /// <summary>
 /// Attach one of these to each hand's Poke Point. Forwards touch events to the XrayControlPanel manager, 
-/// so either hand can operate any panel button without being explicitly referenced in DetectTouch.cs
+/// so either hand can operate any panel button without being explicitly referenced in DetectTouch.cs.
+/// 
+/// Also gives function to the prime and scan buttons.
 /// </summary>
 public class XRayPanelPoke : MonoBehaviour
 {
@@ -25,6 +27,7 @@ public class XRayPanelPoke : MonoBehaviour
 			case "Collimator Vertical In": panel.PressCollimatorVerticalIn(); break;
 			case "Collimator Horizontal Out": panel.PressCollimatorHorizontalOut(); break;
 			case "Collimator Horizontal In": panel.PressCollimatorHorizontalIn(); break;
+			//case "Prime"
 		}
 	}
 
