@@ -8,21 +8,20 @@ public class lightToggle : MonoBehaviour
 	private Light XrayLight;
 	private bool  onoff;
 
-	GameObject rightHand;
+	[SerializeField] private DetectTouch rightHandTouch;
 
 	// Use this for initialization
 	void Start ()
 	{
 		XrayLight = GetComponent<Light>();
 		XrayLight.intensity = 0;
-		rightHand = GameObject.Find ("RightHandAnchor");
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 
-		if (rightHand.GetComponent<DetectTouch> ().primedown == 1) {
+		if (rightHandTouch.primedown == 1) {
 			toggleLight ();
 		}
 	}

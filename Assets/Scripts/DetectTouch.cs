@@ -199,6 +199,7 @@ public class DetectTouch : MonoBehaviour
 		kVText = GameObject.Find("kVText").GetComponent<Text>();
 		mAsText1 = GameObject.Find("mAsText1").GetComponent<Text>();
 		kVText1 = GameObject.Find("kVText1").GetComponent<Text>();
+
 		radiograph = GameObject.Find("RadiographImg");
 		xraySource = GameObject.Find("Collimator Guide Light");
 		LeftX = GameObject.Find("Col 3 (Left)");
@@ -425,7 +426,17 @@ public class DetectTouch : MonoBehaviour
 			primeup = 0;
 		}
 
-		DetectorPos = Detector.transform.position;
+
+
+
+		// Ensure source is defined in Unity Engine
+		if (xraySource == null)
+		{
+			Debug.Log("xraySource not defined. No light field will be shown.");
+			return;
+		}
+
+
 		SourcePos = xraySource.transform.position;
 
 		Left1m = ((SourcePos.z - (LeftX.transform.position.z + (LeftX.transform.lossyScale.x / 2.0f))) / (SourcePos.y - LeftX.transform.position.y));
@@ -438,6 +449,9 @@ public class DetectTouch : MonoBehaviour
 		float vertDist = Lower1m + Upper1m;
 
 		LFarea.text = string.Concat(horizDist.ToString("F2"), "x", vertDist.ToString("F2"), " m");
+
+
+
 	}
 
 
