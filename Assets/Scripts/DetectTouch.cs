@@ -230,12 +230,12 @@ public class DetectTouch : MonoBehaviour
 		ScanButton = GameObject.Find("Scan");
 		ScanReady = GameObject.Find("Scan Ready");
 		VerticalTable = GameObject.Find("Vertical Control");
-		HVLcube = GameObject.Find("TransportHVL");
-		HVLcubeBase = GameObject.Find("Transport HVL base");
-		Assemblecube = GameObject.Find("Transport build");
-		AssemblecubeBase = GameObject.Find("Transport build base");
-		MainCube = GameObject.Find("Transport main");
-		MainCubeBase = GameObject.Find("Transport main base");
+		//HVLcube = GameObject.Find("TransportHVL");
+		//HVLcubeBase = GameObject.Find("Transport HVL base");
+		//Assemblecube = GameObject.Find("Transport build");
+		//AssemblecubeBase = GameObject.Find("Transport build base");
+		//MainCube = GameObject.Find("Transport main");
+		//MainCubeBase = GameObject.Find("Transport main base");
 		Tray = GameObject.Find("Handle");
 		TrayAnchor = GameObject.Find("Tray Anchor");
 		PhantomMoveScript = GameObject.Find("PhantomBase");
@@ -252,13 +252,13 @@ public class DetectTouch : MonoBehaviour
 		//Col2 = GameObject.Find("Col 2 (Far)");
 		//Col3 = GameObject.Find("Col 3 (Left)");
 		//Col4 = GameObject.Find("Col 4 (Right)");
-		ISLcube = GameObject.Find("TransportISL");
-		ISLcubeBase = GameObject.Find("Transport ISL base");
+		//ISLcube = GameObject.Find("TransportISL");
+		//ISLcubeBase = GameObject.Find("Transport ISL base");
 		LargeIonisationChamber = GameObject.Find("Detector Visible");
-		MenuCube = GameObject.Find("Menu");
-		MenuCubeBase = GameObject.Find("Menubase");
-		Reset = GameObject.Find("Reset");
-		ResetRef = GameObject.Find("Reset base");
+		//MenuCube = GameObject.Find("Menu");
+		//MenuCubeBase = GameObject.Find("Menubase");
+		//Reset = GameObject.Find("Reset");
+		//ResetRef = GameObject.Find("Reset base");
 		//Office = GameObject.Find("Enter Office Cube");
 		//OfficeRef = GameObject.Find("OfficeRef");
 
@@ -266,10 +266,10 @@ public class DetectTouch : MonoBehaviour
 
 		//OfficeLight1 = GameObject.Find("Office Light");
 		//OfficeLight2 = GameObject.Find("Office Light 2");
-		ReturnScreen = GameObject.Find("ReturnScreen");
-		ReturnScreenRef = GameObject.Find("ReturnScreenRef");
-		SubmitAnswers = GameObject.Find("SubmitAns");
-		SubmitAnswersRef = GameObject.Find("SubmitAnsRef");
+		//ReturnScreen = GameObject.Find("ReturnScreen");
+		//ReturnScreenRef = GameObject.Find("ReturnScreenRef");
+		//SubmitAnswers = GameObject.Find("SubmitAns");
+		//SubmitAnswersRef = GameObject.Find("SubmitAnsRef");
 
 		//Initialisation if specific scenes are called
 		if (sceneName == "HEE Anatomy")
@@ -808,25 +808,25 @@ public class DetectTouch : MonoBehaviour
 		//	ColRight.GetComponent<Renderer>().material.color = Color.blue;
 		//}
 
-		if (touch.gameObject.name == "Transport")
-		{
-			if (sceneName == "HEE Anatomy")
-			{
-				body.SetActive(true);
-				//bodyHollow.SetActive(false);
-			}
-		}
+		//if (touch.gameObject.name == "Transport")
+		//{
+		//	if (sceneName == "HEE Anatomy")
+		//	{
+		//		body.SetActive(true);
+		//		//bodyHollow.SetActive(false);
+		//	}
+		//}
 
-		if (touch.gameObject.name == "TransportReturn")
-		{
-			if (sceneName == "HEE Anatomy")
-			{
-				body.SetActive(false);
-				//bodyHollow.SetActive(true);
-				//TVXray.GetComponent<MeshRenderer> ().enabled = false;
-			}
+		//if (touch.gameObject.name == "TransportReturn")
+		//{
+		//	if (sceneName == "HEE Anatomy")
+		//	{
+		//		body.SetActive(false);
+		//		//bodyHollow.SetActive(true);
+		//		//TVXray.GetComponent<MeshRenderer> ().enabled = false;
+		//	}
 
-		}
+		//}
 
 	}
 
