@@ -3,39 +3,55 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class FaultScoreManager : MonoBehaviour
 {
+
+	private GameObject DeactivateFaultCube;
+	private GameObject FaultCube;
 	private GameObject HVLcube;
 	private GameObject Assemblecube;
 	private GameObject ISLcube;
 	private GameObject anatcube;
 	private GameObject LBAcube;
 
+	private Color blue;
+
 	void Start()
 	{
+		FaultCube = transform.Find("Activate Faults/Cube").gameObject;
+		DeactivateFaultCube = transform.Find("Deactivate Faults/Cube").gameObject;
 		HVLcube = transform.Find("HVL/Cube").gameObject;
 		Assemblecube = transform.Find("Build X-Ray Tube/Cube").gameObject;
 		ISLcube = transform.Find("DAP Test/Cube").gameObject;
 		anatcube = transform.Find("Anatomy/Cube").gameObject;
 		LBAcube = transform.Find("Phantoms/Cube").gameObject;
-	}
+
+		blue = new Color32(0, 149, 255,255);
+}
 
 	void Update()
 	{
 		if (PlayerPrefs.GetFloat("FaultsActivated") == 1.0f)
 		{
-			Assemblecube.GetComponent<MeshRenderer>().material.color =
-				(PlayerPrefs.GetFloat("AssembleCorrect1") == 1 && PlayerPrefs.GetFloat("AssembleCorrect2") == 1)
+
+			FaultCube.GetComponent<MeshRenderer>().material.color = Color.grey;
+
+			DeactivateFaultCube.GetComponent<MeshRenderer>().material.color = blue;
+			DeactivateFaultCube.GetComponent<XRGrabInteractable>().enabled = true;
+			DeactivateFaultCube.GetComponent<BoxCollider>().enabled = true;
+
+
+			Assemblecube.GetComponent<MeshRenderer>().material.color = (PlayerPrefs.GetFloat("AssembleCorrect1") == 1 && PlayerPrefs.GetFloat("AssembleCorrect2") == 1)
 				? Color.green : Color.red;
 
-			HVLcube.GetComponent<MeshRenderer>().material.color =
-				(PlayerPrefs.GetFloat("HVLCorrect1") == 1 && PlayerPrefs.GetFloat("HVLCorrect2") == 1)
+			HVLcube.GetComponent<MeshRenderer>().material.color = (PlayerPrefs.GetFloat("HVLCorrect1") == 1 && PlayerPrefs.GetFloat("HVLCorrect2") == 1)
 				? Color.green : Color.red;
 
-			ISLcube.GetComponent<MeshRenderer>().material.color =
-				(PlayerPrefs.GetFloat("DAPCorrect") == 1) ? Color.green : Color.red;
-
-			LBAcube.GetComponent<MeshRenderer>().material.color =
-				(PlayerPrefs.GetFloat("PhantomsCorrect1") == 1 && PlayerPrefs.GetFloat("PhantomsCorrect2") == 1)
+			ISLcube.GetComponent<MeshRenderer>().material.color = (PlayerPrefs.GetFloat("DAPCorrect") == 1)
 				? Color.green : Color.red;
+
+			LBAcube.GetComponent<MeshRenderer>().material.color = (PlayerPrefs.GetFloat("PhantomsCorrect1") == 1 && PlayerPrefs.GetFloat("PhantomsCorrect2") == 1)
+				? Color.green : Color.red;
+
+
 
 			anatcube.GetComponent<MeshRenderer>().material.color = Color.grey;
 			anatcube.GetComponent<XRGrabInteractable>().enabled = false;
@@ -53,6 +69,25 @@ public class FaultScoreManager : MonoBehaviour
 				anatcube.GetComponent<BoxCollider>().enabled = true;
 				PlayerPrefs.SetFloat("FaultsActivated", 0.0f);
 			}
+		}
+		else {
+
+			FaultCube.GetComponent<MeshRenderer>().material.color = Color.red;
+
+			DeactivateFaultCube.GetComponent<MeshRenderer>().material.color = Color.grey;
+			DeactivateFaultCube.GetComponent<XRGrabInteractable>().enabled = false;
+			DeactivateFaultCube.GetComponent<BoxCollider>().enabled = false;
+
+			HVLcube.GetComponent<MeshRenderer>().material.color = blue;
+			Assemblecube.GetComponent<MeshRenderer>().material.color = blue;
+			ISLcube.GetComponent<MeshRenderer>().material.color = blue;
+			LBAcube.GetComponent<MeshRenderer>().material.color = blue;
+			anatcube.GetComponent<MeshRenderer>().material.color = blue;
+
+			anatcube.GetComponent<XRGrabInteractable>().enabled = true;
+			anatcube.GetComponent<BoxCollider>().enabled = true;
+
+
 		}
 	}
 }

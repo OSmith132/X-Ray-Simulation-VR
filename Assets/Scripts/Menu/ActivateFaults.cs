@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ActivateFaults : MonoBehaviour
 {
-	public void ActivateFaultsAction()
+	public void Activate()
 	{
 		PlayerPrefs.SetFloat("FaultsActivated", 1.0f);
 		PlayerPrefs.SetFloat("AssembleCorrect1", 0.0f);
