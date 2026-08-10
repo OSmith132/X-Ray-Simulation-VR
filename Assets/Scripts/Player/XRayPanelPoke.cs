@@ -2,7 +2,7 @@ using UnityEngine;
 
 /// <summary>
 /// Attach one of these to each hand's Poke Point. Forwards touch events to the XrayControlPanel manager, 
-/// so either hand can operate any panel button without being explicitly referenced in DetectTouch.cs.
+/// so either hand can operate any panel button without being explicitly referenced in XRayScanner.cs.
 /// 
 /// Also gives function to the prime and scan buttons.
 /// </summary>

@@ -352,18 +352,18 @@ public class HVLanchors : MonoBehaviour {
 		}
 
 
-		float mukV = muRef * (Mathf.Pow (kVRef, 3) / Mathf.Pow (((float)DetectTouch.kV * kVError), 3));
+		float mukV = muRef * (Mathf.Pow (kVRef, 3) / Mathf.Pow (((float)XRayScanner.kV * kVError), 3));
 
 		dose1 = ((1050 * Mathf.Exp (-mukV * AlThickness))/(distTable*distTable));
 
 		//modify dose for set mAs kV
 		int mAsRef = 10; //mAs value on which the empirical data was based
 		//dose is proportional to mAs
-		float dose2 = dose1 * (float)DetectTouch.mAs / (float)mAsRef;
+		float dose2 = dose1 * (float)XRayScanner.mAs / (float)mAsRef;
 		//dose increases with kV^2
 
 
-		float dose3 = dose2 * (Mathf.Pow (((float)DetectTouch.kV * kVError), 2) / Mathf.Pow ((kVRef * kVError), 2));
+		float dose3 = dose2 * (Mathf.Pow (((float)XRayScanner.kV * kVError), 2) / Mathf.Pow ((kVRef * kVError), 2));
 
 
 		Dose = dose3 * Random.Range (0.975f, 1.025f);

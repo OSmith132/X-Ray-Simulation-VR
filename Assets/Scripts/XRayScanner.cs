@@ -15,7 +15,7 @@ using UnityEngine.SceneManagement;
 /// NOTE 2: This is in progress currently! (09/08/2026)
 /// 
 /// </summary>
-public class DetectTouch : MonoBehaviour
+public class XRayScanner : MonoBehaviour
 {
 
 

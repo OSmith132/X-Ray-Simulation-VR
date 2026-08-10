@@ -27,7 +27,7 @@ public class XRayControlPanel : MonoBehaviour
 
 
 
-	// Static so DetectTouch (and anything else) can still read the current
+	// Static so XRayScanner (and anything else) can still read the current
 	// exposure settings.
 	public static int mAs = 10;
 	public static int kV = 70;
@@ -87,7 +87,7 @@ public class XRayControlPanel : MonoBehaviour
 	GameObject primesound;
 
 
-	[SerializeField, Tooltip("(Optional): The TakeScan script component on Xray System	")] DetectTouch detectTouch;
+	[SerializeField, Tooltip("(Optional): The TakeScan script component on Xray System	")] XRayScanner xRayScanner;
 	[SerializeField, Tooltip("(Optional): The LightToggle script component on Collimator Guide Light")] LightToggle lightToggle;
 	[SerializeField, Tooltip("(Optional): The AnodeSpinTouch script component on AnodeA")] AnodeSpinTouch anodeSpin;
 	[SerializeField, Tooltip("(Optional): The CathodeBeamToggle script component on Electron Beam")] CathodeBeamToggle cathodeBeamToggle;
@@ -113,7 +113,7 @@ public class XRayControlPanel : MonoBehaviour
 	void Start()
 	{
 
-		// We can probably get rid of lots of these, but for now I just copied all from DetectTouch.cs
+		// We can probably get rid of lots of these, but for now I just copied all from XRayScanner.cs
 		mAsText = GameObject.Find("mAsText").GetComponent<Text>();
 		kVText = GameObject.Find("kVText").GetComponent<Text>();
 		mAsText1 = GameObject.Find("mAsText1").GetComponent<Text>();
@@ -432,7 +432,7 @@ public class XRayControlPanel : MonoBehaviour
 		ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
 
 
-		if (detectTouch) { detectTouch.Prime(); }
+		if (xRayScanner) { xRayScanner.Prime(); }
 		if (anodeSpin) { anodeSpin.SpeedUp(); }
 
 	}
@@ -459,7 +459,7 @@ public class XRayControlPanel : MonoBehaviour
 
 		//Hum.GetComponent<AudioSource> ().Play ();
 
-		if (detectTouch) { detectTouch.Scan(); }
+		if (xRayScanner) { xRayScanner.Scan(); }
 
 
 	}
