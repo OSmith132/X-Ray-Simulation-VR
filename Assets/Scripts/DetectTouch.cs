@@ -26,7 +26,7 @@ public class DetectTouch : MonoBehaviour
 	//float Maindist;
 	//float ResetDist;
 	//float traydist;
-	float time;
+	//float time;
 	float DetectorSize;
 	//float incrament = 0.075f;
 	float ImageLeft;
@@ -60,8 +60,8 @@ public class DetectTouch : MonoBehaviour
 
 	//used public as these floats are called in other scripts
 	//public bool controlFreeMode;
-	public float primedown;
-	public float primeup;
+	//public float primedown;
+	//public float primeup;
 
 
 
@@ -95,9 +95,9 @@ public class DetectTouch : MonoBehaviour
 
 	public GameObject HVL;
 	//GameObject PhantomMoveScript;
-	GameObject PrimeButton;
-	GameObject ScanButton;
-	GameObject ScanReady;
+	//GameObject PrimeButton;
+	//GameObject ScanButton;
+	//GameObject ScanReady;
 	//GameObject Yind;
 	//GameObject arrow1;
 	//GameObject arrow2;
@@ -119,16 +119,16 @@ public class DetectTouch : MonoBehaviour
 
 
 
-	GameObject Table;
-	GameObject VerticalTable;
-	Color OriginalTable;
+	//GameObject Table;
+	//GameObject VerticalTable;
+	//Color OriginalTable;
 
 
 
 	//GameObject click;
 	//GameObject clickL;
 	//GameObject Hum;
-	GameObject primesound;
+	//GameObject primesound;
 	
 	//GameObject FreeButton;
 	//GameObject VerticalButton;
@@ -177,8 +177,8 @@ public class DetectTouch : MonoBehaviour
 	//Color OriginalArrowColor;
 	//Color OriginalHandleColor;
 	//Color OriginalUnpressed;
-	Color ScanRed;
-	Color PrimeYellow;
+	//Color ScanRed;
+	//Color PrimeYellow;
 
 	//Color OriginalColButton;
 
@@ -196,6 +196,49 @@ public class DetectTouch : MonoBehaviour
 	float fluxSatLim;
 
 	// end
+
+
+
+
+	public void Prime()
+	{
+		if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
+		{
+			TVXray.GetComponent<Renderer>().enabled = false;
+			TakeScan();
+		}
+
+	}
+
+
+	public void Scan()
+	{
+
+		if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
+		{
+			TVXray.GetComponent<Renderer>().enabled = true;
+			xrayCam.GetComponent<Camera>().enabled = true;
+			CalculateImage();
+			CalculateDAP();
+		}
+
+		if (sceneName == "HVL Xray Room Oculus Touch")
+		{
+			HVL.GetComponent<HVLanchors>().CalcOutput();
+			CalculateDAP();
+		}
+
+		if (sceneName == "Inverse Square Law Room")
+		{
+			CalculateDAP();
+		}
+
+	}
+
+
+
+
+
 
 	void Start()
 	{
@@ -237,10 +280,10 @@ public class DetectTouch : MonoBehaviour
 		//Hum = GameObject.Find ("XRAYON");
 
 
-		primesound = GameObject.Find("primeON");
-		PrimeButton = GameObject.Find("Prime");
-		ScanButton = GameObject.Find("Scan");
-		ScanReady = GameObject.Find("Scan Ready");
+		//primesound = GameObject.Find("primeON");
+		//PrimeButton = GameObject.Find("Prime");
+		//ScanButton = GameObject.Find("Scan");
+		//ScanReady = GameObject.Find("Scan Ready");
 
 
 		//VerticalTable = GameObject.Find("Vertical Control");
@@ -348,8 +391,8 @@ public class DetectTouch : MonoBehaviour
 		//OriginalArrowColor = arrow1.GetComponent<Renderer>().material.color;
 		//OriginalHandleColor = Handle.GetComponent<Renderer>().material.color;
 		//OriginalUnpressed = FreeButton.GetComponent<Renderer>().material.color;
-		ScanRed = ScanButton.GetComponent<Renderer>().material.color;
-		PrimeYellow = PrimeButton.GetComponent<Renderer>().material.color;
+		//ScanRed = ScanButton.GetComponent<Renderer>().material.color;
+		//PrimeYellow = PrimeButton.GetComponent<Renderer>().material.color;
 		//OriginalTable = VerticalTable.GetComponent<Renderer>().material.color;
 		//OriginalColButton = ColUp.GetComponent<Renderer>().material.color;
 
@@ -375,70 +418,29 @@ public class DetectTouch : MonoBehaviour
 	void Update()
 	{
 
-		//if (PlayerPrefs.GetFloat("FaultsActivated") == 1.0f)
+	
+
+		////Booleans to Impose a delay between prime and scan, giving a double press feel
+		//if (primedown == 1)
 		//{
-		//	if (sceneName == "HEE Light Field Alignment")
+
+		//	ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
+
+		//	if (Time.time >= time)
 		//	{
-		//		DeadPixel.gameObject.SetActive(true);
+		//		ScanButton.GetComponent<Collider>().enabled = true;
+		//		ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
 		//	}
 
 		//}
-
-
-		//if (Handle)
+		//if (primeup == 1)
 		//{
-		//Light up handle when either left or right hand is near
-		//	float distHandle = Vector3.Distance(this.gameObject.transform.position, Handle.transform.position);
-		//	float distHandleL = Vector3.Distance(LeftHand.transform.position, Handle.transform.position);
-
-		//	if (distHandle <= 0.25 || distHandleL <= 0.25)
-		//	{
-		//		Handle.GetComponent<Renderer>().material.color = Color.white;
-		//	}
-		//	else
-		//	{
-		//		Handle.GetComponent<Renderer>().material.color = OriginalHandleColor;
-		//	}
-		//}
-
-
-		//if (Table)
-		//{
-		//	//Light up table handle when either left or right hand is near
-		//	float distTable = Vector3.Distance(this.gameObject.transform.position, VerticalTable.transform.position);
-		//	float distTableL = Vector3.Distance(LeftHand.transform.position, VerticalTable.transform.position);
-		//	if (distTable <= 0.25 || distTableL <= 0.25)
-		//	{
-		//		VerticalTable.GetComponent<Renderer>().material.color = Color.blue;
-		//	}
-		//	else
-		//	{
-		//		VerticalTable.GetComponent<Renderer>().material.color = OriginalTable;
-		//	}
+		//	ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+		//	primeup = 0;
 		//}
 
 
 
-
-
-		//Booleans to Impose a delay between prime and scan, giving a double press feel
-		if (primedown == 1)
-		{
-
-			ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
-
-			if (Time.time >= time)
-			{
-				ScanButton.GetComponent<Collider>().enabled = true;
-				ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
-			}
-
-		}
-		if (primeup == 1)
-		{
-			ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
-			primeup = 0;
-		}
 
 
 
@@ -735,61 +737,65 @@ public class DetectTouch : MonoBehaviour
 
 
 
-		if (touch.gameObject.name == "Scan")
-		{
-			ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
-			//click.GetComponent<AudioSource>().Play();
-			primeup = 1;
-			primedown = 0;
-
-			//Hum.GetComponent<AudioSource> ().Play ();
-
-			if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
-			{
-				TVXray.GetComponent<Renderer>().enabled = true;
-				xrayCam.GetComponent<Camera>().enabled = true;
-				CalculateImage();
-				CalculateDAP();
-
-			}
-
-			if (sceneName == "HVL Xray Room Oculus Touch")
-			{
-				HVL.GetComponent<HVLanchors>().CalcOutput();
-				CalculateDAP();
-			}
-
-			if (sceneName == "Inverse Square Law Room")
-			{
-				CalculateDAP();
-			}
-
-
-		}
 
 
 
 
+		//if (touch.gameObject.name == "Scan")
+		//{
+		//	ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+		//	//click.GetComponent<AudioSource>().Play();
+		//	primeup = 1;
+		//	primedown = 0;
+
+		//	//Hum.GetComponent<AudioSource> ().Play ();
+
+		//	if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
+		//	{
+		//		TVXray.GetComponent<Renderer>().enabled = true;
+		//		xrayCam.GetComponent<Camera>().enabled = true;
+		//		CalculateImage();
+		//		CalculateDAP();
+
+		//	}
+
+		//	if (sceneName == "HVL Xray Room Oculus Touch")
+		//	{
+		//		HVL.GetComponent<HVLanchors>().CalcOutput();
+		//		CalculateDAP();
+		//	}
+
+		//	if (sceneName == "Inverse Square Law Room")
+		//	{
+		//		CalculateDAP();
+		//	}
 
 
-		if (touch.gameObject.name == "Prime")
-		{
-			primedown = 1;
-			PrimeButton.GetComponent<Renderer>().material.color = new Color32(254, 161, 0, 1);
-			//click.GetComponent<AudioSource>().Play();
-			primesound.GetComponent<AudioSource>().Play();
-			ScanButton.GetComponent<Collider>().enabled = false;
-			time = Time.time + 0.8f;
-			ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
-
-			if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
-			{
-				TVXray.GetComponent<Renderer>().enabled = false;
-				TakeScan();
-			}
+		//}
 
 
-		}
+
+
+
+
+		//if (touch.gameObject.name == "Prime")
+		//{
+		//	primedown = 1;
+		//	PrimeButton.GetComponent<Renderer>().material.color = new Color32(254, 161, 0, 1);
+		//	//click.GetComponent<AudioSource>().Play();
+		//	primesound.GetComponent<AudioSource>().Play();
+		//	ScanButton.GetComponent<Collider>().enabled = false;
+		//	time = Time.time + 0.8f;
+		//	ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
+
+		//	if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
+		//	{
+		//		TVXray.GetComponent<Renderer>().enabled = false;
+		//		TakeScan();
+		//	}
+
+
+		//}
 
 
 
@@ -876,16 +882,16 @@ public class DetectTouch : MonoBehaviour
 		//	arrow2s.GetComponent<Renderer>().material.color = Color.black;
 		//}
 
-		if (notouch.gameObject.name == "Prime")
-		{
-			PrimeButton.GetComponent<Renderer>().material.color = PrimeYellow;
-			primedown = 0;
-		}
+		//if (notouch.gameObject.name == "Prime")
+		//{
+		//	PrimeButton.GetComponent<Renderer>().material.color = PrimeYellow;
+		//	primedown = 0;
+		//}
 
-		if (notouch.gameObject.name == "Scan")
-		{
-			ScanButton.GetComponent<Renderer>().material.color = ScanRed;
-		}
+		//if (notouch.gameObject.name == "Scan")
+		//{
+		//	ScanButton.GetComponent<Renderer>().material.color = ScanRed;
+		//}
 
 		//if (notouch.gameObject.name == "Collimator Vertical Out")
 		//{

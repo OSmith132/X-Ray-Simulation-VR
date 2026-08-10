@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lightToggle : MonoBehaviour
+public class LightToggle : MonoBehaviour
 
 {
 	private Light XrayLight;
 	private bool  onoff;
 
-	[SerializeField] private DetectTouch rightHandTouch;
 
 	// Use this for initialization
 	void Start ()
@@ -17,14 +16,7 @@ public class lightToggle : MonoBehaviour
 		XrayLight.intensity = 0;
 	}
 	
-	// Update is called once per frame
-	void Update ()
-	{
 
-		if (rightHandTouch.primedown == 1) {
-			toggleLight ();
-		}
-	}
 
 	public void toggleLight()
 

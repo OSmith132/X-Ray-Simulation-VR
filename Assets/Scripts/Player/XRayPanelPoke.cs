@@ -27,7 +27,8 @@ public class XRayPanelPoke : MonoBehaviour
 			case "Collimator Vertical In": panel.PressCollimatorVerticalIn(); break;
 			case "Collimator Horizontal Out": panel.PressCollimatorHorizontalOut(); break;
 			case "Collimator Horizontal In": panel.PressCollimatorHorizontalIn(); break;
-			//case "Prime"
+			case "Prime": panel.PressPrimeButton(); break;
+			case "Scan": panel.PressScanButton(); break;
 		}
 	}
 
@@ -49,6 +50,8 @@ public class XRayPanelPoke : MonoBehaviour
 			case "Collimator Vertical In": panel.ReleaseCollimatorVerticalIn(); break;
 			case "Collimator Horizontal Out": panel.ReleaseCollimatorHorizontalOut(); break;
 			case "Collimator Horizontal In": panel.ReleaseCollimatorHorizontalIn(); break;
+			case "Prime": panel.ReleasePrimeButton(); break;
+			case "Scan": panel.ReleaseScanButton(); break;
 		}
 	}
 }

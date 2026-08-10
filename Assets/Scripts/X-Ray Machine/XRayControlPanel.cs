@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 /// <summary>
 /// Single source of truth for the x-ray panel: mAs/kV readouts, click sounds,
 /// the panel handle highlight, the free-roam/fixed-vertical toggle, and the
@@ -24,14 +25,13 @@ public class XRayControlPanel : MonoBehaviour
 	[Header("Panel Handle")]
 	[SerializeField, Tooltip("The X-Ray panel handle ")] XRayHandleController xrayHandleController;
 
+
+
 	// Static so DetectTouch (and anything else) can still read the current
 	// exposure settings.
 	public static int mAs = 10;
 	public static int kV = 70;
 
-	// Was public on DetectTouch before - if other scripts referenced
-	// DetectTouch.controlFreeMode, repoint them at XrayControlPanel.Instance.controlFreeMode.
-	//public bool controlFreeMode;
 
 	Text mAsText;
 	Text kVText;
@@ -70,6 +70,31 @@ public class XRayControlPanel : MonoBehaviour
 	Color OriginalHandleColor;
 	Color OriginalUnpressed;
 	Color OriginalColButton;
+
+
+
+	public float primedown;
+	public float primeup;
+
+	GameObject PrimeButton;
+	GameObject ScanButton;
+	GameObject ScanReady;
+
+	float time;
+
+	Color ScanRed;
+	Color PrimeYellow;
+	GameObject primesound;
+
+
+	[SerializeField, Tooltip("(Optional): The TakeScan script component on Xray System	")] DetectTouch detectTouch;
+	[SerializeField, Tooltip("(Optional): The LightToggle script component on Collimator Guide Light")] LightToggle lightToggle;
+	[SerializeField, Tooltip("(Optional): The AnodeSpinTouch script component on AnodeA")] AnodeSpinTouch anodeSpin;
+	[SerializeField, Tooltip("(Optional): The CathodeBeamToggle script component on Electron Beam")] CathodeBeamToggle cathodeBeamToggle;
+
+	//LightToggle lightToggle;
+	//AnodeSpinTouch anodeSpin;
+	//CathodeBeamToggle cathodeBeamToggle;
 
 	void Awake()
 	{
@@ -132,6 +157,26 @@ public class XRayControlPanel : MonoBehaviour
 		OriginalColButton = ColUp.GetComponent<Renderer>().material.color;
 
 		FreeButton.GetComponent<Renderer>().material.color = Color.green; // Set to green as this is the default option.
+
+		
+
+
+
+		primesound = GameObject.Find("primeON");
+		PrimeButton = GameObject.Find("Prime");
+		ScanButton = GameObject.Find("Scan");
+		ScanReady = GameObject.Find("Scan Ready");
+
+		ScanRed = ScanButton.GetComponent<Renderer>().material.color;
+		PrimeYellow = PrimeButton.GetComponent<Renderer>().material.color;
+
+
+		//lightToggle = GameObject.Find("Collimator Guide Light").GetComponent<LightToggle>(); 
+		//anodeSpin = GameObject.Find("AnodeA").GetComponent<AnodeSpinTouch>();
+		//cathodeBeamToggle = GameObject.Find("Electron Beam").GetComponent<CathodeBeamToggle>();
+
+		
+
 	}
 
 
@@ -153,6 +198,34 @@ public class XRayControlPanel : MonoBehaviour
 
 			Handle.GetComponent<Renderer>().material.color = (minDist <= 0.25f) ? Color.white : OriginalHandleColor;
 		}
+
+
+
+		//Booleans to Impose a delay between prime and scan, giving a double press feel
+		if (primedown == 1)
+		{
+
+			ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
+
+			if (Time.time >= time)
+			{
+				ScanButton.GetComponent<Collider>().enabled = true;
+				ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+			}
+
+			if (lightToggle) { lightToggle.toggleLight(); }
+
+			if (cathodeBeamToggle) { cathodeBeamToggle.toggleBeam(); }
+			
+
+		}
+		if (primeup == 1)
+		{
+			ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+			primeup = 0;
+		}
+
+		 
 	}
 
 
@@ -335,33 +408,88 @@ public class XRayControlPanel : MonoBehaviour
 
 
 
+
+
+
+
+
+
+
+
 	// --- Prime and scan buttons ---
 
 
 
-	//public void PressPrimeButton()
-	//{
+	public void PressPrimeButton()
+	{
 
-	//	primedown = 1;
-	//	PrimeButton.GetComponent<Renderer>().material.color = new Color32(254, 161, 0, 1);
-	//	//click.GetComponent<AudioSource>().Play();
-	//	primesound.GetComponent<AudioSource>().Play();
-	//	ScanButton.GetComponent<Collider>().enabled = false;
-	//	time = Time.time + 0.8f;
-	//	ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
-
-	//	if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
-	//	{
-	//		TVXray.GetComponent<Renderer>().enabled = false;
-	//		TakeScan();
+		primedown = 1;
+		PrimeButton.GetComponent<Renderer>().material.color = new Color32(254, 161, 0, 1);
+		//click.GetComponent<AudioSource>().Play();
+		primesound.GetComponent<AudioSource>().Play();
+		ScanButton.GetComponent<Collider>().enabled = false;
+		time = Time.time + 0.8f;
+		ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
 
 
+		if (detectTouch) { detectTouch.Prime(); }
+		if (anodeSpin) { anodeSpin.SpeedUp(); }
 
-	//	}
+	}
 
-	//}
 
 
 
 	
+		
+	
+
+
+
+
+
+
+	public void PressScanButton()
+{
+
+		ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+		//click.GetComponent<AudioSource>().Play();
+		primeup = 1;
+		primedown = 0;
+
+		//Hum.GetComponent<AudioSource> ().Play ();
+
+		if (detectTouch) { detectTouch.Scan(); }
+
+
+	}
+
+
+
+
+
+	public void ReleasePrimeButton()
+	{
+		PrimeButton.GetComponent<Renderer>().material.color = PrimeYellow;
+		primedown = 0;
+
+		if (anodeSpin) { anodeSpin.SlowDown(); }
+	}
+
+
+	public void ReleaseScanButton()
+	{
+		ScanButton.GetComponent<Renderer>().material.color = ScanRed;
+	}
+
+
+
+
+
+	
+
+
+
+
+
 }

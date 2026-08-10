@@ -18,23 +18,10 @@ public class CathodeBeamToggle : MonoBehaviour
 		ElectronBeam = GetComponent<Light> ();
 		ElectronBeam.intensity = 0;
 		OGScanButtonColor = ScanButton.GetComponent<Renderer> ().material.color;
-		rightHand = GameObject.Find ("RightHandAnchor");
 
 	}
 	
-	// Update is called once per frame
-	void Update () 
-	{
-//		if (Input.GetButtonDown("Scan")){
-//			toggleBeam ();
-//		}
 
-		if (rightHand.GetComponent<DetectTouch> ().primedown == 1) {
-			toggleBeam ();
-		}
-
-		
-	}
 
 	public void toggleBeam()
 

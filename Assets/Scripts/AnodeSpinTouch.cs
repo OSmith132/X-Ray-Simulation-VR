@@ -9,32 +9,32 @@ public class AnodeSpinTouch : MonoBehaviour
 	public float slowDown;
 
 
-	[SerializeField] private DetectTouch rightHandTouch;
+
+
+
+
+	public void SpeedUp()
+	{
+		slowDown = 0;
+		increase += (Time.deltaTime * 10f);
+		transform.Rotate(Vector3.up, increase);
+		if (increase >= 20)
+		{
+			increase = 20;
+		}
+	}
+
+	public void SlowDown()
+	{
+		slowDown = 1;
+	}
+
+
 
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (rightHandTouch.primedown == 1)
-		{
-			slowDown = 0;
-			increase += (Time.deltaTime * 10f);
-			transform.Rotate(Vector3.up, increase);
-
-			if (increase >= 20)
-			{
-				increase = 20;
-			}
-		}
-
-
-		if (rightHandTouch.primedown == 0)
-		{
-			slowDown = 1;
-		}
-
-
-
 
 
 
