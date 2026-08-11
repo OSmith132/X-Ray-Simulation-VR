@@ -8,12 +8,9 @@ using UnityEngine.SceneManagement;
 
 
 /// <summary>
-/// NOTE: It might be worth replacing this script with some instances of the XRPokeInteractor and some individual scripts attached to the new XRGrabInteractable component to unify with the rest of the system.
-/// I have replaced all instances of the OculusXR package with OpenXR and it works fine for now.
-/// - Oliver (17/07/2026)
+/// Contains all the logic and processing for taking a scan.
 /// 
-/// NOTE 2: This is in progress currently! (09/08/2026)
-/// 
+/// Also currently contains legacy code (comments) from `DetectTouch.cs` that can be removed.
 /// </summary>
 public class XRayScanner : MonoBehaviour
 {
