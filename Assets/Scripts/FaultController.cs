@@ -187,26 +187,26 @@ public class FaultController : MonoBehaviour {
 
 		//MCQ cube distances
 
-		if (sceneName == "HVL Xray Room Oculus Touch" || sceneName == "Inverse Square Law Room" || sceneName == "Assemble Xray Room Oculus Touch")
-		{
-			OfficeCubeAdist = Vector3.Distance (OfficeCubeA.transform.position, OfficeCubeARef.transform.position);
-			OfficeCubeBdist = Vector3.Distance (OfficeCubeB.transform.position, OfficeCubeBRef.transform.position);
+		//if (sceneName == "HVL Xray Room Oculus Touch" || sceneName == "Inverse Square Law Room" || sceneName == "Assemble Xray Room Oculus Touch")
+		//{
+		//	OfficeCubeAdist = Vector3.Distance (OfficeCubeA.transform.position, OfficeCubeARef.transform.position);
+		//	OfficeCubeBdist = Vector3.Distance (OfficeCubeB.transform.position, OfficeCubeBRef.transform.position);
 
-			if (OfficeCubeAdist >= 0.1) {
-				OfficeCubeA.transform.position = OfficeCubeARef.transform.position;
-				OfficeCubeA.transform.rotation = OfficeCubeARef.transform.rotation;
-				OfficeCubeA.GetComponent<MeshRenderer> ().material.color = Color.red;
+		//	if (OfficeCubeAdist >= 0.1) {
+		//		OfficeCubeA.transform.position = OfficeCubeARef.transform.position;
+		//		OfficeCubeA.transform.rotation = OfficeCubeARef.transform.rotation;
+		//		OfficeCubeA.GetComponent<MeshRenderer> ().material.color = Color.red;
 
-			}
+		//	}
 
-			if (OfficeCubeBdist >= 0.1) {
-				OfficeCubeB.transform.position = OfficeCubeBRef.transform.position;
-				OfficeCubeB.transform.rotation = OfficeCubeBRef.transform.rotation;
-				OfficeCubeB.GetComponent<MeshRenderer> ().material.color = Color.red;
+		//	if (OfficeCubeBdist >= 0.1) {
+		//		OfficeCubeB.transform.position = OfficeCubeBRef.transform.position;
+		//		OfficeCubeB.transform.rotation = OfficeCubeBRef.transform.rotation;
+		//		OfficeCubeB.GetComponent<MeshRenderer> ().material.color = Color.red;
 
-			}
+		//	}
 
-		}
+		//}
 
 		if (sceneName == "HEE Light Field Alignment") {
 
@@ -277,60 +277,68 @@ public class FaultController : MonoBehaviour {
 
 		}
 
-		if (sceneName == "Assemble Xray Room Oculus Touch")
-		{
-
-			OfficeCubeCdist = Vector3.Distance (OfficeCubeC.transform.position, OfficeCubeCRef.transform.position);
-			OfficeCubeDdist = Vector3.Distance (OfficeCubeD.transform.position, OfficeCubeDRef.transform.position);
-
-			OfficeCube2Adist = Vector3.Distance (OfficeCube2A.transform.position, OfficeCube2ARef.transform.position);
-			OfficeCube2Bdist = Vector3.Distance (OfficeCube2B.transform.position, OfficeCube2BRef.transform.position);
-			OfficeCube2Cdist = Vector3.Distance (OfficeCube2C.transform.position, OfficeCube2CRef.transform.position);
 
 
-			if (OfficeCubeCdist >= 0.1) {
-				OfficeCubeC.transform.position = OfficeCubeCRef.transform.position;
-				OfficeCubeC.transform.rotation = OfficeCubeCRef.transform.rotation;
-				OfficeCubeC.GetComponent<MeshRenderer> ().material.color = Color.red;
-
-			}
-
-			if (OfficeCubeDdist >= 0.1) {
-				OfficeCubeD.transform.position = OfficeCubeDRef.transform.position;
-				OfficeCubeD.transform.rotation = OfficeCubeDRef.transform.rotation;
-				OfficeCubeD.GetComponent<MeshRenderer> ().material.color = Color.green;
 
 
-				//correct answer
-				PlayerPrefs.SetFloat("AssembleCorrect1",1.0f);
-			}
+
+		//if (sceneName == "Assemble Xray Room Oculus Touch")
+		//{
+
+		//	OfficeCubeCdist = Vector3.Distance (OfficeCubeC.transform.position, OfficeCubeCRef.transform.position);
+		//	OfficeCubeDdist = Vector3.Distance (OfficeCubeD.transform.position, OfficeCubeDRef.transform.position);
+
+		//	OfficeCube2Adist = Vector3.Distance (OfficeCube2A.transform.position, OfficeCube2ARef.transform.position);
+		//	OfficeCube2Bdist = Vector3.Distance (OfficeCube2B.transform.position, OfficeCube2BRef.transform.position);
+		//	OfficeCube2Cdist = Vector3.Distance (OfficeCube2C.transform.position, OfficeCube2CRef.transform.position);
 
 
-			if (OfficeCube2Adist >= 0.1) {
-				OfficeCube2A.transform.position = OfficeCube2ARef.transform.position;
-				OfficeCube2A.transform.rotation = OfficeCube2ARef.transform.rotation;
-				OfficeCube2A.GetComponent<MeshRenderer> ().material.color = Color.red;
+		//	if (OfficeCubeCdist >= 0.1) {
+		//		OfficeCubeC.transform.position = OfficeCubeCRef.transform.position;
+		//		OfficeCubeC.transform.rotation = OfficeCubeCRef.transform.rotation;
+		//		OfficeCubeC.GetComponent<MeshRenderer> ().material.color = Color.red;
 
-			}
-			if (OfficeCube2Bdist >= 0.1) {
-				OfficeCube2B.transform.position = OfficeCube2BRef.transform.position;
-				OfficeCube2B.transform.rotation = OfficeCube2BRef.transform.rotation;
-				OfficeCube2B.GetComponent<MeshRenderer> ().material.color = Color.green;
+		//	}
 
-
-				//corect answer
-				PlayerPrefs.SetFloat("AssembleCorrect2",1.0f);
-
-			}
-			if (OfficeCube2Cdist >= 0.1) {
-				OfficeCube2C.transform.position = OfficeCube2CRef.transform.position;
-				OfficeCube2C.transform.rotation = OfficeCube2CRef.transform.rotation;
-				OfficeCube2C.GetComponent<MeshRenderer> ().material.color = Color.red;
-
-			}
+		//	if (OfficeCubeDdist >= 0.1) {
+		//		OfficeCubeD.transform.position = OfficeCubeDRef.transform.position;
+		//		OfficeCubeD.transform.rotation = OfficeCubeDRef.transform.rotation;
+		//		OfficeCubeD.GetComponent<MeshRenderer> ().material.color = Color.green;
 
 
-		}
+		//		//correct answer
+		//		PlayerPrefs.SetFloat("AssembleCorrect1",1.0f);
+		//	}
+
+
+		//	if (OfficeCube2Adist >= 0.1) {
+		//		OfficeCube2A.transform.position = OfficeCube2ARef.transform.position;
+		//		OfficeCube2A.transform.rotation = OfficeCube2ARef.transform.rotation;
+		//		OfficeCube2A.GetComponent<MeshRenderer> ().material.color = Color.red;
+
+		//	}
+		//	if (OfficeCube2Bdist >= 0.1) {
+		//		OfficeCube2B.transform.position = OfficeCube2BRef.transform.position;
+		//		OfficeCube2B.transform.rotation = OfficeCube2BRef.transform.rotation;
+		//		OfficeCube2B.GetComponent<MeshRenderer> ().material.color = Color.green;
+
+
+		//		//corect answer
+		//		PlayerPrefs.SetFloat("AssembleCorrect2",1.0f);
+
+		//	}
+		//	if (OfficeCube2Cdist >= 0.1) {
+		//		OfficeCube2C.transform.position = OfficeCube2CRef.transform.position;
+		//		OfficeCube2C.transform.rotation = OfficeCube2CRef.transform.rotation;
+		//		OfficeCube2C.GetComponent<MeshRenderer> ().material.color = Color.red;
+
+		//	}
+
+
+		//}
+
+
+
 
 		if (sceneName == "HVL Xray Room Oculus Touch")
 		{
