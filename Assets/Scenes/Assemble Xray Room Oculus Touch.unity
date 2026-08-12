@@ -1105,7 +1105,7 @@ PrefabInstance:
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.57357645
       objectReference: {fileID: 0}
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -1115,7 +1115,7 @@ PrefabInstance:
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0.8191521
       objectReference: {fileID: 0}
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -1125,7 +1125,7 @@ PrefabInstance:
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: -110
       objectReference: {fileID: 0}
     - target: {fileID: 2198247366002555024, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -7151,7 +7151,9 @@ MonoBehaviour:
   BeAnchor: {fileID: 132904010}
   Panel: {fileID: 982759749}
   PanelAnchor: {fileID: 669763464}
+  Completion: {fileID: 1848964305}
   Instructions: {fileID: 1331483178}
+  CriticalInspection: {fileID: 1108020383}
   AnodeLabel: {fileID: 1042998842}
   CathodeLabel: {fileID: 1868281956}
   RotorLabel: {fileID: 1209082400}
@@ -13658,7 +13660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 932244993}
   m_Layer: 0
-  m_Name: Completion
+  m_Name: Messages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13678,6 +13680,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1848964309}
+  - {fileID: 1331483181}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &942754478
@@ -16599,7 +16602,7 @@ PrefabInstance:
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.8191521
       objectReference: {fileID: 0}
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -16609,7 +16612,7 @@ PrefabInstance:
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0.5735764
       objectReference: {fileID: 0}
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -16619,7 +16622,7 @@ PrefabInstance:
     - target: {fileID: 1432571354038009049, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 2198247366002555024, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -16749,7 +16752,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1108020385}
+      objectReference: {fileID: 0}
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: onTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -16780,14 +16783,6 @@ PrefabInstance:
     - {fileID: 5036893568803221908, guid: 5536e344e8550704781e248581ecec30, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 495785499980660246, guid: 5536e344e8550704781e248581ecec30,
-        type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 1108020385}
-    - targetCorrespondingSourceObject: {fileID: 495785499980660246, guid: 5536e344e8550704781e248581ecec30,
-        type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 1108020384}
     - targetCorrespondingSourceObject: {fileID: 8883734115106463283, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       insertIndex: -1
@@ -16805,58 +16800,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1108020381}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1108020384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1108020383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da42526ebc48e6e49b8e9d2a841f41f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tube: {fileID: 1559323245}
-  TubeAnchor: {fileID: 851587199}
-  Glass: {fileID: 1312823808}
-  GlassAnchor: {fileID: 29146054}
-  Coil: {fileID: 1134935600}
-  CoilAnchor: {fileID: 2144101465}
-  Anode: {fileID: 1931212952}
-  AnodeAnchor: {fileID: 44494635}
-  Cathode: {fileID: 292998450}
-  CathodeAnchor: {fileID: 1441996630}
-  Rotor: {fileID: 1511165102}
-  RotorAnchor: {fileID: 1561659660}
-  Collimator: {fileID: 1896682611}
-  CollimatorAnchor: {fileID: 1388560774}
-  Be: {fileID: 1971035231}
-  BeAnchor: {fileID: 132904010}
-  Panel: {fileID: 982759749}
-  PanelAnchor: {fileID: 669763464}
-  Instructions: {fileID: 1331483178}
-  AnodeLabel: {fileID: 1042998842}
-  CathodeLabel: {fileID: 1868281956}
-  RotorLabel: {fileID: 1209082400}
-  CoilLabel: {fileID: 1109179960}
-  GlassLabel: {fileID: 617316960}
-  PanelLabel: {fileID: 509530082}
-  CollimatorLabel: {fileID: 92092048}
-  CoverLabel: {fileID: 220034462}
-  BeLabel: {fileID: 718624095}
---- !u!114 &1108020385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1108020383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28d38456e6ba6d84797528531f2fc870, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AssemblyTestCubeReveal
 --- !u!1 &1109179960
 GameObject:
   m_ObjectHideFlags: 0
@@ -21640,12 +21583,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331483178}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.274, y: 1.594, z: 0.091}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.17295903, y: 0.5663576, z: 0.10189447}
   m_LocalScale: {x: 0.0037800036, y: 0.00378, z: 0.0037800036}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 932244993}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1333835716
 GameObject:
@@ -24495,6 +24438,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Xray Table
       objectReference: {fileID: 0}
+    - target: {fileID: 5208870493158095598, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6229677952194420225, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24548,7 +24496,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 62511693772181354, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2022721691}
   m_SourcePrefab: {fileID: 100100000, guid: aa2bb8493e90ed84ab6f8298aae27ed4, type: 3}
 --- !u!1 &1457999298
 GameObject:
@@ -29130,7 +29082,9 @@ MonoBehaviour:
   BeAnchor: {fileID: 132904010}
   Panel: {fileID: 982759749}
   PanelAnchor: {fileID: 669763464}
+  Completion: {fileID: 0}
   Instructions: {fileID: 1331483178}
+  CriticalInspection: {fileID: 0}
   AnodeLabel: {fileID: 1042998842}
   CathodeLabel: {fileID: 1868281956}
   RotorLabel: {fileID: 1209082400}
@@ -33902,6 +33856,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 751483107}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2022721687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 62511693772181354, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1457854257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2022721691
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022721687}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 140.0001, y: 4.304114, z: 54.5517}
+  m_Center: {x: -0.000011444092, y: 36.490765, z: 0.0000028610239}
 --- !u!1 &2031618985
 GameObject:
   m_ObjectHideFlags: 0
@@ -36441,7 +36422,6 @@ SceneRoots:
   - {fileID: 670168913}
   - {fileID: 339747889}
   - {fileID: 1726352456}
-  - {fileID: 1331483181}
   - {fileID: 79236440}
   - {fileID: 932244993}
   - {fileID: 1748661921}

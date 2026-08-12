@@ -39,9 +39,16 @@ public class FaultScoreManager : MonoBehaviour
 			DeactivateFaultCube.GetComponent<BoxCollider>().enabled = true;
 
 
-			Assemblecube.GetComponent<MeshRenderer>().material.color = (PlayerPrefs.GetFloat("AssembleCorrect1") == 1 && PlayerPrefs.GetFloat("AssembleCorrect2") == 1)
+
+			// Check if they got a perfect score on the MCQ
+			Assemblecube.GetComponent<MeshRenderer>().material.color = (PlayerPrefs.GetFloat("AssembleCorrect") == 1f)
 				? Color.green : Color.red;
 
+
+
+
+
+			// TODO: make these consistent with the new 0f-1f system of scoring as above
 			HVLcube.GetComponent<MeshRenderer>().material.color = (PlayerPrefs.GetFloat("HVLCorrect1") == 1 && PlayerPrefs.GetFloat("HVLCorrect2") == 1)
 				? Color.green : Color.red;
 
@@ -53,16 +60,25 @@ public class FaultScoreManager : MonoBehaviour
 
 
 
+
 			anatcube.GetComponent<MeshRenderer>().material.color = Color.grey;
 			anatcube.GetComponent<XRGrabInteractable>().enabled = false;
 			anatcube.GetComponent<BoxCollider>().enabled = false;
 
-			float score = PlayerPrefs.GetFloat("PhantomsCorrect1") + PlayerPrefs.GetFloat("PhantomsCorrect2")
+
+
+
+			// Only allow training on patient once basic training is completed.
+			float score = PlayerPrefs.GetFloat("PhantomsCorrect")
+
+						 // TODO: make these consistent with the new 0f-1f system of scoring as above
 						 + PlayerPrefs.GetFloat("DAPCorrect")
 						 + PlayerPrefs.GetFloat("HVLCorrect1") + PlayerPrefs.GetFloat("HVLCorrect2")
 						 + PlayerPrefs.GetFloat("AssembleCorrect1") + PlayerPrefs.GetFloat("AssembleCorrect2");
+						// ^^^
 
-			if (score == 7)
+
+			if (score ==4)
 			{
 				anatcube.GetComponent<MeshRenderer>().material.color = Color.green;
 				anatcube.GetComponent<XRGrabInteractable>().enabled = true;

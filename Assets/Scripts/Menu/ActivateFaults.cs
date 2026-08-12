@@ -5,8 +5,9 @@ public class ActivateFaults : MonoBehaviour
 	public void Activate()
 	{
 		PlayerPrefs.SetFloat("FaultsActivated", 1.0f);
-		PlayerPrefs.SetFloat("AssembleCorrect1", 0.0f);
-		PlayerPrefs.SetFloat("AssembleCorrect2", 0.0f);
+		//PlayerPrefs.SetFloat("AssembleCorrect1", 0.0f);
+		//PlayerPrefs.SetFloat("AssembleCorrect2", 0.0f);
+		PlayerPrefs.SetFloat("AssembleCorrect", 0.0f);
 		PlayerPrefs.SetFloat("HVLCorrect1", 0.0f);
 		PlayerPrefs.SetFloat("HVLCorrect2", 0.0f);
 		PlayerPrefs.SetFloat("DAPCorrect", 0.0f);

@@ -222,7 +222,7 @@ public class QuizManager : MonoBehaviour
 
 
 
-		instructionMessage.text = resultText + "\nPull any cube to move to the next question.";
+		instructionMessage.text = resultText + "\nPull any cube to continue.";
 
 		submitCube.SetInteractable(false);
 		state = QuizState.Feedback;

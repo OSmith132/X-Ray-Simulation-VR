@@ -41,7 +41,9 @@ public class AnchorPoints : MonoBehaviour
 	public Transform Panel;
 	public Transform PanelAnchor;
 
+	public GameObject Completion;
 	public GameObject Instructions;
+	public GameObject CriticalInspection;
 
 	public GameObject AnodeLabel;
 	public GameObject CathodeLabel;
@@ -83,6 +85,10 @@ public class AnchorPoints : MonoBehaviour
 		GetComponent<XRGrabInteractable>().enabled = false;
 
 
+		CriticalInspection.GetComponent<MeshRenderer>().material.color = Color.grey;
+		CriticalInspection.GetComponent<XRGrabInteractable>().enabled = false;
+
+
 		// parts 
 		AnodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
 		CathodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
@@ -96,6 +102,7 @@ public class AnchorPoints : MonoBehaviour
 		BeLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
 
 		Instructions.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		Completion.gameObject.GetComponent<MeshRenderer>().enabled = false;
 
 		freeAnodeRotation = false;
 
@@ -310,11 +317,17 @@ public class AnchorPoints : MonoBehaviour
 			GetComponent<MeshRenderer>().material.color = defaultColor;
 			GetComponent<XRGrabInteractable>().enabled = true;
 
+			CriticalInspection.GetComponent<MeshRenderer>().material.color = defaultColor;
+			CriticalInspection.GetComponent<XRGrabInteractable>().enabled = true;
+
 			this._FixPositions(); // So objects can't be grabbed
 
 			freeAnodeRotation = true; // To allow for the anode to spin during testing
 
+			Completion.gameObject.GetComponent<MeshRenderer>().enabled = true;
 			Instructions.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+			
 
 		}
 	}
