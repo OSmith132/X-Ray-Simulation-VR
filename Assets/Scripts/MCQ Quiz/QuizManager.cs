@@ -37,7 +37,7 @@ public class QuizManager : MonoBehaviour
 
 	int currentQuestionIndex = 0;
 	int correctCount = 0;
-	int selectedAnswerIndex = -1; // -1 = nothing selected yet
+	List<int> selectedAnswerIndices = new List<int>(); // empty = nothing selected yet
 
 
 
@@ -57,7 +57,9 @@ public class QuizManager : MonoBehaviour
 		submitCube.SetInteractable(false);
 	}
 
-	// Loads questions from the assigned text file. Each question is a block separated by a blank line
+	// Loads questions from the assigned text file. Each question is a block separated by a blank line.
+	// The last line of a block holds the correct answer number(s): a single number (e.g. "3") makes it
+	// a single select question, several numbers separated by spaces (e.g. "3 5") makes it multi select.
 	void LoadQuestions()
 	{
 		questions.Clear();
@@ -85,11 +87,17 @@ public class QuizManager : MonoBehaviour
 					options[i] = lines[i + 1];
 				}
 
-				int correctNumber;
-				int.TryParse(lines[lines.Length - 1], out correctNumber);
-				int correctIndex = Mathf.Clamp(correctNumber - 1, 0, optionCount - 1);
+				// The correct answer line can hold one number (single select) or several space separated numbers (multi select)
+				string[] correctTokens = lines[lines.Length - 1].Split(new[] { ' ', '\t' }, System.StringSplitOptions.RemoveEmptyEntries);
+				int[] correctIndices = new int[correctTokens.Length];
+				for (int i = 0; i < correctTokens.Length; i++)
+				{
+					int correctNumber;
+					int.TryParse(correctTokens[i], out correctNumber);
+					correctIndices[i] = Mathf.Clamp(correctNumber - 1, 0, optionCount - 1);
+				}
 
-				questions.Add(new Question(questionText, options, correctIndex));
+				questions.Add(new Question(questionText, options, correctIndices));
 			}
 		}
 
@@ -101,12 +109,12 @@ public class QuizManager : MonoBehaviour
 			questions.Add(new Question(
 				"PLACEHOLDER Q1: which option is correct?", // Question
 				new[] { "Placeholder option 1", "Placeholder option 2 (correct)", "Placeholder option 3", "Placeholder option 4" }, // Answers
-				1)); // Correct answer
+				new[] { 1 })); // Correct answer(s)
 
 			questions.Add(new Question(
-				"PLACEHOLDER Q2: which option is correct?",
+				"PLACEHOLDER Q2: which options are correct? (Select all that apply)",
 				new[] { "Placeholder option 1", "Placeholder option 2", "Placeholder option 3", "Placeholder option 4 (correct)" },
-				3));
+				new[] { 1, 3 }));
 		}
 	}
 
@@ -156,7 +164,7 @@ public class QuizManager : MonoBehaviour
 	// Called by the SubmitCube when it is pulled.
 	public void OnSubmitCubePulled()
 	{
-		if (state != QuizState.Answering || selectedAnswerIndex < 0) { return; }
+		if (state != QuizState.Answering || selectedAnswerIndices.Count == 0) { return; }
 		CheckAnswer();
 	}
 
@@ -167,21 +175,37 @@ public class QuizManager : MonoBehaviour
 
 	void SelectAnswer(AnswerCube cube)
 	{
-		selectedAnswerIndex = cube.answerIndex;
+		Question current = questions[currentQuestionIndex];
+		bool isMultiSelect = current.correctIndices.Length > 1;
 
-		for (int i = 0; i < answerCubes.Length; i++)
+		if (isMultiSelect)
 		{
-			if (i == selectedAnswerIndex)
+			// Pulling an already selected cube unselects it
+			if (selectedAnswerIndices.Contains(cube.answerIndex))
 			{
-				answerCubes[i].SetGreen();
+				selectedAnswerIndices.Remove(cube.answerIndex);
+				cube.SetDefault();
 			}
 			else
 			{
-				answerCubes[i].SetDefault();
+				selectedAnswerIndices.Add(cube.answerIndex);
+				cube.SetGreen();
+			}
+		}
+		else
+		{
+			// Single select: only one cube can be selected at a time, same as before
+			selectedAnswerIndices.Clear();
+			selectedAnswerIndices.Add(cube.answerIndex);
+
+			for (int i = 0; i < answerCubes.Length; i++)
+			{
+				if (i == cube.answerIndex) { answerCubes[i].SetGreen(); }
+				else { answerCubes[i].SetDefault(); }
 			}
 		}
 
-		submitCube.SetInteractable(true);
+		submitCube.SetInteractable(selectedAnswerIndices.Count > 0);
 	}
 
 
@@ -193,7 +217,7 @@ public class QuizManager : MonoBehaviour
 	void CheckAnswer()
 	{
 		Question current = questions[currentQuestionIndex];
-		bool isCorrect = selectedAnswerIndex == current.correctIndex;
+		bool isCorrect = selectedAnswerIndices.Count == current.correctIndices.Length && selectedAnswerIndices.All(i => current.correctIndices.Contains(i));
 
 		if (isCorrect)
 		{
@@ -203,11 +227,11 @@ public class QuizManager : MonoBehaviour
 
 		for (int i = 0; i < answerCubes.Length; i++)
 		{
-			if (i == current.correctIndex)
+			if (current.correctIndices.Contains(i))
 			{
 				answerCubes[i].SetGreen();
 			}
-			else if (i == selectedAnswerIndex)
+			else if (selectedAnswerIndices.Contains(i))
 			{
 				answerCubes[i].SetRed();
 			}
@@ -269,7 +293,7 @@ public class QuizManager : MonoBehaviour
 		questionText.text = string.Format("{0}\n\n{1}", current.questionText, optionsText.ToString());
 
 		instructionMessage.text = "";
-		selectedAnswerIndex = -1;
+		selectedAnswerIndices.Clear();
 
 		ResetAllCubeColours();
 		submitCube.SetInteractable(false);

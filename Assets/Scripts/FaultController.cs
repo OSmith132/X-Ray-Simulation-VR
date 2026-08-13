@@ -75,21 +75,21 @@ public class FaultController : MonoBehaviour {
 		
 
 		//scene manager
-		currentScene = SceneManager.GetActiveScene ();
-		sceneName = currentScene.name;
+		//currentScene = SceneManager.GetActiveScene ();
+		//sceneName = currentScene.name;
 
 
-		FaultObjectAppear = GameObject.Find ("FaultObjectAppear");
+		//FaultObjectAppear = GameObject.Find ("FaultObjectAppear");
 
 
-		if (PlayerPrefs.GetFloat ("FaultsActivated") == 1) {
+		//if (PlayerPrefs.GetFloat ("FaultsActivated") == 1) {
 
-			//cheat to hide MCQ related objects
-			FaultObjectAppear.transform.position = new Vector3 (0, 0, 0);
-		} else 
-		{
-			FaultObjectAppear.transform.position = new Vector3 (-100f, -100f, 0);
-		}
+		//	//cheat to hide MCQ related objects
+		//	FaultObjectAppear.transform.position = new Vector3 (0, 0, 0);
+		//} else 
+		//{
+		//	FaultObjectAppear.transform.position = new Vector3 (-100f, -100f, 0);
+		//}
 
 
 

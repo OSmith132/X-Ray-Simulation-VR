@@ -1,21 +1,8 @@
-Which required items were missing from the x-ray room in your critical inspection?
-Local Rules
-Controlled Area designation
-No visual indication of an exposure (trefoil sign)
-Nothing, all documentation and safety features are in place
-4
-
-When you tested the x-ray tube why was the anode spinning?
-To add angular momentum to direct the x-rays
-To dissipate heat deposited by the electrons over a larger area
-To add energy to the x-ray production 
-To avoid interference
-2
-
-
-Please identity all possible faults
+Please identity all possible faults (Select all that apply)
 DAP meter reading incorectly
 Too little filtration
 Too much filtration
 X-ray voltage displaying incorrect values
 Nothing, the system is working as expected
+2 4
+
