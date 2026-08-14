@@ -1,0 +1,13 @@
+Are the light field and x-ray field aligned within tolerance?
+Yes
+No
+1
+
+
+What other Faults exist?
+The Light Beam Alignment tool is damaged
+There are dead pixels on the TV monitor
+Image is too dark
+There are dead pixels on the detector
+Nothing, everything is functioning correctly
+2 -1

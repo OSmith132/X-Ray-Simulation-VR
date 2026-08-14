@@ -56,7 +56,8 @@ public class QuizManager : MonoBehaviour
 		questionText.text = "";
 		instructionMessage.text = "Pull any cube to start";
 
-		ResetAllCubeColours();
+		// No question is shown yet, so every cube stays usable to let the player start the quiz
+		ResetAllCubeColours(answerCubes.Length);
 		submitCube.SetInteractable(false);
 
 
@@ -99,7 +100,15 @@ public class QuizManager : MonoBehaviour
 				{
 					int correctNumber;
 					int.TryParse(correctTokens[i], out correctNumber);
-					correctIndices[i] = Mathf.Clamp(correctNumber - 1, 0, optionCount - 1);
+
+					if (correctNumber == -1)
+					{
+						correctIndices[i] = -1;
+					}
+					else
+					{
+						correctIndices[i] = Mathf.Clamp(correctNumber - 1, 0, optionCount - 1);
+					}
 				}
 
 				questions.Add(new Question(questionText, options, correctIndices));
@@ -181,9 +190,8 @@ public class QuizManager : MonoBehaviour
 	void SelectAnswer(AnswerCube cube)
 	{
 		Question current = questions[currentQuestionIndex];
-		bool isMultiSelect = current.correctIndices.Length > 1;
 
-		if (isMultiSelect)
+		if (current.IsMultiSelect())
 		{
 			// Pulling an already selected cube unselects it
 			if (selectedAnswerIndices.Contains(cube.answerIndex))
@@ -199,14 +207,14 @@ public class QuizManager : MonoBehaviour
 		}
 		else
 		{
-			// Single select: only one cube can be selected at a time, same as before
+			// Single select. Only one cube can be selected at a time
 			selectedAnswerIndices.Clear();
 			selectedAnswerIndices.Add(cube.answerIndex);
 
 			for (int i = 0; i < answerCubes.Length; i++)
 			{
 				if (i == cube.answerIndex) { answerCubes[i].SetGreen(); }
-				else { answerCubes[i].SetDefault(); }
+				else if (i < current.options.Length) { answerCubes[i].SetDefault(); }
 			}
 		}
 
@@ -216,13 +224,30 @@ public class QuizManager : MonoBehaviour
 
 
 
-
+	 
 
 
 	void CheckAnswer()
 	{
-		Question current = questions[currentQuestionIndex];
-		bool isCorrect = selectedAnswerIndices.Count == current.correctIndices.Length && selectedAnswerIndices.All(i => current.correctIndices.Contains(i));
+
+
+		int[] currentAnswers = questions[currentQuestionIndex].GetAnswers(); 
+
+
+		Debug.Log($"Answer len: {currentAnswers.Length}");
+		foreach (int i in currentAnswers)
+		{
+			Debug.Log($"Answer: {i}");
+		}
+
+		Debug.Log($"Input len: {selectedAnswerIndices.Count()}");
+		foreach (int i in selectedAnswerIndices)
+		{
+			Debug.Log($"Input: {i}");
+		}
+
+
+		bool isCorrect = selectedAnswerIndices.Count == currentAnswers.Length && selectedAnswerIndices.All(i => currentAnswers.Contains(i)); // same length and contains same must be equal
 
 		if (isCorrect)
 		{
@@ -232,7 +257,7 @@ public class QuizManager : MonoBehaviour
 
 		for (int i = 0; i < answerCubes.Length; i++)
 		{
-			if (current.correctIndices.Contains(i))
+			if (currentAnswers.Contains(i))
 			{
 				answerCubes[i].SetGreen();
 			}
@@ -244,6 +269,8 @@ public class QuizManager : MonoBehaviour
 			{
 				answerCubes[i].SetGrey();
 			}
+
+			answerCubes[i].SetInteractable(true);
 		}
 
 		// Display in green for correct
@@ -300,7 +327,8 @@ public class QuizManager : MonoBehaviour
 		instructionMessage.text = "";
 		selectedAnswerIndices.Clear();
 
-		ResetAllCubeColours();
+		// Only the cubes covering an actual option for this question stay usable, the rest are greyed out
+		ResetAllCubeColours(current.options.Length);
 		submitCube.SetInteractable(false);
 	}
 
@@ -348,15 +376,15 @@ public class QuizManager : MonoBehaviour
 		switch (sceneName)
 		{
 
-			case "Assemble Xray Room Oculus Touch": 
+			case "Assemble Xray Room Oculus Touch":
 				FaultsManager.SetAssembleCorrect(percentCorrect);
 				break;
 
 			case "HVL Xray Room Oculus Touch":
 				FaultsManager.SetHVLCorrect(percentCorrect);
-				break;			
+				break;
 
-			case "Inverse Square Law Room": 
+			case "Inverse Square Law Room":
 				FaultsManager.SetDAPCorrect(percentCorrect);
 				break;
 
@@ -372,11 +400,19 @@ public class QuizManager : MonoBehaviour
 
 
 
-	void ResetAllCubeColours()
+	// Resets every cube to its default colour and lets it be pulled, except any cube at or beyond
+	// validOptionCount, which has no corresponding option for this question, so it is greyed out
+	// and disabled instead.
+	void ResetAllCubeColours(int validOptionCount)
 	{
-		foreach (AnswerCube cube in answerCubes)
+		for (int i = 0; i < answerCubes.Length; i++)
 		{
-			cube.SetDefault();
+			bool hasOption = i < validOptionCount;
+
+			answerCubes[i].SetInteractable(hasOption);
+
+			if (hasOption) { answerCubes[i].SetDefault(); }
+			else { answerCubes[i].SetGrey(); }
 		}
 	}
 }
