@@ -345,7 +345,6 @@ GameObject:
   - component: {fileID: 4274614170061586766}
   - component: {fileID: 1174417024932961794}
   - component: {fileID: 9070737427111919714}
-  - component: {fileID: 7139973906459862750}
   - component: {fileID: 2365977292856474727}
   - component: {fileID: 2764435239918621431}
   m_Layer: 0
@@ -403,18 +402,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
---- !u!114 &7139973906459862750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3374612370247606083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3d526aa0be9e5847bd052abcdde6538, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!143 &2365977292856474727
 CharacterController:
   m_ObjectHideFlags: 0

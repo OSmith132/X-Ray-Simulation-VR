@@ -447,17 +447,17 @@ public class FaultController : MonoBehaviour {
 
 
 
-	void OnApplicationQuit()
-	{
-		PlayerPrefs.SetFloat ("FaultsActivated", 0.0f);
-		PlayerPrefs.SetFloat ("AssembleCorrect1", 0.0f);
-		PlayerPrefs.SetFloat ("AssembleCorrect2", 0.0f);
-		PlayerPrefs.SetFloat ("HVLCorrect1", 0.0f);
-		PlayerPrefs.SetFloat ("HVLCorrect2", 0.0f);
-		PlayerPrefs.SetFloat ("DAPCorrect", 0.0f);
-		PlayerPrefs.SetFloat ("PhantomsCorrect1", 0.0f);
-		PlayerPrefs.SetFloat ("PhantomsCorrect2", 0.0f);
-	}
+	//void OnApplicationQuit()
+	//{
+	//	PlayerPrefs.SetFloat ("FaultsActivated", 0.0f);
+	//	PlayerPrefs.SetFloat ("AssembleCorrect1", 0.0f);
+	//	PlayerPrefs.SetFloat ("AssembleCorrect2", 0.0f);
+	//	PlayerPrefs.SetFloat ("HVLCorrect1", 0.0f);
+	//	PlayerPrefs.SetFloat ("HVLCorrect2", 0.0f);
+	//	PlayerPrefs.SetFloat ("DAPCorrect", 0.0f);
+	//	PlayerPrefs.SetFloat ("PhantomsCorrect1", 0.0f);
+	//	PlayerPrefs.SetFloat ("PhantomsCorrect2", 0.0f);
+	//}
 
 
 

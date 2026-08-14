@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 /// <summary>
@@ -39,6 +40,8 @@ public class QuizManager : MonoBehaviour
 	int correctCount = 0;
 	List<int> selectedAnswerIndices = new List<int>(); // empty = nothing selected yet
 
+	string MCQQuestionSet;
+
 
 
 
@@ -55,6 +58,8 @@ public class QuizManager : MonoBehaviour
 
 		ResetAllCubeColours();
 		submitCube.SetInteractable(false);
+
+
 	}
 
 	// Loads questions from the assigned text file. Each question is a block separated by a blank line.
@@ -309,7 +314,9 @@ public class QuizManager : MonoBehaviour
 		state = QuizState.Finished;
 
 		float percentCorrect = (float)correctCount / (float)questions.Count;
-		PlayerPrefs.SetFloat("AssembleCorrect", percentCorrect);
+		PlayerPrefs.SetFloat(MCQQuestionSet, percentCorrect);
+
+		ReportScoreToFaultsManager(percentCorrect);
 
 		instructionMessage.text = (percentCorrect == 1f) ? "Well done!" : "";
 		questionText.text = string.Format("You scored {0} / {1}", correctCount, questions.Count);
@@ -324,6 +331,39 @@ public class QuizManager : MonoBehaviour
 
 		submitCube.SetGrey();
 		submitCube.SetInteractable(false);
+	}
+
+
+
+
+
+
+
+	void ReportScoreToFaultsManager(float percentCorrect)
+	{
+		//if (FaultsManager == null) { return; }
+
+		string sceneName = SceneManager.GetActiveScene().name;
+
+		switch (sceneName)
+		{
+
+			case "Assemble Xray Room Oculus Touch": 
+				FaultsManager.SetAssembleCorrect(percentCorrect);
+				break;
+
+			case "HVL Xray Room Oculus Touch":
+				FaultsManager.SetHVLCorrect(percentCorrect);
+				break;			
+
+			case "Inverse Square Law Room": 
+				FaultsManager.SetDAPCorrect(percentCorrect);
+				break;
+
+			case "HEE Light Field Alignment":
+				FaultsManager.SetPhantomsCorrect(percentCorrect);
+				break;
+		}
 	}
 
 

@@ -73,6 +73,9 @@ public class SceneInteractor : MonoBehaviour
 
 	void Fire()
 	{
+
+		
+
 		if (teleportPlayer && xrOrigin != null && playerDestination != null)
 		{
 			// Move held objects the same distance
@@ -95,6 +98,7 @@ public class SceneInteractor : MonoBehaviour
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 		}
 
+		//Debug.Log($"[SceneInteractor] Fire() on {name} Running {onTriggered}");
 		onTriggered?.Invoke();
 	}
 
