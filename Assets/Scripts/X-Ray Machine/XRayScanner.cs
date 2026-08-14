@@ -221,7 +221,7 @@ public class XRayScanner : MonoBehaviour
 
 		if (sceneName == "HVL Xray Room Oculus Touch")
 		{
-			HVL.GetComponent<HVLanchors>().CalcOutput();
+			HVL.GetComponent<HVLManager>().CalculateDose();
 			CalculateDAP();
 		}
 

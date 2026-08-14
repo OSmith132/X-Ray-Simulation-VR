@@ -15,7 +15,7 @@ public class HVLManager : MonoBehaviour
 
 	[Header("UI")]
 	public Text doseText;
-	public Text doseText1;
+	public Text doseTextHVL;
 
 	[Header("Attenuation Model")]
 	public float muReference = 0.21f;
@@ -82,7 +82,7 @@ public class HVLManager : MonoBehaviour
 		float dose = dose3 * Random.Range(0.975f, 1.025f);
 
 		doseText.text = $"Dose: {dose:F2}uGy";
-		doseText1.text = $"Dose: {dose:F2}uGy";
+		doseTextHVL.text = $"Dose: {dose:F2}uGy";
 	}
 }
 
