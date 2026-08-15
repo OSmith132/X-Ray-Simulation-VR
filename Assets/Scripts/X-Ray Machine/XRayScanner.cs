@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 
 
 
@@ -66,12 +66,12 @@ public class XRayScanner : MonoBehaviour
 	//Text kVText;
 	//Text mAsText1;
 	//Text kVText1;
-	public Text DAPText;
-	public Text DoseText;
-	public Text DoseonMeter;
-	public Text LFarea;
+	public TMP_Text DAPText;
+	public TMP_Text DoseText;
+	public TMP_Text DoseonMeter;
+	public TMP_Text LFarea;
 	GameObject DoseonMeter2gameobject;
-	Text DoseonMeter2;
+	TMP_Text DoseonMeter2;
 
 
 	Vector3 radiographStartSize;
@@ -378,7 +378,7 @@ public class XRayScanner : MonoBehaviour
 		if (sceneName == "Inverse Square Law Room")
 		{
 			DoseonMeter2gameobject = GameObject.Find("Dose on meter 2");
-			DoseonMeter2 = DoseonMeter2gameobject.gameObject.GetComponent<Text>();
+			DoseonMeter2 = DoseonMeter2gameobject.gameObject.GetComponent<TMP_Text>();
 
 		}
 
