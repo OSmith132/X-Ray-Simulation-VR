@@ -40612,6 +40612,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 90253894031193409, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 12.998825
+      objectReference: {fileID: 0}
+    - target: {fileID: 90253894031193409, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.77857053
+      objectReference: {fileID: 0}
     - target: {fileID: 151807748838104766, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
         type: 3}
       propertyPath: m_SnapToColliderVolume
@@ -42283,6 +42293,7 @@ SceneRoots:
   - {fileID: 691393466}
   - {fileID: 1582763913}
   - {fileID: 874626116}
+  - {fileID: 964669200}
   - {fileID: 537684355}
   - {fileID: 1732145307}
   - {fileID: 746962886}
@@ -42290,4 +42301,3 @@ SceneRoots:
   - {fileID: 303910899}
   - {fileID: 1515039747}
   - {fileID: 331699080}
-  - {fileID: 964669200}

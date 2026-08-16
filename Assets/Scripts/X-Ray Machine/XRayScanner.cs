@@ -15,57 +15,27 @@ using TMPro;
 public class XRayScanner : MonoBehaviour
 {
 
-
-
-	//float Menudist;
-	//float HVLdist;
-	//float Assembledist;
-	//float Maindist;
-	//float ResetDist;
-	//float traydist;
-	//float time;
 	float DetectorSize;
-	//float incrament = 0.075f;
 	float ImageLeft;
 	float ImageRight;
 	float ImageLower;
 	float ImageUpper;
-	//float ISLDist;
 	float NoErrorDose;
 	float NoErrorDAP;
 	float Left1m;
 	float Right1m;
 	float Lower1m;
 	float Upper1m;
-	//float FOV;
-	//float SFOV;
 
-	//float ReturnDist;
-	//float SubmitAnsDist;
 	float kVError;
 	float DAPCumlative;
 
-
-	//private bool onoff;
-	//private bool onoff2;
-	//bool sceneLoader = false;
 	float distTable;
 	public static int mAs = 10;
 	public static int kV = 70;
 	float DAP;
 	float Dose;
 
-	//used public as these floats are called in other scripts
-	//public bool controlFreeMode;
-	//public float primedown;
-	//public float primeup;
-
-
-
-	//Text mAsText;
-	//Text kVText;
-	//Text mAsText1;
-	//Text kVText1;
 	public TMP_Text DAPText;
 	public TMP_Text DoseText;
 	public TMP_Text DoseonMeter;
@@ -73,115 +43,28 @@ public class XRayScanner : MonoBehaviour
 	GameObject DoseonMeter2gameobject;
 	TMP_Text DoseonMeter2;
 
-
 	Vector3 radiographStartSize;
 	Vector3 TVXrayStartSize;
 	Vector3 DetectorPos;
 	Vector3 SourcePos;
 
-	//main game objects
-
-	//[Header("XR Rig References")]
-	//[SerializeField] Transform leftHandTransform;
-	//[SerializeField] Transform xrOriginTransform;
-
-
-	// XRay machine panel handle
-	//[SerializeField] XRayHandleController xrayHandleController;
-
-
 	public GameObject HVL;
-	//GameObject PhantomMoveScript;
-	//GameObject PrimeButton;
-	//GameObject ScanButton;
-	//GameObject ScanReady;
-	//GameObject Yind;
-	//GameObject arrow1;
-	//GameObject arrow2;
-	//GameObject arrow3;
-	//GameObject arrow4;
-	//GameObject arrow1s;
-	//GameObject arrow2s;
-	//GameObject arrow3s;
-	//GameObject arrow4s;
 	GameObject xraySource;
 	GameObject LeftX;
 	GameObject RightX;
 	GameObject LowerY;
 	GameObject UpperY;
 	GameObject Detector;
-	//GameObject Handle;
-	//GameObject HandleRef;
-	//GameObject Source;
-
-
-
-	//GameObject Table;
-	//GameObject VerticalTable;
-	//Color OriginalTable;
-
-
-
-	//GameObject click;
-	//GameObject clickL;
-	//GameObject Hum;
-	//GameObject primesound;
-	
-	//GameObject FreeButton;
-	//GameObject VerticalButton;
-	//GameObject XrayHead;
-	//GameObject HVLcube;
-	//GameObject HVLcubeBase;
-	//GameObject Assemblecube;
-	//GameObject AssemblecubeBase;
-	//GameObject MainCube;
-	//GameObject MainCubeBase;
-	//GameObject Tray;
-	//GameObject TrayAnchor;
 	GameObject radiograph;
-	//GameObject ColUp;
-	//GameObject ColDown;
-	//GameObject ColLeft;
-	//GameObject ColRight;
-	//GameObject Col1;
-	//GameObject Col2;
-	//GameObject Col3;
-	//GameObject Col4;
-	//GameObject ISLcube;
-	//GameObject ISLcubeBase;
 	GameObject LargeIonisationChamber;
-	//GameObject MenuCube;
-	//GameObject MenuCubeBase;
+
 	GameObject TVXray;
 	GameObject xrayCam;
 	GameObject body;
-	//GameObject bodyHollow;
-	//GameObject Reset;
-	//GameObject ResetRef;
-	//GameObject Office;
-	//GameObject OfficeRef;
-	//GameObject OfficeLight1;
-	//GameObject OfficeLight2;
-	//GameObject ReturnScreen;
-	//GameObject ReturnScreenRef;
-	//GameObject SubmitAnswers;
-	//GameObject SubmitAnswersRef;
-	//GameObject DeadPixel;
-	//GameObject LeftHand;
-	//GameObject XRCAM;
-
-	//Colours
-	//Color OriginalArrowColor;
-	//Color OriginalHandleColor;
-	//Color OriginalUnpressed;
-	//Color ScanRed;
-	//Color PrimeYellow;
-
-	//Color OriginalColButton;
-
 
 	Scene currentScene;
 	string sceneName;
+
 
 	//DR x-ray image production parameters
 	int kVRef;
@@ -192,11 +75,11 @@ public class XRayScanner : MonoBehaviour
 	float fluxFogLim;
 	float fluxSatLim;
 
-	// end
 
 
 
 
+	// Primes the scanner to take a scan
 	public void Prime()
 	{
 		if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
@@ -208,6 +91,8 @@ public class XRayScanner : MonoBehaviour
 	}
 
 
+
+	// Takes a scan
 	public void Scan()
 	{
 
@@ -219,11 +104,13 @@ public class XRayScanner : MonoBehaviour
 			CalculateDAP();
 		}
 
+
 		if (sceneName == "HVL Xray Room Oculus Touch")
 		{
 			HVL.GetComponent<HVLManager>().CalculateDose();
 			CalculateDAP();
 		}
+
 
 		if (sceneName == "Inverse Square Law Room")
 		{
@@ -244,12 +131,6 @@ public class XRayScanner : MonoBehaviour
 		currentScene = SceneManager.GetActiveScene();
 		sceneName = currentScene.name;
 
-		//Gameobject Finding
-		//mAsText = GameObject.Find("mAsText").GetComponent<Text>();
-		//kVText = GameObject.Find("kVText").GetComponent<Text>();
-		//mAsText1 = GameObject.Find("mAsText1").GetComponent<Text>();
-		//kVText1 = GameObject.Find("kVText1").GetComponent<Text>();
-
 		radiograph = GameObject.Find("RadiographImg");
 		xraySource = GameObject.Find("Collimator Guide Light");
 		LeftX = GameObject.Find("Col 3 (Left)");
@@ -257,73 +138,8 @@ public class XRayScanner : MonoBehaviour
 		LowerY = GameObject.Find("Col 1 (Near)");
 		UpperY = GameObject.Find("Col 2 (Far)");
 		Detector = GameObject.Find("Detector");
-		//arrow1 = GameObject.Find("a1");
-		//arrow2 = GameObject.Find("a2");
-		//arrow3 = GameObject.Find("a3");
-		//arrow4 = GameObject.Find("a4");
-		//arrow1s = GameObject.Find("a1s");
-		//arrow2s = GameObject.Find("a2s");
-		//arrow3s = GameObject.Find("a3s");
-		//arrow4s = GameObject.Find("a4s");
-		//FreeButton = GameObject.Find("Free Roam Button");
-		//VerticalButton = GameObject.Find("Vertical Button");
-		//XrayHead = GameObject.Find("PanelHandle");
-		//mAsText.text = string.Concat(mAs.ToString(), " mAs");
-		//kVText.text = string.Concat(kV.ToString(), " kV");
-		//Handle = GameObject.Find("PanelHandle");
-		//HandleRef = GameObject.Find("PanelRef");
-		//click = GameObject.Find("Click");
-		//clickL = GameObject.Find("ClickL");
-		//Hum = GameObject.Find ("XRAYON");
 
-
-		//primesound = GameObject.Find("primeON");
-		//PrimeButton = GameObject.Find("Prime");
-		//ScanButton = GameObject.Find("Scan");
-		//ScanReady = GameObject.Find("Scan Ready");
-
-
-		//VerticalTable = GameObject.Find("Vertical Control");
-		//HVLcube = GameObject.Find("TransportHVL");
-		//HVLcubeBase = GameObject.Find("Transport HVL base");
-		//Assemblecube = GameObject.Find("Transport build");
-		//AssemblecubeBase = GameObject.Find("Transport build base");
-		//MainCube = GameObject.Find("Transport main");
-		//MainCubeBase = GameObject.Find("Transport main base");
-		//Tray = GameObject.Find("Handle");
-		//TrayAnchor = GameObject.Find("Tray Anchor");
-		//PhantomMoveScript = GameObject.Find("PhantomBase");
-
-		//LeftHand = leftHandTransform.gameObject; // now OpenXR
-
-		//Table = GameObject.Find("Table Ref");
-		//Source = GameObject.Find("Source Position");
-		//ColUp = GameObject.Find("Collimator Vertical Out");
-		//ColDown = GameObject.Find("Collimator Vertical In");
-		//ColLeft = GameObject.Find("Collimator Horizontal Out");
-		//ColRight = GameObject.Find("Collimator Horizontal In");
-		//Col1 = GameObject.Find("Col 1 (Near)");
-		//Col2 = GameObject.Find("Col 2 (Far)");
-		//Col3 = GameObject.Find("Col 3 (Left)");
-		//Col4 = GameObject.Find("Col 4 (Right)");
-		//ISLcube = GameObject.Find("TransportISL");
-		//ISLcubeBase = GameObject.Find("Transport ISL base");
 		LargeIonisationChamber = GameObject.Find("Detector Visible");
-		//MenuCube = GameObject.Find("Menu");
-		//MenuCubeBase = GameObject.Find("Menubase");
-		//Reset = GameObject.Find("Reset");
-		//ResetRef = GameObject.Find("Reset base");
-		//Office = GameObject.Find("Enter Office Cube");
-		//OfficeRef = GameObject.Find("OfficeRef");
-
-		//XRCAM = xrOriginTransform.gameObject; // now OpenXR
-
-		//OfficeLight1 = GameObject.Find("Office Light");
-		//OfficeLight2 = GameObject.Find("Office Light 2");
-		//ReturnScreen = GameObject.Find("ReturnScreen");
-		//ReturnScreenRef = GameObject.Find("ReturnScreenRef");
-		//SubmitAnswers = GameObject.Find("SubmitAns");
-		//SubmitAnswersRef = GameObject.Find("SubmitAnsRef");
 
 		//Initialisation if specific scenes are called
 		if (sceneName == "HEE Anatomy")
@@ -337,22 +153,10 @@ public class XRayScanner : MonoBehaviour
 
 			TVXrayStartSize = TVXray.transform.localScale;
 			TVXray.GetComponent<Renderer>().enabled = false;
-			//SFOV = xrayCam.GetComponent<Camera>().fieldOfView;
 			//bodyHollow.SetActive(false);
 
-			//controlFreeMode = true;
+		}
 
-			//			mAsRef = 10;
-			//			kVRef = 60;
-			//			muCorrFactor = 0.6f;
-			//			thickness = 1.5f;
-			//			fluxFogLim = 0.13f;
-			//			fluxSatLim = 0.95f;
-		}
-		else
-		{
-			//controlFreeMode = false;
-		}
 
 		if (sceneName == "HEE Light Field Alignment")
 		{
@@ -360,19 +164,9 @@ public class XRayScanner : MonoBehaviour
 
 			TVXray = GameObject.Find("TV Xray");
 			xrayCam = GameObject.Find("XrayCam");
-			//DeadPixel = GameObject.Find("DeadPixel");
-			//DeadPixel.gameObject.SetActive(false);
 
 			TVXrayStartSize = TVXray.transform.localScale;
 			TVXray.GetComponent<Renderer>().enabled = false;
-			//SFOV = xrayCam.GetComponent<Camera>().fieldOfView;
-
-			//			mAsRef = 20;
-			//			kVRef = 70;
-			//			muCorrFactor = 0.6f;
-			//			thickness = 1f;
-			//			fluxFogLim = 0.1f;
-			//			fluxSatLim = 0.9f;
 		}
 
 		if (sceneName == "Inverse Square Law Room")
@@ -383,22 +177,6 @@ public class XRayScanner : MonoBehaviour
 		}
 
 
-
-		//Get Renderer
-		//OriginalArrowColor = arrow1.GetComponent<Renderer>().material.color;
-		//OriginalHandleColor = Handle.GetComponent<Renderer>().material.color;
-		//OriginalUnpressed = FreeButton.GetComponent<Renderer>().material.color;
-		//ScanRed = ScanButton.GetComponent<Renderer>().material.color;
-		//PrimeYellow = PrimeButton.GetComponent<Renderer>().material.color;
-		//OriginalTable = VerticalTable.GetComponent<Renderer>().material.color;
-		//OriginalColButton = ColUp.GetComponent<Renderer>().material.color;
-
-
-		//Set initial mAs and kV text on touch screen panels
-		//mAsText.text = string.Concat(mAs.ToString(), " mAs");
-		//mAsText1.text = mAsText.text;
-		//kVText.text = string.Concat(kV.ToString(), " kV");
-		//kVText1.text = kVText.text;
 
 		//Other
 
@@ -415,37 +193,12 @@ public class XRayScanner : MonoBehaviour
 	void Update()
 	{
 
-	
-
-		////Booleans to Impose a delay between prime and scan, giving a double press feel
-		//if (primedown == 1)
-		//{
-
-		//	ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
-
-		//	if (Time.time >= time)
-		//	{
-		//		ScanButton.GetComponent<Collider>().enabled = true;
-		//		ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
-		//	}
-
-		//}
-		//if (primeup == 1)
-		//{
-		//	ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
-		//	primeup = 0;
-		//}
-
-
-
-
 
 
 
 		// Ensure source is defined in Unity Engine
 		if (xraySource == null)
 		{
-			//Debug.Log("xraySource not defined. No light field will be shown.");
 			return;
 		}
 
@@ -462,10 +215,8 @@ public class XRayScanner : MonoBehaviour
 		float vertDist = Lower1m + Upper1m;
 
 		LFarea.text = string.Concat(horizDist.ToString("F2"), "x", vertDist.ToString("F2"), " m");
-
-
-
 	}
+
 
 
 	public void TakeScan()
@@ -497,6 +248,8 @@ public class XRayScanner : MonoBehaviour
 		}
 
 	}
+
+
 
 	public void CalculateImage()
 	{
@@ -540,6 +293,7 @@ public class XRayScanner : MonoBehaviour
 				fluxTransmitted = fluxSatLim;
 			}
 
+
 			//METHOD 1
 			//Adjust for mAs
 			//			float ImgIntensitymAs = ((((mAsVal - mAsRef)*DetectorResponseGamma) + mAsRef)/mAsRef) * ImgIntensityAdj;
@@ -567,352 +321,6 @@ public class XRayScanner : MonoBehaviour
 
 		TVXray.GetComponent<MeshRenderer>().material.mainTexture = AdjImgTex;
 	}
-
-	//	public void CalculateImage()
-	//	{
-	//		//Calculate parameters that don't change here so they are not calcuated for every loop below
-	//		//Calcualte incident photon flux based on mAs
-	//		Debug.Log(mAs + "    " + mAsRef);
-	//
-	//		float flux0 = (float)mAs / (float)mAsRef;
-	//
-	//
-	//		Debug.Log ("flux0 = " + flux0);
-	//		//Get image from xray camera
-	//		RenderTexture CamRenderTex = xrayCam.GetComponent<Camera>().targetTexture;
-	//		RenderTexture.active = CamRenderTex;
-	//		Texture2D xrayCamTex2D = new Texture2D(1024,1024,TextureFormat.ARGB32,false);
-	//		xrayCamTex2D.ReadPixels (new Rect (0, 0, CamRenderTex.width, CamRenderTex.height), 0, 0, false);
-	//		xrayCamTex2D.Apply ();
-	//		Texture2D OrigImg = xrayCamTex2D;
-	//
-	//		Color[] OrigImgPixels = OrigImg.GetPixels (0, 0, OrigImg.width, OrigImg.height);
-	//
-	//		Color[] AdjImg = new Color[OrigImgPixels.Length];
-	//		//Calculate attenuation coefficient values based on JWF original code to be between 0 - 0.4
-	//		for (int ii = 0; ii < OrigImgPixels.Length; ii++)
-	//		{
-	//			//Calculate the new pixel values
-	//			//Adjust the attenuation coefficients based on the set kV
-	//			float muRefVal = -Mathf.Log((OrigImgPixels [ii].grayscale * muCorrFactor));
-	//
-	//			//The log can produce very large numbers when image intensity = 1, account for this by limiting mu to a maximum value
-	//			if (muRefVal > 3)
-	//			{
-	//				muRefVal = 3;
-	//			}
-	//
-	//			//Old calculation of mu values
-	//			//float muRefVal = (1 - OrigImgPixels [ii].grayscale) * muCorrFactor;
-	//
-	//			float mukVAdj = muRefVal * (Mathf.Pow ((float)kVRef, 3) / Mathf.Pow ((float)kV, 3));
-	//
-	//			//Calculate no. of photons transmitted through object based on adjusted mu values
-	//			float fluxTransmitted = flux0 * Mathf.Exp(-mukVAdj * thickness);
-	//			//float ImgIntensityAdj =  Mathf.Exp(-mukVAdj); // d=1
-	//
-	//			if (ii == 500) {
-	//				Debug.Log ("muRefVal = " + muRefVal +"  muAdj = " + mukVAdj + "  fluxTransmitted = " + fluxTransmitted);
-	//			}
-	//
-	//			//If the flux isn't above the fog threshold set flux to 0 (white pixel)
-	//			if (fluxTransmitted < fluxFogLim)
-	//			{
-	//				fluxTransmitted = 0.00000001f;
-	//			}
-	//
-	//			//If flux is above the saturation level set flux to max flux and pixel to black
-	//			if (fluxTransmitted > fluxSatLim) 
-	//			{
-	//				fluxTransmitted = fluxSatLim;
-	//			}
-	//
-	//			//METHOD 1
-	//			//Adjust for mAs
-	//			//			float ImgIntensitymAs = ((((mAsVal - mAsRef)*DetectorResponseGamma) + mAsRef)/mAsRef) * ImgIntensityAdj;
-	//
-	//			//METHOD 2
-	//			float ImgIntensitymAs = fluxTransmitted; // fluxSatLim;
-	//
-	//			//Invert scale so darker when more photons transmitted
-	//			float ImgIntensityAdjInv = 1 - ImgIntensitymAs;
-	//
-	//			//Add perlin noise to pixels
-	//			//Calculate the amount of noise based on the photon flux/image intensity. Maximum noise is 70% (+/-35%)jitter in values
-	//			float noisemultiplier = ImgIntensityAdjInv * 0.3f; //the texture from the camera is inverted by the overlay inversioon screen so this differs from the 2D app code
-	//			float noise = Random.Range (1 - noisemultiplier, 1 + noisemultiplier);
-	//			float ImgIntensityInvNoise = ImgIntensityAdjInv * noise;
-	//
-	//			AdjImg [ii] = new Color (ImgIntensityInvNoise,ImgIntensityInvNoise,ImgIntensityInvNoise, 1.0f);
-	//
-	//		}
-	//
-	//		//Create new texture and populate with the adjusted grayscale values
-	//		Texture2D AdjImgTex = new Texture2D(OrigImg.width,OrigImg.height);
-	//		AdjImgTex.SetPixels (AdjImg);
-	//		AdjImgTex.Apply (true);
-	//
-	//		TVXray.GetComponent<MeshRenderer> ().material.mainTexture = AdjImgTex;
-	//	}
-
-
-
-	void OnTriggerEnter(Collider touch)
-	{
-		//if (touch.gameObject.name == "mAs_up")
-		//{
-		//	if (mAs <= 69)
-		//	{
-		//		mAs = mAs + 1;
-		//		mAsText.text = string.Concat(mAs.ToString(), " mAs");
-		//		mAsText1.text = mAsText.text;
-		//		arrow3.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-		//		arrow3s.GetComponent<Renderer>().material.color = Color.white;
-		//		click.GetComponent<AudioSource>().Play();
-		//	}
-		//}
-		//if (touch.gameObject.name == "mAs_down")
-		//{
-		//	if (mAs >= 2)
-		//	{
-		//		mAs = mAs - 1;
-		//		mAsText.text = string.Concat(mAs.ToString(), " mAs");
-		//		mAsText1.text = mAsText.text;
-		//		arrow1.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-		//		arrow1s.GetComponent<Renderer>().material.color = Color.white;
-		//		clickL.GetComponent<AudioSource>().Play();
-		//	}
-		//}
-
-		//if (touch.gameObject.name == "kV_up")
-		//{
-		//	if (kV <= 90)
-		//	{
-		//		kV = kV + 1;
-		//		kVText.text = string.Concat(kV.ToString(), " kV");
-		//		kVText1.text = kVText.text;
-		//		arrow4.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-		//		arrow4s.GetComponent<Renderer>().material.color = Color.white;
-		//		click.GetComponent<AudioSource>().Play();
-		//	}
-		//}
-		//if (touch.gameObject.name == "kV_down")
-		//{
-		//	if (kV >= 30)
-		//	{
-		//		kV = kV - 1;
-		//		kVText.text = string.Concat(kV.ToString(), " kV");
-		//		kVText1.text = kVText.text;
-		//		arrow2.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-		//		arrow2s.GetComponent<Renderer>().material.color = Color.white;
-		//		clickL.GetComponent<AudioSource>().Play();
-		//	}
-		//}
-
-
-
-
-
-
-		//if (touch.gameObject.name == "freetog")
-		//{
-		//	xrayHandleController.SetFreeMode();
-		//	controlFreeMode = true;
-		//	click.GetComponent<AudioSource>().Play();
-		//}
-
-		//if (touch.gameObject.name == "verticaltog")
-		//{
-		//	xrayHandleController.SetVerticalMode();
-		//	controlFreeMode = false;
-		//	click.GetComponent<AudioSource>().Play();
-		//}
-
-
-
-
-
-
-
-
-
-
-
-		//if (touch.gameObject.name == "Scan")
-		//{
-		//	ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
-		//	//click.GetComponent<AudioSource>().Play();
-		//	primeup = 1;
-		//	primedown = 0;
-
-		//	//Hum.GetComponent<AudioSource> ().Play ();
-
-		//	if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
-		//	{
-		//		TVXray.GetComponent<Renderer>().enabled = true;
-		//		xrayCam.GetComponent<Camera>().enabled = true;
-		//		CalculateImage();
-		//		CalculateDAP();
-
-		//	}
-
-		//	if (sceneName == "HVL Xray Room Oculus Touch")
-		//	{
-		//		HVL.GetComponent<HVLanchors>().CalcOutput();
-		//		CalculateDAP();
-		//	}
-
-		//	if (sceneName == "Inverse Square Law Room")
-		//	{
-		//		CalculateDAP();
-		//	}
-
-
-		//}
-
-
-
-
-
-
-		//if (touch.gameObject.name == "Prime")
-		//{
-		//	primedown = 1;
-		//	PrimeButton.GetComponent<Renderer>().material.color = new Color32(254, 161, 0, 1);
-		//	//click.GetComponent<AudioSource>().Play();
-		//	primesound.GetComponent<AudioSource>().Play();
-		//	ScanButton.GetComponent<Collider>().enabled = false;
-		//	time = Time.time + 0.8f;
-		//	ScanButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
-
-		//	if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
-		//	{
-		//		TVXray.GetComponent<Renderer>().enabled = false;
-		//		TakeScan();
-		//	}
-
-
-		//}
-
-
-
-
-
-
-
-
-
-
-		//if (touch.gameObject.name == "Collimator Vertical Out")
-		//{
-		//	Col1.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
-		//	Col2.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
-		//	ColUp.GetComponent<Renderer>().material.color = Color.blue;
-
-		//}
-
-		//if (touch.gameObject.name == "Collimator Vertical In")
-		//{
-		//	Col1.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
-		//	Col2.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
-		//	ColDown.GetComponent<Renderer>().material.color = Color.blue;
-		//}
-
-		//if (touch.gameObject.name == "Collimator Horizontal Out")
-		//{
-		//	Col3.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
-		//	Col4.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
-		//	ColLeft.GetComponent<Renderer>().material.color = Color.blue;
-		//}
-
-		//if (touch.gameObject.name == "Collimator Horizontal In")
-		//{
-		//	Col3.transform.Translate(-incrament * Time.deltaTime, 0f, 0f);
-		//	Col4.transform.Translate(incrament * Time.deltaTime, 0f, 0f);
-		//	ColRight.GetComponent<Renderer>().material.color = Color.blue;
-		//}
-
-		//if (touch.gameObject.name == "Transport")
-		//{
-		//	if (sceneName == "HEE Anatomy")
-		//	{
-		//		body.SetActive(true);
-		//		//bodyHollow.SetActive(false);
-		//	}
-		//}
-
-		//if (touch.gameObject.name == "TransportReturn")
-		//{
-		//	if (sceneName == "HEE Anatomy")
-		//	{
-		//		body.SetActive(false);
-		//		//bodyHollow.SetActive(true);
-		//		//TVXray.GetComponent<MeshRenderer> ().enabled = false;
-		//	}
-
-		//}
-
-	}
-
-	void OnTriggerExit(Collider notouch)
-	{
-		//if (notouch.gameObject.name == "mAs_up")
-		//{
-		//	arrow3.GetComponent<Renderer>().material.color = OriginalArrowColor;
-		//	arrow3s.GetComponent<Renderer>().material.color = Color.black;
-
-		//}
-		//if (notouch.gameObject.name == "mAs_down")
-		//{
-		//	arrow1.GetComponent<Renderer>().material.color = OriginalArrowColor;
-		//	arrow1s.GetComponent<Renderer>().material.color = Color.black;
-		//}
-
-		//if (notouch.gameObject.name == "kV_up")
-		//{
-		//	arrow4.GetComponent<Renderer>().material.color = OriginalArrowColor;
-		//	arrow4s.GetComponent<Renderer>().material.color = Color.black;
-		//}
-		//if (notouch.gameObject.name == "kV_down")
-		//{
-		//	arrow2.GetComponent<Renderer>().material.color = OriginalArrowColor;
-		//	arrow2s.GetComponent<Renderer>().material.color = Color.black;
-		//}
-
-		//if (notouch.gameObject.name == "Prime")
-		//{
-		//	PrimeButton.GetComponent<Renderer>().material.color = PrimeYellow;
-		//	primedown = 0;
-		//}
-
-		//if (notouch.gameObject.name == "Scan")
-		//{
-		//	ScanButton.GetComponent<Renderer>().material.color = ScanRed;
-		//}
-
-		//if (notouch.gameObject.name == "Collimator Vertical Out")
-		//{
-		//	ColUp.GetComponent<Renderer>().material.color = OriginalColButton;
-
-		//}
-
-		//if (notouch.gameObject.name == "Collimator Vertical In")
-		//{
-		//	ColDown.GetComponent<Renderer>().material.color = OriginalColButton;
-		//}
-
-		//if (notouch.gameObject.name == "Collimator Horizontal Out")
-		//{
-		//	ColLeft.GetComponent<Renderer>().material.color = OriginalColButton;
-		//}
-
-		//if (notouch.gameObject.name == "Collimator Horizontal In")
-		//{
-		//	ColRight.GetComponent<Renderer>().material.color = OriginalColButton;
-		//}
-
-	}
-
 
 
 
@@ -951,6 +359,8 @@ public class XRayScanner : MonoBehaviour
 		LowerY.transform.position = new Vector3(MaxLowerCutoffPos, LowerY.transform.position.y, LowerY.transform.position.z);
 		UpperY.transform.position = new Vector3(MaxUpperCutoffPos, UpperY.transform.position.y, UpperY.transform.position.z);
 	}
+
+
 
 	void CalculateDAP()
 	{
@@ -1020,17 +430,16 @@ public class XRayScanner : MonoBehaviour
 		NoErrorDose = 1.7f * Mathf.Pow(10, -4) * kV * kV * mAs * (AreaOverlap / (distTable * distTable));
 		Dose = Random.Range(0.975f, 1.025f) * NoErrorDose + (NoErrorDose * 0.04f); //Added a small 4% offset in the DAP so not enough to cause fault but still enough to confuse people
 
-		if (PlayerPrefs.GetFloat("FaultsActivated") == 1.0f)
-		{
-			if (sceneName == "HVL Xray Room Oculus Touch")
-			{
-				kVError = 1.5f;
-			}
-			else
-			{
-				kVError = 1;
-			}
 
+
+
+
+
+
+
+		if (FaultsManager.FaultsActivated && sceneName == "HVL Xray Room Oculus Touch")
+		{
+			kVError = 1.5f;
 		}
 		else
 		{
@@ -1043,27 +452,29 @@ public class XRayScanner : MonoBehaviour
 
 		DAPText.text = string.Concat("DAP: ", DAP.ToString("F2"), " Gycm\xB2");
 
-		if (PlayerPrefs.GetFloat("FaultsActivated") == 1.0f)
-		{
-			if (sceneName == "Inverse Square Law Room")
-			{
-				DAPCumlative += DAP;
-				DAPText.text = string.Concat("DAP: ", DAPCumlative.ToString("F2"), " Gycm\xB2");
-
-			}
-		}
-
 		DoseText.text = string.Concat("Dose: ", Dose.ToString("F2"), " Gycm\xB2");
 		DoseonMeter.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
 
+
+
 		if (sceneName == "Inverse Square Law Room")
 		{
+
+
+			if (FaultsManager.FaultsActivated)
+			{
+				DAPCumlative += DAP;
+				DAPText.text = string.Concat("DAP: ", DAPCumlative.ToString("F2"), " Gycm\xB2");
+			}
+
+
 			DoseonMeter2.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
 
 		}
 
+
+
+
+
 	}
-
-
-
 }
