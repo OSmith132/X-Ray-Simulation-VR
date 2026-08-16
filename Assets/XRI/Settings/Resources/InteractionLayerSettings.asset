@@ -15,6 +15,7 @@ MonoBehaviour:
   m_LayerNames:
   - Default
   - 
+  - Teleport Cubes
   - 
   - 
   - 
@@ -43,5 +44,4 @@ MonoBehaviour:
   - 
   - 
   - 
-  - 
-  - 
+  - Teleport
