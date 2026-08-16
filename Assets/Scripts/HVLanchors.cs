@@ -339,12 +339,12 @@ public class HVLanchors : MonoBehaviour {
 		float muRef = 0.21f;
 		float kVRef = 70f; //Reference kV value on which the empirically derived attenuation coefficient was based
 
-		if (PlayerPrefs.GetFloat ("FaultsActivated") == 1.0f) 
+
+
+
+		if (FaultsManager.FaultsActivated && sceneName == "HVL Xray Room Oculus Touch")
 		{
-			if (sceneName == "HVL Xray Room Oculus Touch")
-			{
-				kVError = 1.5f;
-			}
+			kVError = 1.5f;
 		}
 		else 
 		{
@@ -352,18 +352,18 @@ public class HVLanchors : MonoBehaviour {
 		}
 
 
-		float mukV = muRef * (Mathf.Pow (kVRef, 3) / Mathf.Pow (((float)DetectTouch.kV * kVError), 3));
+		float mukV = muRef * (Mathf.Pow (kVRef, 3) / Mathf.Pow (((float)XRayControlPanel.kV * kVError), 3));
 
 		dose1 = ((1050 * Mathf.Exp (-mukV * AlThickness))/(distTable*distTable));
 
 		//modify dose for set mAs kV
 		int mAsRef = 10; //mAs value on which the empirical data was based
 		//dose is proportional to mAs
-		float dose2 = dose1 * (float)DetectTouch.mAs / (float)mAsRef;
+		float dose2 = dose1 * (float)XRayControlPanel.mAs / (float)mAsRef;
 		//dose increases with kV^2
 
 
-		float dose3 = dose2 * (Mathf.Pow (((float)DetectTouch.kV * kVError), 2) / Mathf.Pow ((kVRef * kVError), 2));
+		float dose3 = dose2 * (Mathf.Pow (((float)XRayControlPanel.kV * kVError), 2) / Mathf.Pow ((kVRef * kVError), 2));
 
 
 		Dose = dose3 * Random.Range (0.975f, 1.025f);

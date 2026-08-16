@@ -2,30 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lightToggle : MonoBehaviour
+public class LightToggle : MonoBehaviour
 
 {
 	private Light XrayLight;
 	private bool  onoff;
 
-	GameObject rightHand;
 
 	// Use this for initialization
 	void Start ()
 	{
 		XrayLight = GetComponent<Light>();
 		XrayLight.intensity = 0;
-		rightHand = GameObject.Find ("RightHandAnchor");
 	}
 	
-	// Update is called once per frame
-	void Update ()
-	{
 
-		if (rightHand.GetComponent<DetectTouch> ().primedown == 1) {
-			toggleLight ();
-		}
-	}
 
 	public void toggleLight()
 

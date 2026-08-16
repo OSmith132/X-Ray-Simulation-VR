@@ -1,0 +1,8 @@
+What is the fault in this scene?
+DAP meter is displaying too low dose area product values
+DAP meter is displaying too high dose area product values
+DAP meter is on cumulative setting
+Dose is too high/low but this is due to another fault
+Light beam is not aligned to the x-ray field
+Nothing, the system is working within tolerance
+3

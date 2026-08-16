@@ -1,0 +1,8 @@
+Please identity all possible faults (Select all that apply)
+DAP meter reading incorectly
+Too little filtration
+Too much filtration
+X-ray voltage displaying incorrect values
+Nothing, the system is working as expected
+2 4
+

@@ -10,9 +10,9 @@ public class phantomAnchor : MonoBehaviour
 
 	// Use this for initialization
 	void Start () 
-	{
+	{	
 
-		anchor = GameObject.Find ("phantom anchor");
+		anchor = GameObject.Find ("PhantomBase");
 		
 	}
 	

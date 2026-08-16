@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+/// <summary>
+/// Used to display the current distance between the X-Ray head and the table below
+/// </summary>
 public class DisplayPosition : MonoBehaviour {
 
 	public Transform Screen;
