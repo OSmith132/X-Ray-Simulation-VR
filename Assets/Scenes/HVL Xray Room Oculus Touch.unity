@@ -40612,6 +40612,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 151807748838104766, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_SnapToColliderVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937782718908751578, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1347860705672597414, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 32.06
+      objectReference: {fileID: 0}
     - target: {fileID: 2737907114364818199, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
         type: 3}
       propertyPath: m_Enabled
@@ -40622,10 +40637,25 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4311399373252131301, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.10593461
+      objectReference: {fileID: 0}
     - target: {fileID: 5208870493158095598, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
         type: 3}
       propertyPath: m_Name
       value: Xray Table
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749829812431593875, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749829812431593875, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_LinearDamping
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6229677952194420225, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
         type: 3}
@@ -40677,11 +40707,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6423989277111260039, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444324156258606715, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: maxSettleWaitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996536053235946981, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 14.277397
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996536053235946981, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.13927262
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2673687762985488438, guid: aa2bb8493e90ed84ab6f8298aae27ed4, type: 3}
     - {fileID: 1921930885880906806, guid: aa2bb8493e90ed84ab6f8298aae27ed4, type: 3}
     - {fileID: 3596516772363068818, guid: aa2bb8493e90ed84ab6f8298aae27ed4, type: 3}
+    - {fileID: 214528653465771184, guid: aa2bb8493e90ed84ab6f8298aae27ed4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa2bb8493e90ed84ab6f8298aae27ed4, type: 3}

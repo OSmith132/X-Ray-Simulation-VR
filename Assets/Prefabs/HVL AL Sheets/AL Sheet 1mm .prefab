@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 24730599127283261}
   m_Layer: 0
   m_Name: 'AL Sheet 1mm '
-  m_TagString: Untagged
+  m_TagString: PlaceInDrawer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa34437f88a5b684b8fd8c1f9e8d637d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  glassType: 0
+  aLType: 0
   thicknessMM: 1
   zoneLayerMask:
     serializedVersion: 2
