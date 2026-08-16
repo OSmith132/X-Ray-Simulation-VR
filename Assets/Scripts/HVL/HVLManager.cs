@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class HVLManager : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class HVLManager : MonoBehaviour
 	public FrameZone lowerFrame;
 
 	[Header("UI")]
-	public Text doseText;
-	public Text doseTextHVL;
+	public TMP_Text doseText;
+	public TMP_Text doseTextHVL;
 
 	[Header("Attenuation Model")]
 	public float muReference = 0.21f;
@@ -67,16 +68,16 @@ public class HVLManager : MonoBehaviour
 		float distTable = Vector3.Distance(source.position, table.position);
 
 		float kVError = 1f;
-		if (PlayerPrefs.GetFloat("FaultsActivated") == 1.0f && sceneName == "HVL Xray Room Oculus Touch")
+		if (FaultsManager.FaultsActivated && sceneName == "HVL Xray Room Oculus Touch")
 			kVError = 1.5f;
 
 
 
-		float kV = XRayScanner.kV * kVError;
+		float kV = XRayControlPanel.kV * kVError;
 		float mukV = muReference * (Mathf.Pow(kVReference, 3) / Mathf.Pow(kV, 3));
 
 		float dose1 = (1050f * Mathf.Exp(-mukV * alThicknessMM)) / (distTable * distTable);
-		float dose2 = dose1 * XRayScanner.mAs / mAsReference;
+		float dose2 = dose1 * XRayControlPanel.mAs / mAsReference;
 		float dose3 = dose2 * (Mathf.Pow(kV, 2) / Mathf.Pow(kVReference * kVError, 2));
 
 		float dose = dose3 * Random.Range(0.975f, 1.025f);

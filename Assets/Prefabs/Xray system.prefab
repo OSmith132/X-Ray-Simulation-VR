@@ -1874,15 +1874,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 500
+  m_fontSizeBase: 500
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -7339,10 +7339,10 @@ MonoBehaviour:
   xrayHandleController: {fileID: 172663921006713233}
   primedown: 0
   primeup: 0
-  xRayScanner: {fileID: 0}
-  lightToggle: {fileID: 5442953858302929701}
+  xRayScanner: {fileID: 261460313889895524}
+  lightToggle: {fileID: 0}
   anodeSpin: {fileID: 0}
-  cathodeBeamToggle: {fileID: 7311476909804378861}
+  cathodeBeamToggle: {fileID: 0}
 --- !u!114 &261460313889895524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7357,8 +7357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DAPText: {fileID: 0}
   DoseText: {fileID: 0}
-  DoseonMeter: {fileID: 0}
-  LFarea: {fileID: 0}
+  DoseOnHVLMeter: {fileID: 0}
+  LFarea: {fileID: 6848105327784349072}
   HVL: {fileID: 0}
 --- !u!1 &6525206370095230727
 GameObject:

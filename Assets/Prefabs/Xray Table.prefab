@@ -501,7 +501,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.26, y: 31.13, z: 13.556}
-  m_LocalScale: {x: 20.602333, y: 0.15404637, z: 25.348856}
+  m_LocalScale: {x: 20.602333, y: 0.10593461, z: 25.348856}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4355472632800187135}
@@ -582,8 +582,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0829054, y: 8.566403, z: 1.001787}
-  m_Center: {x: 0.041141324, y: -2.9947813, z: 0.0009678988}
+  m_Size: {x: 1.0829054, y: 14.277397, z: 1.001787}
+  m_Center: {x: 0.041141324, y: -0.13927262, z: 0.0009678988}
 --- !u!1 &1921930885880906806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,7 +1772,7 @@ Transform:
   m_GameObject: {fileID: 6432548746013575339}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.26, y: 32.41, z: 13.556}
+  m_LocalPosition: {x: -0.26, y: 32.06, z: 13.556}
   m_LocalScale: {x: 20.602333, y: 0.15404637, z: 25.348856}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1794,7 +1794,8 @@ MonoBehaviour:
   settleTime: 0.15
   linearSettleThreshold: 0.05
   angularSettleThreshold: 5
-  maxSettleWaitTime: 0.6
+  maxSettleWaitTime: 0.5
+  exitGracePeriod: 0.1
 --- !u!65 &90253894031193409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1814,8 +1815,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0829054, y: 8.566403, z: 1.001787}
-  m_Center: {x: 0.041141324, y: -2.9947813, z: 0.0009678988}
+  m_Size: {x: 1.0829054, y: 12.998825, z: 1.001787}
+  m_Center: {x: 0.041141324, y: -0.77857053, z: 0.0009678988}
 --- !u!1 &6797697499528519878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,7 +2013,7 @@ Rigidbody:
   m_GameObject: {fileID: 7870113682443187482}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 1
+  m_LinearDamping: 0.1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -2131,7 +2132,7 @@ MonoBehaviour:
   m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
-  m_SnapToColliderVolume: 0
+  m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
   m_MovementType: 0

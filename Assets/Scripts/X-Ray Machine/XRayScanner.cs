@@ -31,17 +31,19 @@ public class XRayScanner : MonoBehaviour
 	float DAPCumlative;
 
 	float distTable;
-	public static int mAs = 10;
-	public static int kV = 70;
+
+	//XRayControlPanel.mAs;
+	//XRayControlPanel.kV;
+	
 	float DAP;
 	float Dose;
 
 	public TMP_Text DAPText;
 	public TMP_Text DoseText;
-	public TMP_Text DoseonMeter;
+	public TMP_Text DoseOnHVLMeter;
 	public TMP_Text LFarea;
 	GameObject DoseonMeter2gameobject;
-	TMP_Text DoseonMeter2;
+	TMP_Text DoseOnHVLMeter2;
 
 	Vector3 radiographStartSize;
 	Vector3 TVXrayStartSize;
@@ -107,7 +109,6 @@ public class XRayScanner : MonoBehaviour
 
 		if (sceneName == "HVL Xray Room Oculus Touch")
 		{
-			HVL.GetComponent<HVLManager>().CalculateDose();
 			CalculateDAP();
 		}
 
@@ -172,7 +173,7 @@ public class XRayScanner : MonoBehaviour
 		if (sceneName == "Inverse Square Law Room")
 		{
 			DoseonMeter2gameobject = GameObject.Find("Dose on meter 2");
-			DoseonMeter2 = DoseonMeter2gameobject.gameObject.GetComponent<TMP_Text>();
+			DoseOnHVLMeter2 = DoseonMeter2gameobject.gameObject.GetComponent<TMP_Text>();
 
 		}
 
@@ -255,7 +256,7 @@ public class XRayScanner : MonoBehaviour
 	{
 		//Calculate parameters that don't change here so they are not calcuated for every loop below
 		//Calcualte incident photon flux based on mAs
-		float mAsAdjusted = ((float)mAs * 2f) + 10f;
+		float mAsAdjusted = ((float)XRayControlPanel.mAs * 2f) + 10f;
 		float flux0 = fluxRef * mAsAdjusted;
 
 		//Get image from xray camera
@@ -275,7 +276,7 @@ public class XRayScanner : MonoBehaviour
 			//Calculate the new pixel values
 			//Adjust the attenuation coefficients based on the set kV
 			float muRefVal = (1 - OrigImgPixels[ii].grayscale) * 0.6f;
-			float mukVAdj = muRefVal * (Mathf.Pow(kVRef, 3) / Mathf.Pow(kV, 3));
+			float mukVAdj = muRefVal * (Mathf.Pow(kVRef, 3) / Mathf.Pow(XRayControlPanel.kV, 3));
 
 			//Calculate no. of photons transmitted through object based on adjusted mu values
 			float fluxTransmitted = flux0 * Mathf.Exp(-mukVAdj);
@@ -377,7 +378,7 @@ public class XRayScanner : MonoBehaviour
 		float areaAt1m_cm = areaAt1m * 100f * 100f;
 
 		//Calculate DAP in Gycm^2
-		//DAP = 0.0000791f * kV * kV * mAs * areaAt1m; //The correction factor 0.0000791 has a built in conversion from uGym^2 to Gycm^2 (i.e. the decimal was shifted two to the left, multiplied by 10^-2)
+		//DAP = 0.0000791f * XRayControlPanel.kV * XRayControlPanel.kV * XRayControlPanel.mAs * areaAt1m; //The correction factor 0.0000791 has a built in conversion from uGym^2 to Gycm^2 (i.e. the decimal was shifted two to the left, multiplied by 10^-2)
 
 		// Calculate where the image is cut off by the light guides on the table surface/detector height
 		ImageLeft = ((SourcePos.z - (LeftX.transform.position.z + (LeftX.transform.lossyScale.x / 2.0f))) * (SourcePos.y - DetectorPos.y)) / (SourcePos.y - LeftX.transform.position.y);
@@ -403,14 +404,14 @@ public class XRayScanner : MonoBehaviour
 			horizMin = LargeIonisationChamber.transform.lossyScale.z / 2;
 			horizMax = LargeIonisationChamber.transform.lossyScale.z / 2;
 			//area = 0.04f;
-			//Dose = ((0.00791f * kV * kV * mAs_adj4txt * (area/0.04f)) / (distTable * distTable));
+			//Dose = ((0.00791f * XRayControlPanel.kV * XRayControlPanel.kV * mAs_adj4txt * (area/0.04f)) / (distTable * distTable));
 
 		}
 		else
 		{
 			horizMin = ImageLeft;
 			horizMax = ImageRight;
-			//Dose = 0.00791f * kV * kV * mAs_adj4txt;
+			//Dose = 0.00791f * XRayControlPanel.kV * XRayControlPanel.kV * mAs_adj4txt;
 		}
 
 		if (vertDist2 > LargeIonisationChamber.transform.lossyScale.x)
@@ -426,9 +427,6 @@ public class XRayScanner : MonoBehaviour
 
 		float AreaOverlap = (horizMax + horizMin) * (vertMax + vertMin);
 
-		//NoErrorDose =  0.0000791f * kV * kV * mAs * (AreaOverlap/(distTable * distTable));
-		NoErrorDose = 1.7f * Mathf.Pow(10, -4) * kV * kV * mAs * (AreaOverlap / (distTable * distTable));
-		Dose = Random.Range(0.975f, 1.025f) * NoErrorDose + (NoErrorDose * 0.04f); //Added a small 4% offset in the DAP so not enough to cause fault but still enough to confuse people
 
 
 
@@ -437,23 +435,42 @@ public class XRayScanner : MonoBehaviour
 
 
 
-		if (FaultsManager.FaultsActivated && sceneName == "HVL Xray Room Oculus Touch")
+
+
+
+
+		if (sceneName == "HVL Xray Room Oculus Touch")
 		{
-			kVError = 1.5f;
+			kVError = FaultsManager.FaultsActivated ? 1.5f : 1f;
+			HVL.GetComponent<HVLManager>().CalculateDose();
 		}
 		else
 		{
 			kVError = 1;
+			NoErrorDose = 1.7f * Mathf.Pow(10, -4) * XRayControlPanel.kV * XRayControlPanel.kV * XRayControlPanel.mAs * (AreaOverlap / (distTable * distTable));
+			Dose = Random.Range(0.975f, 1.025f) * NoErrorDose + (NoErrorDose * 0.04f);
+
+			DoseText.text = string.Concat("Dose: ", Dose.ToString("F2"), " Gycm\xB2");
+			DoseOnHVLMeter.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
 		}
 
 
-		NoErrorDAP = 1.7f * Mathf.Pow(10, -8) * (kV * kVError) * (kV * kVError) * mAs * areaAt1m_cm;
+
+
+		NoErrorDAP = 1.7f * Mathf.Pow(10, -8) * (XRayControlPanel.kV * kVError) * (XRayControlPanel.kV * kVError) * XRayControlPanel.mAs * areaAt1m_cm;
 		DAP = Random.Range(0.965f, 1.035f) * NoErrorDAP;
 
 		DAPText.text = string.Concat("DAP: ", DAP.ToString("F2"), " Gycm\xB2");
 
-		DoseText.text = string.Concat("Dose: ", Dose.ToString("F2"), " Gycm\xB2");
-		DoseonMeter.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
+		
+
+
+
+
+
+
+
+
 
 
 
@@ -468,7 +485,7 @@ public class XRayScanner : MonoBehaviour
 			}
 
 
-			DoseonMeter2.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
+			DoseOnHVLMeter2.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
 
 		}
 

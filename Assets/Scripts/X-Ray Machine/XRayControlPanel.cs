@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 /// <summary>
@@ -85,6 +86,9 @@ public class XRayControlPanel : MonoBehaviour
 	Color PrimeYellow;
 	GameObject primesound;
 
+	Scene currentScene;
+	string sceneName;
+
 
 	[SerializeField, Tooltip("(Optional): The TakeScan script component on Xray System	")] XRayScanner xRayScanner;
 	[SerializeField, Tooltip("(Optional): The LightToggle script component on Collimator Guide Light")] LightToggle lightToggle;
@@ -111,6 +115,12 @@ public class XRayControlPanel : MonoBehaviour
 
 	void Start()
 	{
+
+		sceneName = currentScene.name;
+		if (FaultsManager.FaultsActivated && sceneName == "HVL Xray Room Oculus Touch")
+		{
+			kV = 35;
+		}
 
 		// We can probably get rid of lots of these, but for now I just copied all from XRayScanner.cs
 		mAsText = GameObject.Find("mAsText").GetComponent<Text>();
