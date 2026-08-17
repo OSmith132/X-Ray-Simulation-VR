@@ -5,56 +5,80 @@ using UnityEngine;
 
 
 /// <summary>
-/// Implementation of PlacementZone to allow basic addition and removal from stacks of ALSheets.
+/// Implementation of PlacementZone to allow basic addition and removal from stacks of any Stackable type T.
 /// </summary>
-public abstract class StackZone : PlacementZone
+public abstract class StackZone<T> : PlacementZone where T : Stackable
 {
 	[Header("Stack Layout")]
 	public Transform stackOrigin;
 	public Vector3 stackAxis = Vector3.up;
-	public float sheetSpacing = 0.004f;
+	public float sheetSpacing = 0.005f;
 	public int maxCapacity = 5;
 
-	protected readonly List<ALSheet> stack = new List<ALSheet>();
+	protected readonly List<T> stack = new List<T>();
 
-	public IReadOnlyList<ALSheet> Sheets => stack;
+	public IReadOnlyList<T> Sheets => stack;
 	public int Count => stack.Count;
 	public bool IsFull => stack.Count >= maxCapacity;
 
 
 
+	/// <summary>
+	/// Implements PlacementZone.CanAccept by checking the object is of type T before deferring to the type-specific CanAccept(T) below.
+	/// </summary>
+	public override bool CanAccept(Stackable sheet) => sheet is T typed && CanAccept(typed);
 
 
-	public override void PlaceObject(ALSheet sheet)
+	/// <summary>
+	/// Type-specific rule implemented by subclasses (e.g. PileZone checks aLType, FrameZone checks capacity and aLType).
+	/// </summary>
+	protected abstract bool CanAccept(T sheet);
+
+
+
+	/// <summary>
+	/// Adds a Stackable to the stack, given the stack is not full.
+	/// </summary>
+	/// <param name="sheet"></param>
+	public override void PlaceObject(Stackable sheet)
 	{
-		if (!stack.Contains(sheet))
-			stack.Add(sheet);
+		if (sheet is not T typed) return;
+
+		if (!stack.Contains(typed))
+			stack.Add(typed);
 
 
-
-		var rb = sheet.GetComponent<Rigidbody>();
+		var rb = typed.GetComponent<Rigidbody>();
 		rb.isKinematic = true;
 		rb.useGravity = false;
 
 
-		sheet.SetCurrentZone(this); 
+		typed.SetCurrentZone(this);
 		Restack();
 	}
-	
 
 
 
 
-	public override void RemoveObject(ALSheet sheet)
-	{ 
-		if (stack.Remove(sheet))
+	/// <summary>
+	/// Removes a Stackable from the stack.
+	/// </summary>
+	/// <param name="sheet"></param>
+	public override void RemoveObject(Stackable sheet)
+	{
+		if (sheet is not T typed) return;
+
+		if (stack.Remove(typed))
 			Restack();
 	}
 
 
 
-
-	public void SeedObject(ALSheet sheet)
+	/// <summary>
+	/// Seed the stack with a given number of Stackables.
+	/// </summary>
+	/// <param name="sheet"></param>
+	public void SeedObject(T sheet)
 	{
 		if (stack.Contains(sheet)) return;
 		stack.Add(sheet);
@@ -63,17 +87,17 @@ public abstract class StackZone : PlacementZone
 		rb.isKinematic = true;
 		rb.useGravity = false;
 
-		sheet.SetCurrentZone(this); 
+		sheet.SetCurrentZone(this);
 		Restack();
 	}
 
 
 
-
-	protected virtual void Restack()
+	/// <summary>
+	/// Repositions all stacked objects along the stack axis and marks only the top one grabbable.
+	/// </summary>
+	protected void Restack()
 	{
-
-
 		Vector3 axis = stackOrigin.TransformDirection(stackAxis.normalized);
 
 

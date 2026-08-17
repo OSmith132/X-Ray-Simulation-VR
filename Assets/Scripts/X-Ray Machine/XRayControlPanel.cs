@@ -159,7 +159,7 @@ public class XRayControlPanel : MonoBehaviour
 
 
 
-		activateHVLFaults = FaultsManager.FaultsActivated && sceneName == "HVL Xray Room Oculus Touch";
+		activateHVLFaults = FaultsManager.FaultsActivated && sceneName == "HVL";
 
 
 		kVText.text = string.Concat((activateHVLFaults ? kV - 25 : kV).ToString(), " kV");

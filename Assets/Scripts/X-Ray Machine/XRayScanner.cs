@@ -84,7 +84,7 @@ public class XRayScanner : MonoBehaviour
 	// Primes the scanner to take a scan
 	public void Prime()
 	{
-		if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
+		if (sceneName == "Anatomy" || sceneName == "Light Field Alignment")
 		{
 			TVXray.GetComponent<Renderer>().enabled = false;
 			TakeScan();
@@ -98,7 +98,7 @@ public class XRayScanner : MonoBehaviour
 	public void Scan()
 	{
 
-		if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
+		if (sceneName == "Anatomy" || sceneName == "Light Field Alignment")
 		{
 			TVXray.GetComponent<Renderer>().enabled = true;
 			xrayCam.GetComponent<Camera>().enabled = true;
@@ -107,13 +107,13 @@ public class XRayScanner : MonoBehaviour
 		}
 
 
-		if (sceneName == "HVL Xray Room Oculus Touch")
+		if (sceneName == "HVL")
 		{
 			CalculateDAP();
 		}
 
 
-		if (sceneName == "Inverse Square Law Room")
+		if (sceneName == "Inverse Square Law")
 		{
 			CalculateDAP();
 		}
@@ -143,7 +143,7 @@ public class XRayScanner : MonoBehaviour
 		LargeIonisationChamber = GameObject.Find("Detector Visible");
 
 		//Initialisation if specific scenes are called
-		if (sceneName == "HEE Anatomy")
+		if (sceneName == "Anatomy")
 		{
 
 			body = GameObject.Find("Body");
@@ -159,7 +159,7 @@ public class XRayScanner : MonoBehaviour
 		}
 
 
-		if (sceneName == "HEE Light Field Alignment")
+		if (sceneName == "Light Field Alignment")
 		{
 
 
@@ -170,7 +170,7 @@ public class XRayScanner : MonoBehaviour
 			TVXray.GetComponent<Renderer>().enabled = false;
 		}
 
-		if (sceneName == "Inverse Square Law Room")
+		if (sceneName == "Inverse Square Law")
 		{
 			DoseonMeter2gameobject = GameObject.Find("Dose on meter 2");
 			DoseOnHVLMeter2 = DoseonMeter2gameobject.gameObject.GetComponent<TMP_Text>();
@@ -439,7 +439,7 @@ public class XRayScanner : MonoBehaviour
 
 
 
-		if (sceneName == "HVL Xray Room Oculus Touch")
+		if (sceneName == "HVL")
 		{
 			kVError = FaultsManager.FaultsActivated ? 1.5f : 1f;
 			HVL.GetComponent<HVLManager>().CalculateDose();
@@ -474,7 +474,7 @@ public class XRayScanner : MonoBehaviour
 
 
 
-		if (sceneName == "Inverse Square Law Room")
+		if (sceneName == "Inverse Square Law")
 		{
 
 

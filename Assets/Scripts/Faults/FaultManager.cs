@@ -1,5 +1,9 @@
 using UnityEngine;
 
+
+/// <summary>
+/// Manages user scores and equipment faults across all scenes in the simulation.
+/// </summary>
 public static class FaultsManager
 {
 	public static bool FaultsActivated { get; private set; } = false;
@@ -14,6 +18,9 @@ public static class FaultsManager
 	public static void SetDAPCorrect(float value) => DAPCorrect = value;
 	public static void SetPhantomsCorrect(float value) => PhantomsCorrect = value;
 
+	/// <summary>
+	/// Activate faults and reset all player scores to 0.
+	/// </summary>
 	public static void ActivateFaults()
 	{
 		FaultsActivated = true;
@@ -24,11 +31,16 @@ public static class FaultsManager
 		PhantomsCorrect = 0f;
 	}
 
+	/// <summary>
+	/// Deactivate faults but leaves player scores.
+	/// </summary>
 	public static void DeactivateFaults()
 	{
 		FaultsActivated = false;
 	}
 
+	
+	/// <returns>Sum of player scores across all scenes</returns>
 	public static float SumScore()
 	{
 		return AssembleCorrect + HVLCorrect + DAPCorrect + PhantomsCorrect;

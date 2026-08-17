@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 /// <summary>
 /// Attached to the one submit cube. Set OnPulled() as a triggered script on SceneInteractor.
@@ -24,7 +24,7 @@ public class SubmitCube : MonoBehaviour
     public void OnPulled()
     {
         // in case this fires while the interactable is meant to be disabled.
-        UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        XRGrabInteractable grab = GetComponent<XRGrabInteractable>();
         if (grab != null && !grab.enabled) { return; }
 
         quizManager.OnSubmitCubePulled();
@@ -36,7 +36,7 @@ public class SubmitCube : MonoBehaviour
     // Disabled = grey and not grabbable. Enabled = default colour and grabbable.
     public void SetInteractable(bool canBePulled)
     {
-        UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        XRGrabInteractable grab = GetComponent<XRGrabInteractable>();
         if (grab != null)
         {
             grab.enabled = canBePulled;

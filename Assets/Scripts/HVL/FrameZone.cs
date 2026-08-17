@@ -1,11 +1,16 @@
-using UnityEngine;
+
+
+
 
 
 
 /// <summary>
-/// Implementation of StackZone to allow any type of ALSheet to be added
+/// Implementation of StackZone to allow any Stackable of type T to be added up to capacity.
 /// </summary>
-public class FrameZone : StackZone
+public abstract class FrameZone<T> : StackZone<T> where T : Stackable
 {
-	public override bool CanAccept(ALSheet sheet) => !IsFull;
+	protected override bool CanAccept(T sheet) => !IsFull;
 }
+
+
+

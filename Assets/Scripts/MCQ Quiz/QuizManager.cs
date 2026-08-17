@@ -376,19 +376,19 @@ public class QuizManager : MonoBehaviour
 		switch (sceneName)
 		{
 
-			case "Assemble Xray Room Oculus Touch":
+			case "Assemble Xray":
 				FaultsManager.SetAssembleCorrect(percentCorrect);
 				break;
 
-			case "HVL Xray Room Oculus Touch":
+			case "HVL":
 				FaultsManager.SetHVLCorrect(percentCorrect);
 				break;
 
-			case "Inverse Square Law Room":
+			case "Inverse Square Law":
 				FaultsManager.SetDAPCorrect(percentCorrect);
 				break;
 
-			case "HEE Light Field Alignment":
+			case "Light Field Alignment":
 				FaultsManager.SetPhantomsCorrect(percentCorrect);
 				break;
 		}

@@ -11,8 +11,8 @@ public class HVLManager : MonoBehaviour
 	public Transform table;
 
 	[Header("Frames")]
-	public FrameZone upperFrame;
-	public FrameZone lowerFrame;
+	public ALSheetFrameZone upperFrame;
+	public ALSheetFrameZone lowerFrame;
 
 	[Header("UI")]
 	public TMP_Text doseText;
@@ -42,6 +42,8 @@ public class HVLManager : MonoBehaviour
 
 
 
+
+	/// <returns>The total thickness of the ALSheets in the upper and lower frames.</returns>
 	private float GetTotalThicknessMM()
 	{
 		return SumFrame(upperFrame) + SumFrame(lowerFrame);
@@ -49,8 +51,12 @@ public class HVLManager : MonoBehaviour
 
 
 
-
-	private float SumFrame(FrameZone frame)
+	/// <summary>
+	/// Calculates the total thickness of the ALSheets in a given frame.
+	/// </summary>
+	/// <param name="frame"></param>
+	/// <returns>The total thickness for the given frame.</returns>
+	private float SumFrame(ALSheetFrameZone frame)
 	{
 		float sum = 0f;
 		if (frame == null) return sum;
@@ -61,14 +67,16 @@ public class HVLManager : MonoBehaviour
 
 
 
-
+	/// <summary>
+	/// Calculates the dose to the nearest 2dp and displays them on doseText and doseTextHVL.
+	/// </summary>
 	public void CalculateDose()
 	{
 		float alThicknessMM = GetTotalThicknessMM();
 		float distTable = Vector3.Distance(source.position, table.position);
 
 		float kVError = 1f;
-		if (FaultsManager.FaultsActivated && sceneName == "HVL Xray Room Oculus Touch")
+		if (FaultsManager.FaultsActivated && sceneName == "HVL")
 			kVError = 1.5f;
 
 
