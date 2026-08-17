@@ -121,18 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &47182072 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1414902549749024800, guid: dad164401394a654183e76b6908e3011,
-    type: 3}
-  m_PrefabInstance: {fileID: 5999341799723547971}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &53557844
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +418,7 @@ PrefabInstance:
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: sceneToLoad
-      value: Scenes/HEE Menu
+      value: Scenes/Menu
       objectReference: {fileID: 0}
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -1345,18 +1333,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6031241632334128700}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &409261723 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7218320147854379732, guid: dad164401394a654183e76b6908e3011,
-    type: 3}
-  m_PrefabInstance: {fileID: 5999341799723547971}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &412011036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3096,7 +3072,7 @@ PrefabInstance:
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: sceneToLoad
-      value: Scenes/HEE Menu
+      value: Scenes/Menu
       objectReference: {fileID: 0}
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -3393,18 +3369,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1283348751}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &888806851 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 265798612501931683, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
-    type: 3}
-  m_PrefabInstance: {fileID: 6031241632334128700}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &921199254
 GameObject:
   m_ObjectHideFlags: 0
@@ -7000,18 +6964,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!114 &2063342627 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8045871492586516234, guid: dad164401394a654183e76b6908e3011,
-    type: 3}
-  m_PrefabInstance: {fileID: 5999341799723547971}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2067309575 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 172663921006713233, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
@@ -41440,17 +41392,17 @@ PrefabInstance:
         type: 3}
       propertyPath: LFarea
       value: 
-      objectReference: {fileID: 888806851}
+      objectReference: {fileID: 0}
     - target: {fileID: 269066352554368400, guid: c8f722272298f9246aa3ab3f004dffd4,
         type: 3}
       propertyPath: DAPText
       value: 
-      objectReference: {fileID: 409261723}
+      objectReference: {fileID: 0}
     - target: {fileID: 269066352554368400, guid: c8f722272298f9246aa3ab3f004dffd4,
         type: 3}
       propertyPath: DoseText
       value: 
-      objectReference: {fileID: 47182072}
+      objectReference: {fileID: 0}
     - target: {fileID: 269066352554368400, guid: c8f722272298f9246aa3ab3f004dffd4,
         type: 3}
       propertyPath: m_Enabled
@@ -41460,7 +41412,7 @@ PrefabInstance:
         type: 3}
       propertyPath: DoseonMeter
       value: 
-      objectReference: {fileID: 2063342627}
+      objectReference: {fileID: 0}
     - target: {fileID: 269066352554368400, guid: c8f722272298f9246aa3ab3f004dffd4,
         type: 3}
       propertyPath: xrayHandleController
@@ -41475,17 +41427,17 @@ PrefabInstance:
         type: 3}
       propertyPath: LFarea
       value: 
-      objectReference: {fileID: 888806851}
+      objectReference: {fileID: 0}
     - target: {fileID: 655758771474600348, guid: c8f722272298f9246aa3ab3f004dffd4,
         type: 3}
       propertyPath: DAPText
       value: 
-      objectReference: {fileID: 409261723}
+      objectReference: {fileID: 0}
     - target: {fileID: 655758771474600348, guid: c8f722272298f9246aa3ab3f004dffd4,
         type: 3}
       propertyPath: DoseText
       value: 
-      objectReference: {fileID: 47182072}
+      objectReference: {fileID: 0}
     - target: {fileID: 655758771474600348, guid: c8f722272298f9246aa3ab3f004dffd4,
         type: 3}
       propertyPath: m_Enabled
@@ -41495,7 +41447,7 @@ PrefabInstance:
         type: 3}
       propertyPath: DoseonMeter
       value: 
-      objectReference: {fileID: 2063342627}
+      objectReference: {fileID: 0}
     - target: {fileID: 655758771474600348, guid: c8f722272298f9246aa3ab3f004dffd4,
         type: 3}
       propertyPath: xrayHandleController
@@ -72281,7 +72233,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3867826097036513966, guid: dad164401394a654183e76b6908e3011,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5157915887391518413, guid: dad164401394a654183e76b6908e3011,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 327577301541752077, guid: dad164401394a654183e76b6908e3011,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: dad164401394a654183e76b6908e3011, type: 3}
 --- !u!4 &5999952103069170610
 Transform:
@@ -72718,17 +72682,17 @@ PrefabInstance:
         type: 3}
       propertyPath: DAPText
       value: 
-      objectReference: {fileID: 409261723}
+      objectReference: {fileID: 0}
     - target: {fileID: 261460313889895524, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
         type: 3}
       propertyPath: DoseText
       value: 
-      objectReference: {fileID: 47182072}
+      objectReference: {fileID: 0}
     - target: {fileID: 261460313889895524, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
         type: 3}
       propertyPath: DoseonMeter
       value: 
-      objectReference: {fileID: 2063342627}
+      objectReference: {fileID: 0}
     - target: {fileID: 857098080024953749, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
         type: 3}
       propertyPath: m_IsActive
@@ -72837,7 +72801,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1368216336457340564, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 077f64e2e5f7a6140a6b464d2f1f6a32, type: 3}
 --- !u!114 &6031241632334128701 stripped
 MonoBehaviour:

@@ -202,7 +202,7 @@ PrefabInstance:
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: sceneToLoad
-      value: Scenes/HEE Menu
+      value: Scenes/Menu
       objectReference: {fileID: 0}
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
@@ -11807,7 +11807,7 @@ PrefabInstance:
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: sceneToLoad
-      value: Scenes/HEE Menu
+      value: Scenes/Menu
       objectReference: {fileID: 0}
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
