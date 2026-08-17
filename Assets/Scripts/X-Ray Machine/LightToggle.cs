@@ -13,7 +13,7 @@ public class LightToggle : MonoBehaviour
 	void Start ()
 	{
 		XrayLight = GetComponent<Light>();
-		XrayLight.intensity = 0;
+		XrayLight.intensity = 5;
 	}
 	
 
@@ -24,13 +24,26 @@ public class LightToggle : MonoBehaviour
 		onoff = !onoff;
 		if (onoff)
 		{
-			XrayLight.intensity = 10;
+			XrayLight.intensity = 5;
 		}
 		else
 		{
 			XrayLight.intensity = 0;
 		}
 
+	}
+
+
+	public void TurnOn()
+	{
+		XrayLight.intensity = 5;
+		Debug.Log("Light On");
+	}
+
+	public void TurnOff()
+	{
+		XrayLight.intensity = 0;
+		Debug.Log("Light Off");
 	}
 
 

@@ -14,6 +14,7 @@ using TMPro;
 /// </summary>
 public class XRayScanner : MonoBehaviour
 {
+	[SerializeField, Tooltip("The LightToggle script component on Collimator Guide Light. Toggles it off then on again to not overexpose the image.")] LightToggle lightToggle;
 
 	float DetectorSize;
 	float ImageLeft;
@@ -79,6 +80,7 @@ public class XRayScanner : MonoBehaviour
 
 
 
+	public bool PerfectScanMode = false;
 
 
 	// Primes the scanner to take a scan
@@ -98,11 +100,14 @@ public class XRayScanner : MonoBehaviour
 	public void Scan()
 	{
 
+		lightToggle.TurnOff();
+		
+
 		if (sceneName == "Anatomy" || sceneName == "Light Field Alignment")
 		{
 			TVXray.GetComponent<Renderer>().enabled = true;
 			xrayCam.GetComponent<Camera>().enabled = true;
-			CalculateImage();
+			if (PerfectScanMode) { CalculatePerfectImage(); } else { CalculateImage(); }
 			CalculateDAP();
 		}
 
@@ -117,6 +122,9 @@ public class XRayScanner : MonoBehaviour
 		{
 			CalculateDAP();
 		}
+
+
+		lightToggle.TurnOn();
 
 	}
 
@@ -223,6 +231,8 @@ public class XRayScanner : MonoBehaviour
 	public void TakeScan()
 	{
 
+		
+
 		//Calculate area of light field at 1m
 		float horizD = Right1m + Left1m;
 		float vertD = Lower1m + Upper1m;
@@ -248,6 +258,8 @@ public class XRayScanner : MonoBehaviour
 			TVXray.transform.localScale = new Vector3(AspectRatio, TVXrayStartSize.y, TVXrayStartSize.z);
 		}
 
+		
+
 	}
 
 
@@ -261,6 +273,10 @@ public class XRayScanner : MonoBehaviour
 
 		//Get image from xray camera
 		RenderTexture CamRenderTex = xrayCam.GetComponent<Camera>().targetTexture;
+
+		xrayCam.GetComponent<Camera>().Render(); // force an immediate render so the texture reflects the current light state, not last frame's. (This took me SO long to figure out...)
+												 // Also ensure that the guide light is real time rendered and not baked in so this works.
+
 		RenderTexture.active = CamRenderTex;
 		Texture2D xrayCamTex2D = new Texture2D(1024, 1024, TextureFormat.ARGB32, false);
 		xrayCamTex2D.ReadPixels(new Rect(0, 0, CamRenderTex.width, CamRenderTex.height), 0, 0, false);
@@ -313,6 +329,64 @@ public class XRayScanner : MonoBehaviour
 
 			AdjImg[ii] = new Color(ImgIntensityInvNoise, ImgIntensityInvNoise, ImgIntensityInvNoise, 1.0f);
 
+		}
+
+		//Create new texture and populate with the adjusted grayscale values
+		Texture2D AdjImgTex = new Texture2D(OrigImg.width, OrigImg.height);
+		AdjImgTex.SetPixels(AdjImg);
+		AdjImgTex.Apply(true);
+
+		TVXray.GetComponent<MeshRenderer>().material.mainTexture = AdjImgTex;
+	}
+
+
+
+
+
+
+
+
+
+
+	public void CalculatePerfectImage()
+	{
+		//Same attenuation model as CalculateImage(), but with no fog/saturation clipping and no noise, and the result is stretched across the full 0-1 range so all tissue detail is visible
+
+		//Get image from xray camera
+		RenderTexture CamRenderTex = xrayCam.GetComponent<Camera>().targetTexture;
+		RenderTexture.active = CamRenderTex;
+		Texture2D xrayCamTex2D = new Texture2D(1024, 1024, TextureFormat.ARGB32, false);
+		xrayCamTex2D.ReadPixels(new Rect(0, 0, CamRenderTex.width, CamRenderTex.height), 0, 0, false);
+		xrayCamTex2D.Apply();
+		Texture2D OrigImg = xrayCamTex2D;
+
+		Color[] OrigImgPixels = OrigImg.GetPixels(0, 0, OrigImg.width, OrigImg.height);
+
+		float[] RawIntensity = new float[OrigImgPixels.Length];
+		float minIntensity = float.MaxValue;
+		float maxIntensity = float.MinValue;
+
+		for (int ii = 0; ii < OrigImgPixels.Length; ii++)
+		{
+			//Calculate the attenuation coefficient based on the set kV, same as CalculateImage()
+			float muRefVal = (1 - OrigImgPixels[ii].grayscale) * 0.6f;
+			float mukVAdj = muRefVal * (Mathf.Pow(kVRef, 3) / Mathf.Pow(XRayControlPanel.kV, 3));
+
+			float ImgIntensityAdj = Mathf.Exp(-mukVAdj);
+			float ImgIntensityAdjInv = 1 - ImgIntensityAdj;
+
+			RawIntensity[ii] = ImgIntensityAdjInv;
+			if (ImgIntensityAdjInv < minIntensity) minIntensity = ImgIntensityAdjInv;
+			if (ImgIntensityAdjInv > maxIntensity) maxIntensity = ImgIntensityAdjInv;
+		}
+
+		Color[] AdjImg = new Color[OrigImgPixels.Length];
+		float range = Mathf.Max(maxIntensity - minIntensity, 0.0001f);
+
+		for (int ii = 0; ii < OrigImgPixels.Length; ii++)
+		{
+			float stretched = (RawIntensity[ii] - minIntensity) / range;
+			AdjImg[ii] = new Color(stretched, stretched, stretched, 1.0f);
 		}
 
 		//Create new texture and populate with the adjusted grayscale values
@@ -399,7 +473,8 @@ public class XRayScanner : MonoBehaviour
 		float vertMin;
 		float vertMax;
 
-		if (horizDist2 > LargeIonisationChamber.transform.lossyScale.z)
+
+		if (LargeIonisationChamber  &&  horizDist2 > LargeIonisationChamber.transform.lossyScale.z)
 		{
 			horizMin = LargeIonisationChamber.transform.lossyScale.z / 2;
 			horizMax = LargeIonisationChamber.transform.lossyScale.z / 2;
@@ -414,7 +489,7 @@ public class XRayScanner : MonoBehaviour
 			//Dose = 0.00791f * XRayControlPanel.kV * XRayControlPanel.kV * mAs_adj4txt;
 		}
 
-		if (vertDist2 > LargeIonisationChamber.transform.lossyScale.x)
+		if (LargeIonisationChamber  &&  vertDist2 > LargeIonisationChamber.transform.lossyScale.x)
 		{
 			vertMin = LargeIonisationChamber.transform.lossyScale.x / 2;
 			vertMax = LargeIonisationChamber.transform.lossyScale.x / 2;
@@ -451,7 +526,7 @@ public class XRayScanner : MonoBehaviour
 			Dose = Random.Range(0.975f, 1.025f) * NoErrorDose + (NoErrorDose * 0.04f);
 
 			DoseText.text = string.Concat("Dose: ", Dose.ToString("F2"), " Gycm\xB2");
-			DoseOnHVLMeter.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
+			if (DoseOnHVLMeter) { DoseOnHVLMeter.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2"); }
 		}
 
 
@@ -472,7 +547,7 @@ public class XRayScanner : MonoBehaviour
 
 
 
-
+		
 
 		if (sceneName == "Inverse Square Law")
 		{
