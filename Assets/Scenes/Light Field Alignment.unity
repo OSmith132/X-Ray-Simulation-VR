@@ -13002,6 +13002,11 @@ PrefabInstance:
       propertyPath: DoseonMeter
       value: 
       objectReference: {fileID: 912729932}
+    - target: {fileID: 261460313889895524, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
+        type: 3}
+      propertyPath: DoseOnHVLMeter
+      value: 
+      objectReference: {fileID: 912729932}
     - target: {fileID: 1851275515144350473, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
         type: 3}
       propertyPath: m_LocalScale.x

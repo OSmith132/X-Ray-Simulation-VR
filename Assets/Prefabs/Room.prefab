@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 1071485891760418271}
   - component: {fileID: 638645258950453428}
   - component: {fileID: 5650420939748481519}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Office Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,8 +325,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.862977, z: 1}
+  m_Center: {x: 0, y: 0.023581414, z: 0}
 --- !u!23 &5650420939748481519
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3330,7 +3330,7 @@ GameObject:
   - component: {fileID: 7235046060582985122}
   - component: {fileID: 2792027548912008973}
   - component: {fileID: 8371428054720791580}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Middle Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8758,7 +8758,7 @@ GameObject:
   - component: {fileID: 7589543904659091537}
   - component: {fileID: 6929785416824763159}
   - component: {fileID: 678786967980690786}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Left Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9358,7 +9358,7 @@ Rigidbody:
   m_GameObject: {fileID: 8430052613862817602}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 2
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -9372,7 +9372,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
@@ -9517,11 +9517,11 @@ MonoBehaviour:
   m_SmoothPosition: 0
   m_SmoothPositionAmount: 8
   m_TightenPosition: 0.1
-  m_TrackRotation: 1
+  m_TrackRotation: 0
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 8
   m_TightenRotation: 0.1
-  m_TrackScale: 1
+  m_TrackScale: 0
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
@@ -9551,9 +9551,9 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
-  m_LimitLinearVelocity: 0
+  m_LimitLinearVelocity: 1
   m_LimitAngularVelocity: 0
-  m_MaxLinearVelocityDelta: 10
+  m_MaxLinearVelocityDelta: 1
   m_MaxAngularVelocityDelta: 20
 --- !u!1 &8433300455662290118
 GameObject:
@@ -10353,7 +10353,7 @@ GameObject:
   - component: {fileID: 9051918661692775234}
   - component: {fileID: 1333198316941478492}
   - component: {fileID: 5397278428254079351}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Doorframe Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
