@@ -9296,7 +9296,6 @@ GameObject:
   - component: {fileID: 2892100713116470301}
   - component: {fileID: 1412167615587574540}
   - component: {fileID: 6667247167476574352}
-  - component: {fileID: 4386150025559787681}
   - component: {fileID: 8605477154374390453}
   m_Layer: 0
   m_Name: Office Door Handle
@@ -9426,18 +9425,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4386150025559787681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8430052613862817602}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97fd6d57a21a9d7458d336b7a39117ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8605477154374390453
 MonoBehaviour:
   m_ObjectHideFlags: 0

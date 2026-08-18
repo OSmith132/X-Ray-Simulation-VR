@@ -124,36 +124,36 @@ public class AnchorPoints : MonoBehaviour
 		float distPanel = Vector3.Distance(Panel.position, PanelAnchor.position);
 
 
-		if (Input.GetButtonDown("Label"))
-		{
-			labelsHidden = !labelsHidden;
-			if (labelsHidden)
-			{
-				AnodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
-				CathodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
-				RotorLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
-				//StatorLabel.gameObject.GetComponent<MeshRenderer> ().enabled = false;
-				CoilLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
-				GlassLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
-				PanelLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
-				CollimatorLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
-				CoverLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
-				BeLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
-			}
-			else
-			{
-				AnodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
-				CathodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
-				RotorLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
-				//StatorLabel.gameObject.GetComponent<MeshRenderer> ().enabled = true;
-				CoilLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
-				GlassLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
-				PanelLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
-				CollimatorLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
-				CoverLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
-				BeLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
-			}
-		}
+		//if (Input.GetButtonDown("Label"))
+		//{
+		//	labelsHidden = !labelsHidden;
+		//	if (labelsHidden)
+		//	{
+		//		AnodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
+		//		CathodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
+		//		RotorLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
+		//		//StatorLabel.gameObject.GetComponent<MeshRenderer> ().enabled = false;
+		//		CoilLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
+		//		GlassLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
+		//		PanelLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
+		//		CollimatorLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
+		//		CoverLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
+		//		BeLabel.gameObject.GetComponent<MeshRenderer>().enabled = false;
+		//	}
+		//	else
+		//	{
+		//		AnodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		//		CathodeLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		//		RotorLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		//		//StatorLabel.gameObject.GetComponent<MeshRenderer> ().enabled = true;
+		//		CoilLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		//		GlassLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		//		PanelLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		//		CollimatorLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		//		CoverLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		//		BeLabel.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		//	}
+		//}
 
 
 

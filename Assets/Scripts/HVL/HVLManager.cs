@@ -34,11 +34,11 @@ public class HVLManager : MonoBehaviour
 	}
 
 
-	private void Update()
-	{
-		if (Input.GetButtonDown("Scan"))
-			CalculateDose();
-	}
+	//private void Update()
+	//{
+	//	if (Input.GetButtonDown("Scan"))
+	//		CalculateDose();
+	//}
 
 
 
