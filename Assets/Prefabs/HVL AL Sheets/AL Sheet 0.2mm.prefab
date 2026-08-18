@@ -285,12 +285,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa34437f88a5b684b8fd8c1f9e8d637d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ALSheet
-  aLType: 0
-  thicknessMM: 0.2
   zoneLayerMask:
     serializedVersion: 2
     m_Bits: 8192
   overlapCheckRadius: 0.05
+  aLType: 0
+  thicknessMM: 0.2
 --- !u!1 &8841466315758471111
 GameObject:
   m_ObjectHideFlags: 0

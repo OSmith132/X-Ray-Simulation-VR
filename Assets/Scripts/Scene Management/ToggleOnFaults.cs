@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ToggleMCQ : MonoBehaviour
+public class ToggleOnFaults : MonoBehaviour
 {
 
 
