@@ -2792,6 +2792,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 62511693772181354, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2737907114364818199, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
         type: 3}
       propertyPath: m_Enabled
@@ -2812,6 +2817,11 @@ PrefabInstance:
       propertyPath: 'handTransforms.Array.data[1]'
       value: 
       objectReference: {fileID: 1615256073}
+    - target: {fileID: 3487825981822475195, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3596516772363068818, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
         type: 3}
       propertyPath: m_IsActive
@@ -2821,6 +2831,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Xray Table
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749829812431593875, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6229677952194420225, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
         type: 3}
@@ -2871,6 +2886,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797697499528519878, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7870113682443187482, guid: aa2bb8493e90ed84ab6f8298aae27ed4,
         type: 3}

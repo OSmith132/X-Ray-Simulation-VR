@@ -3699,6 +3699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3395465991312349843}
   - component: {fileID: 5273285087239074070}
+  - component: {fileID: 6401744737725085283}
   m_Layer: 0
   m_Name: MCQ System
   m_TagString: Untagged
@@ -3746,6 +3747,18 @@ MonoBehaviour:
   - {fileID: 283091070867253166}
   - {fileID: 259513603319590753}
   submitCube: {fileID: 7521076867956245387}
+--- !u!114 &6401744737725085283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7546997174472605754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473188ac5bc022b4b8e71a37c69f874f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &8139862353925832921
 GameObject:
   m_ObjectHideFlags: 0

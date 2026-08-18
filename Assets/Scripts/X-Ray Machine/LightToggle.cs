@@ -37,13 +37,11 @@ public class LightToggle : MonoBehaviour
 	public void TurnOn()
 	{
 		XrayLight.intensity = 5;
-		Debug.Log("Light On");
 	}
 
 	public void TurnOff()
 	{
 		XrayLight.intensity = 0;
-		Debug.Log("Light Off");
 	}
 
 
