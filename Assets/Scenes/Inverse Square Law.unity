@@ -1142,8 +1142,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1755912087352533555, guid: f0b9e6c391dc0384d8c9978e4b9c624d,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1755912087352533555, guid: f0b9e6c391dc0384d8c9978e4b9c624d,
+        type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.019
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1903656930508521726, guid: f0b9e6c391dc0384d8c9978e4b9c624d,
         type: 3}
@@ -1225,21 +1230,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.3
       objectReference: {fileID: 0}
-    - target: {fileID: 4892817896307987452, guid: f0b9e6c391dc0384d8c9978e4b9c624d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.723
-      objectReference: {fileID: 0}
-    - target: {fileID: 5273285087239074070, guid: f0b9e6c391dc0384d8c9978e4b9c624d,
-        type: 3}
-      propertyPath: questionsFile
-      value: 
-      objectReference: {fileID: 4900000, guid: cefb9cf645890e94cbb4aad1af41c5e9, type: 3}
-    - target: {fileID: 5273285087239074070, guid: f0b9e6c391dc0384d8c9978e4b9c624d,
-        type: 3}
-      propertyPath: answerCubes.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 5273285087239074070, guid: f0b9e6c391dc0384d8c9978e4b9c624d,
         type: 3}
       propertyPath: 'answerCubes.Array.data[4]'
@@ -1302,6 +1292,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 8139862353925832921, guid: f0b9e6c391dc0384d8c9978e4b9c624d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8352325696271611353, guid: f0b9e6c391dc0384d8c9978e4b9c624d,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -2097,8 +2091,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8d2cbe68973524c97c4a1dff9d832e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnswerCube
-  answerIndex: 5
   quizManager: {fileID: 658504720}
+  answerIndex: 5
 --- !u!114 &867207856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3263,8 +3257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8d2cbe68973524c97c4a1dff9d832e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnswerCube
-  answerIndex: 4
   quizManager: {fileID: 658504720}
+  answerIndex: 4
 --- !u!114 &1161945005
 MonoBehaviour:
   m_ObjectHideFlags: 0

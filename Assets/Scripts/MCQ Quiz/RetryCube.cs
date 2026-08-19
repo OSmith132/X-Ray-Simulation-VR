@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 /// <summary>
-/// Attached to the submit cube. Set OnPulled() as a triggered script on SceneInteractor.
+/// Attached to the retry cube. Set OnPulled() as a triggered script on SceneInteractor.
 /// </summary>
-public class SubmitCube : QuizCube
+public class RetryCube : QuizCube
 {
+
 	// Called by the SceneInteractor when this cube is pulled.
 	public override void OnPulled()
 	{
@@ -13,6 +14,6 @@ public class SubmitCube : QuizCube
 		XRGrabInteractable grab = GetComponent<XRGrabInteractable>();
 		if (grab != null && !grab.enabled) { return; }
 
-		quizManager.OnSubmitCubePulled();
+		quizManager.ResetQuiz();
 	}
 }
