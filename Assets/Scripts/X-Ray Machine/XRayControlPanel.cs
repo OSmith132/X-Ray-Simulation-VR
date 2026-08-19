@@ -89,8 +89,6 @@ public class XRayControlPanel : MonoBehaviour
 	Scene currentScene;
 	string sceneName;
 
-	bool activateHVLFaults;
-
 
 	[SerializeField, Tooltip("(Optional): The TakeScan script component on Xray System	")] XRayScanner xRayScanner;
 	//[SerializeField, Tooltip("(Optional): The LightToggle script component on Collimator Guide Light")] LightToggle lightToggle;
@@ -157,10 +155,9 @@ public class XRayControlPanel : MonoBehaviour
 
 
 
-		activateHVLFaults = FaultsManager.FaultsActivated && sceneName == "HVL";
 
 
-		kVText.text = string.Concat((activateHVLFaults ? kV - 25 : kV).ToString(), " kV");
+		kVText.text = string.Concat(kV.ToString(), " kV");
 		kVText1.text = kVText.text;
 
 
@@ -287,7 +284,7 @@ public class XRayControlPanel : MonoBehaviour
 		arrow1s.GetComponent<Renderer>().material.color = Color.black;
 	}
 
-
+	
 
 
 	// ----- kV -----
@@ -297,7 +294,7 @@ public class XRayControlPanel : MonoBehaviour
 		if (kV < 90)
 		{
 			kV = kV + 1;
-			kVText.text = string.Concat((activateHVLFaults ? kV - 25 : kV).ToString(), " kV");
+			kVText.text = string.Concat(kV.ToString(), " kV");
 			kVText1.text = kVText.text;
 			arrow4.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
 			arrow4s.GetComponent<Renderer>().material.color = Color.white;
@@ -319,7 +316,7 @@ public class XRayControlPanel : MonoBehaviour
 		if (kV > 30)
 		{
 			kV = kV - 1;
-			kVText.text = string.Concat((activateHVLFaults ? kV - 25 : kV).ToString(), " kV");
+			kVText.text = string.Concat(kV.ToString(), " kV");
 			kVText1.text = kVText.text;
 			arrow2.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
 			arrow2s.GetComponent<Renderer>().material.color = Color.white;

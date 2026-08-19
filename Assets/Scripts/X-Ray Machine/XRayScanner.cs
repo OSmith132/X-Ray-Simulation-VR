@@ -77,10 +77,13 @@ public class XRayScanner : MonoBehaviour
 	float fluxRef;
 	float fluxFogLim;
 	float fluxSatLim;
-
-
+	
 
 	public bool PerfectScanMode = false;
+
+
+
+
 
 
 	// Primes the scanner to take a scan
@@ -149,6 +152,9 @@ public class XRayScanner : MonoBehaviour
 		Detector = GameObject.Find("Detector");
 
 		LargeIonisationChamber = GameObject.Find("Detector Visible");
+
+
+
 
 		//Initialisation if specific scenes are called
 		if (sceneName == "Anatomy")
@@ -516,7 +522,7 @@ public class XRayScanner : MonoBehaviour
 
 		if (sceneName == "HVL")
 		{
-			kVError = FaultsManager.FaultsActivated ? 1.5f : 1f;
+			kVError = FaultsManager.FaultsActivated ? 1.5f : 1f; // Scale by 1.5 when faults are on in HVL
 			HVL.GetComponent<HVLManager>().CalculateDose();
 		}
 		else
@@ -535,11 +541,9 @@ public class XRayScanner : MonoBehaviour
 		NoErrorDAP = 1.7f * Mathf.Pow(10, -8) * (XRayControlPanel.kV * kVError) * (XRayControlPanel.kV * kVError) * XRayControlPanel.mAs * areaAt1m_cm;
 		DAP = Random.Range(0.965f, 1.035f) * NoErrorDAP;
 
-		DAPText.text = string.Concat("DAP: ", DAP.ToString("F2"), " Gycm\xB2");
 
-		
-
-
+		//DAPText.text = string.Concat("DAP: ", DAP.ToString("F2"), " Gycm\xB2");
+		DAPText.text = string.Concat("DAP: ", (DAP*100).ToString("F2"), " cGycm\xB2"); // Change units to cGycm^2
 
 
 
@@ -547,7 +551,12 @@ public class XRayScanner : MonoBehaviour
 
 
 
-		
+
+
+
+
+
+
 
 		if (sceneName == "Inverse Square Law")
 		{
