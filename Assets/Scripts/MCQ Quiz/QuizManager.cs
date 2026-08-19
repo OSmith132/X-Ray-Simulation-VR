@@ -282,6 +282,10 @@ public class QuizManager : MonoBehaviour
 
 		submitCube.SetInteractable(false);
 		state = QuizState.Feedback;
+
+
+		float percentCorrect = (float)correctCount / (float)questions.Count;
+		ReportScoreToFaultsManager(percentCorrect); // Report after each question instead of when showing the end screen
 	}
 
 
@@ -342,11 +346,8 @@ public class QuizManager : MonoBehaviour
 		state = QuizState.Finished;
 
 		float percentCorrect = (float)correctCount / (float)questions.Count;
-		PlayerPrefs.SetFloat(MCQQuestionSet, percentCorrect);
 
-		ReportScoreToFaultsManager(percentCorrect);
-
-		instructionMessage.text = (percentCorrect == 1f) ? "Well done!" : "";
+		instructionMessage.text = (percentCorrect == 1f) ? "Well done!" : "Nice try, but execute the tasks and try again.";
 		questionText.text = string.Format("You scored {0} / {1}", correctCount, questions.Count);
 
 
