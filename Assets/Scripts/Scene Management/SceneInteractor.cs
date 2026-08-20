@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using Unity.XR.CoreUtils;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -22,6 +23,7 @@ public class SceneInteractor : MonoBehaviour
 	[Header("Player Teleport")]
 	[SerializeField, Tooltip("Enable to teleport the player")] bool teleportPlayer;
 	[SerializeField, Tooltip("Reference to the player rig's XROrigin component")] XROrigin xrOrigin;
+	[SerializeField, Tooltip("Reference to the XROrigin Locomotion provider")] TeleportationProvider teleportationProvider;
 	[SerializeField, Tooltip("Where the player will be teleported to")] Transform playerDestination;
 	[SerializeField, Tooltip("Also move any objects currently held by the player's controllers")] bool teleportHeldObjects = true;
 
@@ -74,7 +76,7 @@ public class SceneInteractor : MonoBehaviour
 	void Fire()
 	{
 
-		
+
 
 		if (teleportPlayer && xrOrigin != null && playerDestination != null)
 		{
@@ -86,8 +88,23 @@ public class SceneInteractor : MonoBehaviour
 				TeleportHeldObjects(moved_dist);
 			}
 
-			xrOrigin.MoveCameraToWorldLocation(playerDestination.position);
+			if (teleportationProvider != null)
+			{
+				var request = new TeleportRequest
+				{
+					destinationPosition = playerDestination.position,
+					destinationRotation = playerDestination.rotation,
+					matchOrientation = MatchOrientation.WorldSpaceUp
+				};
+				teleportationProvider.QueueTeleportRequest(request);
+			}
+			else
+			{
+				xrOrigin.MoveCameraToWorldLocation(playerDestination.position);
+			}
 		}
+
+
 
 		if (loadScene && !string.IsNullOrEmpty(sceneToLoad))
 		{
