@@ -531,8 +531,10 @@ public class XRayScanner : MonoBehaviour
 			NoErrorDose = 1.7f * Mathf.Pow(10, -4) * XRayControlPanel.kV * XRayControlPanel.kV * XRayControlPanel.mAs * (AreaOverlap / (distTable * distTable));
 			Dose = Random.Range(0.975f, 1.025f) * NoErrorDose + (NoErrorDose * 0.04f);
 
-			DoseText.text = string.Concat("Dose: ", Dose.ToString("F2"), " Gycm\xB2");
-			if (DoseOnHVLMeter) { DoseOnHVLMeter.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2"); }
+
+
+			DoseText.text = string.Concat("Dose: ", (Dose*100).ToString("F2"), " cGycm\xB2");
+			if (DoseOnHVLMeter) { DoseOnHVLMeter.text = string.Concat((Dose * 100).ToString("F2"), " cGycm\xB2"); }
 		}
 
 
@@ -569,7 +571,7 @@ public class XRayScanner : MonoBehaviour
 			}
 
 
-			DoseOnHVLMeter2.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
+			DoseOnHVLMeter2.text = string.Concat((Dose * 100).ToString("F2"), " cGycm\xB2");
 
 		}
 
