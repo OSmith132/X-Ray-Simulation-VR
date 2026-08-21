@@ -241,16 +241,16 @@ public class QuizManager : MonoBehaviour
 		int[] currentAnswers = questions[currentQuestionIndex].GetAnswers(); 
 
 
-		Debug.Log($"Answer len: {currentAnswers.Length}");
+		//Debug.Log($"Answer len: {currentAnswers.Length}");
 		foreach (int i in currentAnswers)
 		{
-			Debug.Log($"Answer: {i}");
+			//Debug.Log($"Answer: {i}");
 		}
 
-		Debug.Log($"Input len: {selectedAnswerIndices.Count()}");
+		//Debug.Log($"Input len: {selectedAnswerIndices.Count()}");
 		foreach (int i in selectedAnswerIndices)
 		{
-			Debug.Log($"Input: {i}");
+			//Debug.Log($"Input: {i}");
 		}
 
 

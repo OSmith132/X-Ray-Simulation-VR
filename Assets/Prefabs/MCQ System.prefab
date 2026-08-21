@@ -255,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 963390963454140668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.42261827, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.111, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -359,6 +359,7 @@ MonoBehaviour:
   reloadCurrentScene: 0
   teleportPlayer: 0
   xrOrigin: {fileID: 0}
+  teleportationProvider: {fileID: 0}
   playerDestination: {fileID: 0}
   teleportHeldObjects: 1
   onTriggered:
@@ -1032,6 +1033,7 @@ MonoBehaviour:
   reloadCurrentScene: 0
   teleportPlayer: 0
   xrOrigin: {fileID: 0}
+  teleportationProvider: {fileID: 0}
   playerDestination: {fileID: 0}
   teleportHeldObjects: 1
   onTriggered:
@@ -1920,6 +1922,7 @@ MonoBehaviour:
   reloadCurrentScene: 0
   teleportPlayer: 0
   xrOrigin: {fileID: 0}
+  teleportationProvider: {fileID: 0}
   playerDestination: {fileID: 0}
   teleportHeldObjects: 1
   onTriggered:
@@ -2729,6 +2732,7 @@ MonoBehaviour:
   reloadCurrentScene: 0
   teleportPlayer: 0
   xrOrigin: {fileID: 0}
+  teleportationProvider: {fileID: 0}
   playerDestination: {fileID: 0}
   teleportHeldObjects: 1
   onTriggered:
@@ -3187,6 +3191,7 @@ MonoBehaviour:
   reloadCurrentScene: 0
   teleportPlayer: 0
   xrOrigin: {fileID: 0}
+  teleportationProvider: {fileID: 0}
   playerDestination: {fileID: 0}
   teleportHeldObjects: 1
   onTriggered:
@@ -3858,6 +3863,7 @@ MonoBehaviour:
   reloadCurrentScene: 0
   teleportPlayer: 0
   xrOrigin: {fileID: 0}
+  teleportationProvider: {fileID: 0}
   playerDestination: {fileID: 0}
   teleportHeldObjects: 1
   onTriggered:
