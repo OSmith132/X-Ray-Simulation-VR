@@ -6,26 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/HEE Menu.unity
+    path: Assets/Scenes/Menu.unity
     guid: fad4f6b754da0614a84c7e9f5f367f61
   - enabled: 1
-    path: Assets/Scenes/Assemble Xray Room Oculus Touch.unity
+    path: Assets/Scenes/Assemble Xray.unity
     guid: f78505576bac487408c6c52580e09a5a
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/HVL Xray Room Oculus Touch.unity
+    path: Assets/Scenes/HVL.unity
     guid: 51b96848e2a2d4a4db002b364044c22a
   - enabled: 1
-    path: Assets/Scenes/Inverse Square Law Room.unity
+    path: Assets/Scenes/Inverse Square Law.unity
     guid: 14b597c7b4795934d8bcc73f2b247328
   - enabled: 1
-    path: Assets/Scenes/HEE Anatomy.unity
+    path: Assets/Scenes/Anatomy.unity
     guid: fe9227ac93b4e56488122e60d2d5be8f
   - enabled: 1
-    path: Assets/Scenes/HEE Light Field Alignment.unity
+    path: Assets/Scenes/Light Field Alignment.unity
     guid: 58d5de107c89a01408c87f8cbec1c0ad
+  - enabled: 1
+    path: Assets/Scenes/AEC.unity
+    guid: 453fe1511cf870a479baae8c77ba73d8
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 06ee07b8bfe858d459b4a7a4fe4faad9,
       type: 2}

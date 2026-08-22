@@ -264,6 +264,9 @@ public class QuizManager : MonoBehaviour
 
 		for (int i = 0; i < answerCubes.Length; i++)
 		{
+
+			answerCubes[i].SetInteractable(true);
+
 			if (currentAnswers.Contains(i))
 			{
 				answerCubes[i].SetGreen();
@@ -276,8 +279,7 @@ public class QuizManager : MonoBehaviour
 			{
 				answerCubes[i].SetGrey();
 			}
-
-			answerCubes[i].SetInteractable(true);
+			
 		}
 
 		// Display in green for correct

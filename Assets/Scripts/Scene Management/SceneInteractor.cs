@@ -23,7 +23,7 @@ public class SceneInteractor : MonoBehaviour
 	[Header("Player Teleport")]
 	[SerializeField, Tooltip("Enable to teleport the player")] bool teleportPlayer;
 	[SerializeField, Tooltip("Reference to the player rig's XROrigin component")] XROrigin xrOrigin;
-	[SerializeField, Tooltip("Reference to the XROrigin Locomotion provider")] TeleportationProvider teleportationProvider;
+	//[SerializeField, Tooltip("Reference to the XROrigin Locomotion provider")] TeleportationProvider teleportationProvider;
 	[SerializeField, Tooltip("Where the player will be teleported to")] Transform playerDestination;
 	[SerializeField, Tooltip("Also move any objects currently held by the player's controllers")] bool teleportHeldObjects = true;
 
@@ -88,20 +88,25 @@ public class SceneInteractor : MonoBehaviour
 				TeleportHeldObjects(moved_dist);
 			}
 
-			if (teleportationProvider != null)
-			{
-				var request = new TeleportRequest
-				{
-					destinationPosition = playerDestination.position,
-					destinationRotation = playerDestination.rotation,
-					matchOrientation = MatchOrientation.WorldSpaceUp
-				};
-				teleportationProvider.QueueTeleportRequest(request);
-			}
-			else
-			{
+
+			// Mean to be the best way of teleporting, but didnt notice a difference so removing for simplicity.
+			// If you want to try, add one to the 'Locomotion' object on VR Player
+			//if (teleportationProvider != null)
+			//{
+
+				
+			//	var request = new TeleportRequest
+			//	{
+			//		destinationPosition = playerDestination.position,
+			//		destinationRotation = playerDestination.rotation,
+			//		matchOrientation = MatchOrientation.WorldSpaceUp
+			//	};
+			//	teleportationProvider.QueueTeleportRequest(request);
+			//}
+			//else
+			//{
 				xrOrigin.MoveCameraToWorldLocation(playerDestination.position);
-			}
+			//}
 		}
 
 
