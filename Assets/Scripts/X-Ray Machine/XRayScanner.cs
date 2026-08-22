@@ -14,6 +14,7 @@ using TMPro;
 /// </summary>
 public class XRayScanner : MonoBehaviour
 {
+	[SerializeField, Tooltip("The LightToggle script component on Collimator Guide Light. Toggles it off then on again to not overexpose the image.")] LightToggle lightToggle;
 
 	float DetectorSize;
 	float ImageLeft;
@@ -40,17 +41,19 @@ public class XRayScanner : MonoBehaviour
 
 	public TMP_Text DAPText;
 	public TMP_Text DoseText;
-	public TMP_Text DoseOnHVLMeter;
+	public TMP_Text OutputTextMonitor;
 	public TMP_Text LFarea;
-	GameObject DoseonMeter2gameobject;
-	TMP_Text DoseOnHVLMeter2;
+	GameObject OutputonMeter2gameobject;
+	TMP_Text OutputTextMonitor2;
 
 	Vector3 radiographStartSize;
 	Vector3 TVXrayStartSize;
 	Vector3 DetectorPos;
 	Vector3 SourcePos;
 
-	public GameObject HVL;
+	//public GameObject HVL;
+	//public GameObject AEC;
+	public GameObject DoseManager;
 	GameObject xraySource;
 	GameObject LeftX;
 	GameObject RightX;
@@ -76,6 +79,10 @@ public class XRayScanner : MonoBehaviour
 	float fluxRef;
 	float fluxFogLim;
 	float fluxSatLim;
+	
+
+	public bool PerfectScanMode = false;
+
 
 
 
@@ -84,7 +91,7 @@ public class XRayScanner : MonoBehaviour
 	// Primes the scanner to take a scan
 	public void Prime()
 	{
-		if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
+		if (sceneName == "Anatomy" || sceneName == "Light Field Alignment")
 		{
 			TVXray.GetComponent<Renderer>().enabled = false;
 			TakeScan();
@@ -98,25 +105,21 @@ public class XRayScanner : MonoBehaviour
 	public void Scan()
 	{
 
-		if (sceneName == "HEE Anatomy" || sceneName == "HEE Light Field Alignment")
+		lightToggle.TurnOff();
+		
+
+		if (sceneName == "Anatomy" || sceneName == "Light Field Alignment")
 		{
 			TVXray.GetComponent<Renderer>().enabled = true;
 			xrayCam.GetComponent<Camera>().enabled = true;
-			CalculateImage();
-			CalculateDAP();
+			if (PerfectScanMode) { CalculatePerfectImage(); } else { CalculateImage(); }
 		}
 
 
-		if (sceneName == "HVL Xray Room Oculus Touch")
-		{
-			CalculateDAP();
-		}
 
+		CalculateDAP();
 
-		if (sceneName == "Inverse Square Law Room")
-		{
-			CalculateDAP();
-		}
+		lightToggle.TurnOn();
 
 	}
 
@@ -142,8 +145,11 @@ public class XRayScanner : MonoBehaviour
 
 		LargeIonisationChamber = GameObject.Find("Detector Visible");
 
+
+
+
 		//Initialisation if specific scenes are called
-		if (sceneName == "HEE Anatomy")
+		if (sceneName == "Anatomy")
 		{
 
 			body = GameObject.Find("Body");
@@ -159,7 +165,7 @@ public class XRayScanner : MonoBehaviour
 		}
 
 
-		if (sceneName == "HEE Light Field Alignment")
+		if (sceneName == "Light Field Alignment")
 		{
 
 
@@ -170,10 +176,10 @@ public class XRayScanner : MonoBehaviour
 			TVXray.GetComponent<Renderer>().enabled = false;
 		}
 
-		if (sceneName == "Inverse Square Law Room")
+		if (sceneName == "Inverse Square Law")
 		{
-			DoseonMeter2gameobject = GameObject.Find("Dose on meter 2");
-			DoseOnHVLMeter2 = DoseonMeter2gameobject.gameObject.GetComponent<TMP_Text>();
+			OutputonMeter2gameobject = GameObject.Find("Dose on meter 2");
+			OutputTextMonitor2 = OutputonMeter2gameobject.gameObject.GetComponent<TMP_Text>();
 
 		}
 
@@ -223,6 +229,8 @@ public class XRayScanner : MonoBehaviour
 	public void TakeScan()
 	{
 
+		
+
 		//Calculate area of light field at 1m
 		float horizD = Right1m + Left1m;
 		float vertD = Lower1m + Upper1m;
@@ -248,6 +256,8 @@ public class XRayScanner : MonoBehaviour
 			TVXray.transform.localScale = new Vector3(AspectRatio, TVXrayStartSize.y, TVXrayStartSize.z);
 		}
 
+		
+
 	}
 
 
@@ -261,6 +271,10 @@ public class XRayScanner : MonoBehaviour
 
 		//Get image from xray camera
 		RenderTexture CamRenderTex = xrayCam.GetComponent<Camera>().targetTexture;
+
+		xrayCam.GetComponent<Camera>().Render(); // force an immediate render so the texture reflects the current light state, not last frame's. (This took me SO long to figure out...)
+												 // Also ensure that the guide light is real time rendered and not baked in so this works.
+
 		RenderTexture.active = CamRenderTex;
 		Texture2D xrayCamTex2D = new Texture2D(1024, 1024, TextureFormat.ARGB32, false);
 		xrayCamTex2D.ReadPixels(new Rect(0, 0, CamRenderTex.width, CamRenderTex.height), 0, 0, false);
@@ -313,6 +327,64 @@ public class XRayScanner : MonoBehaviour
 
 			AdjImg[ii] = new Color(ImgIntensityInvNoise, ImgIntensityInvNoise, ImgIntensityInvNoise, 1.0f);
 
+		}
+
+		//Create new texture and populate with the adjusted grayscale values
+		Texture2D AdjImgTex = new Texture2D(OrigImg.width, OrigImg.height);
+		AdjImgTex.SetPixels(AdjImg);
+		AdjImgTex.Apply(true);
+
+		TVXray.GetComponent<MeshRenderer>().material.mainTexture = AdjImgTex;
+	}
+
+
+
+
+
+
+
+
+
+
+	public void CalculatePerfectImage()
+	{
+		//Same attenuation model as CalculateImage(), but with no fog/saturation clipping and no noise, and the result is stretched across the full 0-1 range so all tissue detail is visible
+
+		//Get image from xray camera
+		RenderTexture CamRenderTex = xrayCam.GetComponent<Camera>().targetTexture;
+		RenderTexture.active = CamRenderTex;
+		Texture2D xrayCamTex2D = new Texture2D(1024, 1024, TextureFormat.ARGB32, false);
+		xrayCamTex2D.ReadPixels(new Rect(0, 0, CamRenderTex.width, CamRenderTex.height), 0, 0, false);
+		xrayCamTex2D.Apply();
+		Texture2D OrigImg = xrayCamTex2D;
+
+		Color[] OrigImgPixels = OrigImg.GetPixels(0, 0, OrigImg.width, OrigImg.height);
+
+		float[] RawIntensity = new float[OrigImgPixels.Length];
+		float minIntensity = float.MaxValue;
+		float maxIntensity = float.MinValue;
+
+		for (int ii = 0; ii < OrigImgPixels.Length; ii++)
+		{
+			//Calculate the attenuation coefficient based on the set kV, same as CalculateImage()
+			float muRefVal = (1 - OrigImgPixels[ii].grayscale) * 0.6f;
+			float mukVAdj = muRefVal * (Mathf.Pow(kVRef, 3) / Mathf.Pow(XRayControlPanel.kV, 3));
+
+			float ImgIntensityAdj = Mathf.Exp(-mukVAdj);
+			float ImgIntensityAdjInv = 1 - ImgIntensityAdj;
+
+			RawIntensity[ii] = ImgIntensityAdjInv;
+			if (ImgIntensityAdjInv < minIntensity) minIntensity = ImgIntensityAdjInv;
+			if (ImgIntensityAdjInv > maxIntensity) maxIntensity = ImgIntensityAdjInv;
+		}
+
+		Color[] AdjImg = new Color[OrigImgPixels.Length];
+		float range = Mathf.Max(maxIntensity - minIntensity, 0.0001f);
+
+		for (int ii = 0; ii < OrigImgPixels.Length; ii++)
+		{
+			float stretched = (RawIntensity[ii] - minIntensity) / range;
+			AdjImg[ii] = new Color(stretched, stretched, stretched, 1.0f);
 		}
 
 		//Create new texture and populate with the adjusted grayscale values
@@ -399,7 +471,8 @@ public class XRayScanner : MonoBehaviour
 		float vertMin;
 		float vertMax;
 
-		if (horizDist2 > LargeIonisationChamber.transform.lossyScale.z)
+
+		if (LargeIonisationChamber  &&  horizDist2 > LargeIonisationChamber.transform.lossyScale.z)
 		{
 			horizMin = LargeIonisationChamber.transform.lossyScale.z / 2;
 			horizMax = LargeIonisationChamber.transform.lossyScale.z / 2;
@@ -414,7 +487,7 @@ public class XRayScanner : MonoBehaviour
 			//Dose = 0.00791f * XRayControlPanel.kV * XRayControlPanel.kV * mAs_adj4txt;
 		}
 
-		if (vertDist2 > LargeIonisationChamber.transform.lossyScale.x)
+		if (LargeIonisationChamber  &&  vertDist2 > LargeIonisationChamber.transform.lossyScale.x)
 		{
 			vertMin = LargeIonisationChamber.transform.lossyScale.x / 2;
 			vertMax = LargeIonisationChamber.transform.lossyScale.x / 2;
@@ -439,10 +512,15 @@ public class XRayScanner : MonoBehaviour
 
 
 
-		if (sceneName == "HVL Xray Room Oculus Touch")
+		if (sceneName == "HVL")
 		{
-			kVError = FaultsManager.FaultsActivated ? 1.5f : 1f;
-			HVL.GetComponent<HVLManager>().CalculateDose();
+			kVError = FaultsManager.FaultsActivated ? 1.5f : 1f; // Scale by 1.5 when faults are on in HVL
+			DoseManager.GetComponent<HVLManager>().CalculateDose();
+		}
+		else if(sceneName == "AEC")
+		{
+			//kVError = FaultsManager.FaultsActivated ? 1.5f : 1f; // Change to be whatever fault you want here nad in AECManager
+			DoseManager.GetComponent<AECManager>().CalculateDose();
 		}
 		else
 		{
@@ -450,8 +528,10 @@ public class XRayScanner : MonoBehaviour
 			NoErrorDose = 1.7f * Mathf.Pow(10, -4) * XRayControlPanel.kV * XRayControlPanel.kV * XRayControlPanel.mAs * (AreaOverlap / (distTable * distTable));
 			Dose = Random.Range(0.975f, 1.025f) * NoErrorDose + (NoErrorDose * 0.04f);
 
-			DoseText.text = string.Concat("Dose: ", Dose.ToString("F2"), " Gycm\xB2");
-			DoseOnHVLMeter.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
+
+
+			DoseText.text = string.Concat("Dose: ", (Dose*100).ToString("F2"), " cGycm\xB2");
+			if (OutputTextMonitor) { OutputTextMonitor.text = string.Concat((Dose * 100).ToString("F2"), " cGycm\xB2"); }
 		}
 
 
@@ -460,11 +540,9 @@ public class XRayScanner : MonoBehaviour
 		NoErrorDAP = 1.7f * Mathf.Pow(10, -8) * (XRayControlPanel.kV * kVError) * (XRayControlPanel.kV * kVError) * XRayControlPanel.mAs * areaAt1m_cm;
 		DAP = Random.Range(0.965f, 1.035f) * NoErrorDAP;
 
-		DAPText.text = string.Concat("DAP: ", DAP.ToString("F2"), " Gycm\xB2");
 
-		
-
-
+		//DAPText.text = string.Concat("DAP: ", DAP.ToString("F2"), " Gycm\xB2");
+		DAPText.text = string.Concat("DAP: ", (DAP*100).ToString("F2"), " cGycm\xB2"); // Change units to cGycm^2
 
 
 
@@ -474,18 +552,23 @@ public class XRayScanner : MonoBehaviour
 
 
 
-		if (sceneName == "Inverse Square Law Room")
+
+
+
+
+
+		if (sceneName == "Inverse Square Law")
 		{
 
 
 			if (FaultsManager.FaultsActivated)
 			{
 				DAPCumlative += DAP;
-				DAPText.text = string.Concat("DAP: ", DAPCumlative.ToString("F2"), " Gycm\xB2");
+				DAPText.text = string.Concat("DAP: ", (DAP * 100).ToString("F2"), " cGycm\xB2"); // Change units to cGycm^2
 			}
 
 
-			DoseOnHVLMeter2.text = string.Concat(Dose.ToString("F2"), " Gycm\xB2");
+			OutputTextMonitor2.text = string.Concat((Dose * 100).ToString("F2"), " cGycm\xB2");
 
 		}
 

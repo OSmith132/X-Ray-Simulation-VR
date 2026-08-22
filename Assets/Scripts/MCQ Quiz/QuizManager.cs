@@ -19,6 +19,8 @@ public class QuizManager : MonoBehaviour
 	[Tooltip("The 4 answer cube scripts, in A, B, C, D, ... order.")]
 	[SerializeField] AnswerCube[] answerCubes = new AnswerCube[4];
 	[SerializeField] SubmitCube submitCube;
+	[SerializeField] RetryCube retryCube;
+
 
 	TextMeshPro questionText;      // Found on the 'Question Text' board object
 	TextMeshPro instructionMessage; // Found on the 'Instruction Message' board object
@@ -52,16 +54,23 @@ public class QuizManager : MonoBehaviour
 
 		LoadQuestions();
 
-		state = QuizState.NotStarted;
-		questionText.text = "";
-		instructionMessage.text = "Pull any cube to start";
+		ResetQuiz();
 
-		// No question is shown yet, so every cube stays usable to let the player start the quiz
-		ResetAllCubeColours(answerCubes.Length);
-		submitCube.SetInteractable(false);
+
+		//state = QuizState.NotStarted;
+		//questionText.text = "";
+		//instructionMessage.text = "Pull any cube to start";
+
+		
+		//ResetAllCubeColours(answerCubes.Length);
+		//submitCube.SetInteractable(false);
 
 
 	}
+
+
+
+
 
 	// Loads questions from the assigned text file. Each question is a block separated by a blank line.
 	// The last line of a block holds the correct answer number(s): a single number (e.g. "3") makes it
@@ -147,8 +156,6 @@ public class QuizManager : MonoBehaviour
 		switch (state)
 		{
 			case QuizState.NotStarted:
-				currentQuestionIndex = 0;
-				correctCount = 0;
 				state = QuizState.Answering;
 				ShowCurrentQuestion();
 				return;
@@ -234,16 +241,16 @@ public class QuizManager : MonoBehaviour
 		int[] currentAnswers = questions[currentQuestionIndex].GetAnswers(); 
 
 
-		Debug.Log($"Answer len: {currentAnswers.Length}");
+		//Debug.Log($"Answer len: {currentAnswers.Length}");
 		foreach (int i in currentAnswers)
 		{
-			Debug.Log($"Answer: {i}");
+			//Debug.Log($"Answer: {i}");
 		}
 
-		Debug.Log($"Input len: {selectedAnswerIndices.Count()}");
+		//Debug.Log($"Input len: {selectedAnswerIndices.Count()}");
 		foreach (int i in selectedAnswerIndices)
 		{
-			Debug.Log($"Input: {i}");
+			//Debug.Log($"Input: {i}");
 		}
 
 
@@ -257,6 +264,9 @@ public class QuizManager : MonoBehaviour
 
 		for (int i = 0; i < answerCubes.Length; i++)
 		{
+
+			answerCubes[i].SetInteractable(true);
+
 			if (currentAnswers.Contains(i))
 			{
 				answerCubes[i].SetGreen();
@@ -269,8 +279,7 @@ public class QuizManager : MonoBehaviour
 			{
 				answerCubes[i].SetGrey();
 			}
-
-			answerCubes[i].SetInteractable(true);
+			
 		}
 
 		// Display in green for correct
@@ -282,6 +291,10 @@ public class QuizManager : MonoBehaviour
 
 		submitCube.SetInteractable(false);
 		state = QuizState.Feedback;
+
+
+		float percentCorrect = (float)correctCount / (float)questions.Count;
+		ReportScoreToFaultsManager(percentCorrect); // Report after each question instead of when showing the end screen
 	}
 
 
@@ -342,23 +355,20 @@ public class QuizManager : MonoBehaviour
 		state = QuizState.Finished;
 
 		float percentCorrect = (float)correctCount / (float)questions.Count;
-		PlayerPrefs.SetFloat(MCQQuestionSet, percentCorrect);
 
-		ReportScoreToFaultsManager(percentCorrect);
-
-		instructionMessage.text = (percentCorrect == 1f) ? "Well done!" : "";
+		instructionMessage.text = (percentCorrect == 1f) ? "Well done!" : "Nice try, but execute the tasks and try again.";
 		questionText.text = string.Format("You scored {0} / {1}", correctCount, questions.Count);
 
 
 
 		foreach (AnswerCube cube in answerCubes)
 		{
-			cube.SetGrey();
 			cube.SetInteractable(false);
 		}
 
-		submitCube.SetGrey();
 		submitCube.SetInteractable(false);
+
+		if (percentCorrect != 1f) retryCube.SetInteractable(true);
 	}
 
 
@@ -376,19 +386,19 @@ public class QuizManager : MonoBehaviour
 		switch (sceneName)
 		{
 
-			case "Assemble Xray Room Oculus Touch":
+			case "Assemble Xray":
 				FaultsManager.SetAssembleCorrect(percentCorrect);
 				break;
 
-			case "HVL Xray Room Oculus Touch":
+			case "HVL":
 				FaultsManager.SetHVLCorrect(percentCorrect);
 				break;
 
-			case "Inverse Square Law Room":
+			case "Inverse Square Law":
 				FaultsManager.SetDAPCorrect(percentCorrect);
 				break;
 
-			case "HEE Light Field Alignment":
+			case "Light Field Alignment":
 				FaultsManager.SetPhantomsCorrect(percentCorrect);
 				break;
 		}
@@ -400,9 +410,7 @@ public class QuizManager : MonoBehaviour
 
 
 
-	// Resets every cube to its default colour and lets it be pulled, except any cube at or beyond
-	// validOptionCount, which has no corresponding option for this question, so it is greyed out
-	// and disabled instead.
+	// Resets every (valid) cube to its default colour and lets it be pulled
 	void ResetAllCubeColours(int validOptionCount)
 	{
 		for (int i = 0; i < answerCubes.Length; i++)
@@ -415,4 +423,32 @@ public class QuizManager : MonoBehaviour
 			else { answerCubes[i].SetGrey(); }
 		}
 	}
+
+
+
+
+
+
+	/// <summary>
+	/// Resets the quiz back to its initial state so the user can try again. 
+	/// </summary>
+	public void ResetQuiz()
+	{
+		currentQuestionIndex = 0;
+		correctCount = 0;
+		selectedAnswerIndices.Clear();
+
+		state = QuizState.NotStarted;
+		questionText.text = "";
+		instructionMessage.text = "Pull any cube to start";
+
+		// No question is shown yet, so every cube stays usable to let the player start the quiz
+		ResetAllCubeColours(answerCubes.Length);
+		submitCube.SetInteractable(false);
+		retryCube.SetInteractable(false);
+	}
+
+
+
+
 }

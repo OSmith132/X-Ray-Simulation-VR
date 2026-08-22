@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 1071485891760418271}
   - component: {fileID: 638645258950453428}
   - component: {fileID: 5650420939748481519}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Office Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,8 +325,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.862977, z: 1}
+  m_Center: {x: 0, y: 0.023581414, z: 0}
 --- !u!23 &5650420939748481519
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2849,7 +2849,7 @@ GameObject:
   - component: {fileID: 5588658792199587245}
   - component: {fileID: 8570853999459046409}
   - component: {fileID: 7022856151357392152}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Office Left Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3061,6 +3061,59 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2732489198340361936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5322365493340398159}
+  - component: {fileID: 7514898122604959249}
+  m_Layer: 17
+  m_Name: Left Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5322365493340398159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732489198340361936}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7235046060582985122}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7514898122604959249
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732489198340361936}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 27.945402, y: 10.000002, z: 28.016428}
+  m_Center: {x: -13.97286, y: 5.000001, z: 55.991844}
 --- !u!1 &2932323019770373830
 GameObject:
   m_ObjectHideFlags: 0
@@ -3330,7 +3383,7 @@ GameObject:
   - component: {fileID: 7235046060582985122}
   - component: {fileID: 2792027548912008973}
   - component: {fileID: 8371428054720791580}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Middle Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3346,10 +3399,12 @@ Transform:
   m_GameObject: {fileID: 3280224950138557740}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 2.7165809, y: -1.0094006, z: -2.606015}
-  m_LocalScale: {x: 0.10671824, y: 0.0023363645, z: 0.07067273}
+  m_LocalPosition: {x: 2.7165809, y: -1.0094, z: -2.6894}
+  m_LocalScale: {x: 0.10671824, y: 0.0023363645, z: 0.073139206}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5322365493340398159}
+  - {fileID: 2914928761450171778}
   m_Father: {fileID: 2276465969360764721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2792027548912008973
@@ -6903,6 +6958,59 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5644207059466684533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2914928761450171778}
+  - component: {fileID: 6338215598215653162}
+  m_Layer: 17
+  m_Name: Right Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2914928761450171778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5644207059466684533}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -41.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7235046060582985122}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6338215598215653162
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5644207059466684533}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 27.945402, y: 10.000002, z: 27.025217}
+  m_Center: {x: -13.97286, y: 5.000001, z: 55.496246}
 --- !u!1 &5671927408644226373
 GameObject:
   m_ObjectHideFlags: 0
@@ -8429,7 +8537,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -8758,7 +8866,7 @@ GameObject:
   - component: {fileID: 7589543904659091537}
   - component: {fileID: 6929785416824763159}
   - component: {fileID: 678786967980690786}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Left Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9296,7 +9404,6 @@ GameObject:
   - component: {fileID: 2892100713116470301}
   - component: {fileID: 1412167615587574540}
   - component: {fileID: 6667247167476574352}
-  - component: {fileID: 4386150025559787681}
   - component: {fileID: 8605477154374390453}
   m_Layer: 0
   m_Name: Office Door Handle
@@ -9359,7 +9466,7 @@ Rigidbody:
   m_GameObject: {fileID: 8430052613862817602}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 2
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -9373,7 +9480,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
@@ -9426,18 +9533,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4386150025559787681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8430052613862817602}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97fd6d57a21a9d7458d336b7a39117ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8605477154374390453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9530,11 +9625,11 @@ MonoBehaviour:
   m_SmoothPosition: 0
   m_SmoothPositionAmount: 8
   m_TightenPosition: 0.1
-  m_TrackRotation: 1
+  m_TrackRotation: 0
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 8
   m_TightenRotation: 0.1
-  m_TrackScale: 1
+  m_TrackScale: 0
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
@@ -9564,9 +9659,9 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
-  m_LimitLinearVelocity: 0
+  m_LimitLinearVelocity: 1
   m_LimitAngularVelocity: 0
-  m_MaxLinearVelocityDelta: 10
+  m_MaxLinearVelocityDelta: 1
   m_MaxAngularVelocityDelta: 20
 --- !u!1 &8433300455662290118
 GameObject:
@@ -10366,7 +10461,7 @@ GameObject:
   - component: {fileID: 9051918661692775234}
   - component: {fileID: 1333198316941478492}
   - component: {fileID: 5397278428254079351}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Doorframe Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -91,13 +91,11 @@ public class XRayControlPanel : MonoBehaviour
 
 
 	[SerializeField, Tooltip("(Optional): The TakeScan script component on Xray System	")] XRayScanner xRayScanner;
-	[SerializeField, Tooltip("(Optional): The LightToggle script component on Collimator Guide Light")] LightToggle lightToggle;
+	//[SerializeField, Tooltip("(Optional): The LightToggle script component on Collimator Guide Light")] LightToggle lightToggle;
 	[SerializeField, Tooltip("(Optional): The AnodeSpinTouch script component on AnodeA")] AnodeSpinTouch anodeSpin;
 	[SerializeField, Tooltip("(Optional): The CathodeBeamToggle script component on Electron Beam")] CathodeBeamToggle cathodeBeamToggle;
 
-	//LightToggle lightToggle;
-	//AnodeSpinTouch anodeSpin;
-	//CathodeBeamToggle cathodeBeamToggle;
+
 
 	void Awake()
 	{
@@ -115,12 +113,9 @@ public class XRayControlPanel : MonoBehaviour
 
 	void Start()
 	{
-
+		currentScene = SceneManager.GetActiveScene();
 		sceneName = currentScene.name;
-		if (FaultsManager.FaultsActivated && sceneName == "HVL Xray Room Oculus Touch")
-		{
-			kV = 35;
-		}
+
 
 		// We can probably get rid of lots of these, but for now I just copied all from XRayScanner.cs
 		mAsText = GameObject.Find("mAsText").GetComponent<Text>();
@@ -157,8 +152,16 @@ public class XRayControlPanel : MonoBehaviour
 
 		mAsText.text = string.Concat(mAs.ToString(), " mAs");
 		mAsText1.text = mAsText.text;
+
+
+
+
+
 		kVText.text = string.Concat(kV.ToString(), " kV");
 		kVText1.text = kVText.text;
+
+
+
 
 		OriginalArrowColor = arrow1.GetComponent<Renderer>().material.color;
 		OriginalHandleColor = Handle.GetComponent<Renderer>().material.color;
@@ -222,7 +225,7 @@ public class XRayControlPanel : MonoBehaviour
 				ScanReady.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
 			}
 
-			if (lightToggle) { lightToggle.toggleLight(); }
+			//if (lightToggle) { lightToggle.toggleLight(); }
 
 			if (cathodeBeamToggle) { cathodeBeamToggle.toggleBeam(); }
 			
@@ -281,14 +284,14 @@ public class XRayControlPanel : MonoBehaviour
 		arrow1s.GetComponent<Renderer>().material.color = Color.black;
 	}
 
-
+	
 
 
 	// ----- kV -----
 
 	public void PressKVUp()
 	{
-		if (kV <= 90)
+		if (kV < 90)
 		{
 			kV = kV + 1;
 			kVText.text = string.Concat(kV.ToString(), " kV");
@@ -310,7 +313,7 @@ public class XRayControlPanel : MonoBehaviour
 
 	public void PressKVDown()
 	{
-		if (kV >= 30)
+		if (kV > 30)
 		{
 			kV = kV - 1;
 			kVText.text = string.Concat(kV.ToString(), " kV");
