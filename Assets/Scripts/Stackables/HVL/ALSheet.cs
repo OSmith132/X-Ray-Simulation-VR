@@ -1,6 +1,5 @@
 
 
-
 public enum ALType { OneMM, PointTwoMM }
 
 /// <summary>
@@ -10,5 +9,4 @@ public enum ALType { OneMM, PointTwoMM }
 public class ALSheet : Stackable
 {
 	public ALType aLType;
-	public float thicknessMM = 1f;
 }

@@ -41,17 +41,19 @@ public class XRayScanner : MonoBehaviour
 
 	public TMP_Text DAPText;
 	public TMP_Text DoseText;
-	public TMP_Text DoseOnHVLMeter;
+	public TMP_Text OutputTextMonitor;
 	public TMP_Text LFarea;
-	GameObject DoseonMeter2gameobject;
-	TMP_Text DoseOnHVLMeter2;
+	GameObject OutputonMeter2gameobject;
+	TMP_Text OutputTextMonitor2;
 
 	Vector3 radiographStartSize;
 	Vector3 TVXrayStartSize;
 	Vector3 DetectorPos;
 	Vector3 SourcePos;
 
-	public GameObject HVL;
+	//public GameObject HVL;
+	//public GameObject AEC;
+	public GameObject DoseManager;
 	GameObject xraySource;
 	GameObject LeftX;
 	GameObject RightX;
@@ -111,21 +113,11 @@ public class XRayScanner : MonoBehaviour
 			TVXray.GetComponent<Renderer>().enabled = true;
 			xrayCam.GetComponent<Camera>().enabled = true;
 			if (PerfectScanMode) { CalculatePerfectImage(); } else { CalculateImage(); }
-			CalculateDAP();
 		}
 
 
-		if (sceneName == "HVL")
-		{
-			CalculateDAP();
-		}
 
-
-		if (sceneName == "Inverse Square Law")
-		{
-			CalculateDAP();
-		}
-
+		CalculateDAP();
 
 		lightToggle.TurnOn();
 
@@ -186,8 +178,8 @@ public class XRayScanner : MonoBehaviour
 
 		if (sceneName == "Inverse Square Law")
 		{
-			DoseonMeter2gameobject = GameObject.Find("Dose on meter 2");
-			DoseOnHVLMeter2 = DoseonMeter2gameobject.gameObject.GetComponent<TMP_Text>();
+			OutputonMeter2gameobject = GameObject.Find("Dose on meter 2");
+			OutputTextMonitor2 = OutputonMeter2gameobject.gameObject.GetComponent<TMP_Text>();
 
 		}
 
@@ -523,7 +515,12 @@ public class XRayScanner : MonoBehaviour
 		if (sceneName == "HVL")
 		{
 			kVError = FaultsManager.FaultsActivated ? 1.5f : 1f; // Scale by 1.5 when faults are on in HVL
-			HVL.GetComponent<HVLManager>().CalculateDose();
+			DoseManager.GetComponent<HVLManager>().CalculateDose();
+		}
+		else if(sceneName == "AEC")
+		{
+			//kVError = FaultsManager.FaultsActivated ? 1.5f : 1f; // Change to be whatever fault you want here nad in AECManager
+			DoseManager.GetComponent<AECManager>().CalculateDose();
 		}
 		else
 		{
@@ -534,7 +531,7 @@ public class XRayScanner : MonoBehaviour
 
 
 			DoseText.text = string.Concat("Dose: ", (Dose*100).ToString("F2"), " cGycm\xB2");
-			if (DoseOnHVLMeter) { DoseOnHVLMeter.text = string.Concat((Dose * 100).ToString("F2"), " cGycm\xB2"); }
+			if (OutputTextMonitor) { OutputTextMonitor.text = string.Concat((Dose * 100).ToString("F2"), " cGycm\xB2"); }
 		}
 
 
@@ -571,7 +568,7 @@ public class XRayScanner : MonoBehaviour
 			}
 
 
-			DoseOnHVLMeter2.text = string.Concat((Dose * 100).ToString("F2"), " cGycm\xB2");
+			OutputTextMonitor2.text = string.Concat((Dose * 100).ToString("F2"), " cGycm\xB2");
 
 		}
 

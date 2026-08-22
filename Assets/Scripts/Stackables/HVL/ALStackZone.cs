@@ -5,28 +5,20 @@ using UnityEngine;
 /// <summary>
 /// Implementation of StackZone for piles of ALSheets that start full with a set number of sheets within.
 /// </summary>
-public class PileZone : StackZone<ALSheet>
+public class ALStackZone : StackZone<ALSheet>
 {
 	public ALType acceptedType;
-
-	[Header("Initial Stock")]
-	public ALSheet sheetPrefab;
-	public int initialCount = 5;
 
 
 
 	/// <summary>
-	/// Spawns and seeds the initial stock of sheets into the pile on scene start.
+	/// Assigns the accepted aluminium type to a freshly spawned sheet before it is seeded into the pile.
 	/// </summary>
-	private void Start()
-	{
-		for (int i = 0; i < initialCount; i++)
-		{
-			ALSheet sheet = Instantiate(sheetPrefab, stackOrigin.position, stackOrigin.rotation);
-			sheet.aLType = acceptedType;
-			SeedObject(sheet);
-		}
-	}
+	/// <param name="sheet"></param>
+	protected override void ConfigureSheet(ALSheet sheet) => sheet.aLType = acceptedType;
+
+
+
 
 
 	/// <param name="sheet"></param>

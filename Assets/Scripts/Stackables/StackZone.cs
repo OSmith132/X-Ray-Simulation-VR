@@ -15,11 +15,38 @@ public abstract class StackZone<T> : PlacementZone where T : Stackable
 	public float sheetSpacing = 0.005f;
 	public int maxCapacity = 5;
 
+	[Header("Initial Stock")]
+	public T sheetPrefab;
+	public int initialCount = 0;
+
 	protected readonly List<T> stack = new List<T>();
 
 	public IReadOnlyList<T> Sheets => stack;
 	public int Count => stack.Count;
 	public bool IsFull => stack.Count >= maxCapacity;
+
+
+
+	/// <summary>
+	/// Spawns and seeds the initial stock of sheets into the pile on scene start.
+	/// </summary>
+	private void Start()
+	{
+		for (int i = 0; i < initialCount; i++)
+		{
+			T sheet = Instantiate(sheetPrefab, stackOrigin.position, stackOrigin.rotation);
+			ConfigureSheet(sheet);
+			SeedObject(sheet);
+		}
+	}
+
+
+
+	/// <summary>
+	/// Hook for subclasses to configure a freshly spawned sheet (e.g. assigning its accepted type) before it is seeded into the stack.
+	/// </summary>
+	/// <param name="sheet"></param>
+	protected virtual void ConfigureSheet(T sheet) { }
 
 
 

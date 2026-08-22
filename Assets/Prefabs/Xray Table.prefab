@@ -2112,7 +2112,7 @@ ConfigurableJoint:
     serializedVersion: 4
     positionSpring: 0
     positionDamper: 0
-    maximumForce: 0.5
+    maximumForce: 0
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4

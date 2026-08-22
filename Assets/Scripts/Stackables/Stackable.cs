@@ -13,6 +13,7 @@ public abstract class Stackable : MonoBehaviour
 {
 	public LayerMask zoneLayerMask;
 	public float overlapCheckRadius = 0.03f;
+	public float thicknessMM = 1f;
 
 	protected XRGrabInteractable grabInteractable;
 	protected Rigidbody rb;
