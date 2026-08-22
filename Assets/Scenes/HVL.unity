@@ -1002,12 +1002,22 @@ PrefabInstance:
       objectReference: {fileID: 1456540338}
     - target: {fileID: 261460313889895524, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
         type: 3}
+      propertyPath: DoseManager
+      value: 
+      objectReference: {fileID: 1539656070}
+    - target: {fileID: 261460313889895524, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
+        type: 3}
       propertyPath: DoseonMeter
       value: 
       objectReference: {fileID: 1552308058}
     - target: {fileID: 261460313889895524, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
         type: 3}
       propertyPath: DoseOnHVLMeter
+      value: 
+      objectReference: {fileID: 879609310}
+    - target: {fileID: 261460313889895524, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
+        type: 3}
+      propertyPath: OutputTextMonitor
       value: 
       objectReference: {fileID: 879609310}
     - target: {fileID: 1851275515144350473, guid: 077f64e2e5f7a6140a6b464d2f1f6a32,
@@ -5688,6 +5698,31 @@ PrefabInstance:
       propertyPath: doseTextHVL
       value: 
       objectReference: {fileID: 879609310}
+    - target: {fileID: 6160887237142848911, guid: b3e6e7edda2b0254e82644ece97985b3,
+        type: 3}
+      propertyPath: OutputTextTablet
+      value: 
+      objectReference: {fileID: 1456540338}
+    - target: {fileID: 6160887237142848911, guid: b3e6e7edda2b0254e82644ece97985b3,
+        type: 3}
+      propertyPath: OutputTextMonitor
+      value: 
+      objectReference: {fileID: 879609310}
+    - target: {fileID: 6160887237142848911, guid: b3e6e7edda2b0254e82644ece97985b3,
+        type: 3}
+      propertyPath: frames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160887237142848911, guid: b3e6e7edda2b0254e82644ece97985b3,
+        type: 3}
+      propertyPath: 'frames.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6424223259904921674}
+    - target: {fileID: 6160887237142848911, guid: b3e6e7edda2b0254e82644ece97985b3,
+        type: 3}
+      propertyPath: 'frames.Array.data[1]'
+      value: 
+      objectReference: {fileID: 6424223259904921673}
     - target: {fileID: 6700373764023977179, guid: b3e6e7edda2b0254e82644ece97985b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5791,6 +5826,8 @@ MonoBehaviour:
   stackAxis: {x: 0, y: 1, z: 0}
   sheetSpacing: 0.005
   maxCapacity: 5
+  sheetPrefab: {fileID: 0}
+  initialCount: 0
 --- !u!114 &6424223259904921674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5807,6 +5844,8 @@ MonoBehaviour:
   stackAxis: {x: 0, y: 1, z: 0}
   sheetSpacing: 0.005
   maxCapacity: 5
+  sheetPrefab: {fileID: 0}
+  initialCount: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

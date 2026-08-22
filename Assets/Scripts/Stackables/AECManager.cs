@@ -20,7 +20,7 @@ public class AECManager : DoseManager
 
 
 		// for when faults are active
-		if (FaultsManager.FaultsActivated) { // Fault goes here }
+		if (FaultsManager.FaultsActivated) { }
 			
 		// How to get the XRay values
 		float kV = XRayControlPanel.kV;
