@@ -10,6 +10,7 @@ public class ColourCubes : MonoBehaviour
 	private GameObject ISLcube;
 	private GameObject anatcube;
 	private GameObject LBAcube;
+	private GameObject AECcube;
 
 	private Color blue;
 
@@ -22,6 +23,7 @@ public class ColourCubes : MonoBehaviour
 		ISLcube = transform.Find("DAP Test/Cube").gameObject;
 		anatcube = transform.Find("Anatomy/Cube").gameObject;
 		LBAcube = transform.Find("Phantoms/Cube").gameObject;
+		AECcube = transform.Find("AEC/Cube").gameObject;
 
 		blue = new Color32(0, 149, 255, 255);
 	}
@@ -73,6 +75,10 @@ public class ColourCubes : MonoBehaviour
 			anatcube.GetComponent<XRGrabInteractable>().enabled = false;
 			anatcube.GetComponent<BoxCollider>().enabled = false;
 
+			AECcube.GetComponent<MeshRenderer>().material.color = Color.grey;
+			AECcube.GetComponent<XRGrabInteractable>().enabled = false;
+			AECcube.GetComponent<BoxCollider>().enabled = false;
+
 
 			// Only allow training on patient once all four tasks are completed.
 			float score = FaultsManager.SumScore();
@@ -82,6 +88,12 @@ public class ColourCubes : MonoBehaviour
 				anatcube.GetComponent<MeshRenderer>().material.color = Color.green;
 				anatcube.GetComponent<XRGrabInteractable>().enabled = true;
 				anatcube.GetComponent<BoxCollider>().enabled = true;
+
+				AECcube.GetComponent<MeshRenderer>().material.color = Color.green;
+				AECcube.GetComponent<XRGrabInteractable>().enabled = true;
+				AECcube.GetComponent<BoxCollider>().enabled = true;
+
+
 				FaultsManager.DeactivateFaults();
 			}
 		}
@@ -103,8 +115,13 @@ public class ColourCubes : MonoBehaviour
 			LBAcube.GetComponent<MeshRenderer>().material.color = blue;
 			anatcube.GetComponent<MeshRenderer>().material.color = blue;
 
+			AECcube.GetComponent<MeshRenderer>().material.color = blue;
+
 			anatcube.GetComponent<XRGrabInteractable>().enabled = true;
 			anatcube.GetComponent<BoxCollider>().enabled = true;
+
+			AECcube.GetComponent<XRGrabInteractable>().enabled = true;
+			AECcube.GetComponent<BoxCollider>().enabled = true;
 		}
 	}
 }
