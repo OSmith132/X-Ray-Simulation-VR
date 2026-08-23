@@ -564,7 +564,7 @@ public class XRayScanner : MonoBehaviour
 			if (FaultsManager.FaultsActivated)
 			{
 				DAPCumlative += DAP;
-				DAPText.text = string.Concat("DAP: ", (DAP * 100).ToString("F2"), " cGycm\xB2"); // Change units to cGycm^2
+				DAPText.text = string.Concat("DAP: ", (DAPCumlative * 100).ToString("F2"), " cGycm\xB2"); // Change units to cGycm^2
 			}
 
 
