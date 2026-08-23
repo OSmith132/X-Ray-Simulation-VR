@@ -1,7 +1,5 @@
 name: Unity tests
-
 on: [push, pull_request]
-
 jobs:
   test:
     name: Test in ${{ matrix.testMode }}
@@ -16,12 +14,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
-
-
       # These parts are from: https://game.ci/docs/github/test-runner/ (accessed 22/08/2026)
-      
-      
-      
+
+
+
+
       # Free up disk space before pulling the Unity Docker image as the image can exceed the space available
       - name: Free disk space
         run: |
@@ -33,18 +30,17 @@ jobs:
 
 
 
-
       # Caching (could speed up tests by more than 50% aparently)
       - uses: actions/cache@v3
         with:
           path: ./Library
           key: Library-XRaySimulationVR-${{ matrix.testMode }} # Keep editmode and playmode seperate
           restore-keys: |
-            Library-Library-XRaySimulationVR--
+            Library-XRaySimulationVR-
             Library-
 
 
-      
+
 
       # Basic setup with Personal license + viewing test results
       - uses: game-ci/unity-test-runner@v4
@@ -54,7 +50,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          projectPath: ./Library
+          projectPath: .
           testMode: ${{ matrix.testMode }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
@@ -76,10 +72,3 @@ jobs:
         with:
           name: Coverage results
           path: ${{ steps.myTestStep.outputs.coveragePath }}
-          
-          
-          
-          
-          
-          
-          
