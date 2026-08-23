@@ -19,13 +19,25 @@ jobs:
 
 
       # These parts are from: https://game.ci/docs/github/test-runner/ (accessed 22/08/2026)
+      
+      
+      
+      # Free up disk space before pulling the Unity Docker image as the image can exceed the space available
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
+
 
 
 
       # Caching (could speed up tests by more than 50% aparently)
       - uses: actions/cache@v3
         with:
-          path: .
+          path: ./Library
           key: Library-XRaySimulationVR-${{ matrix.testMode }} # Keep editmode and playmode seperate
           restore-keys: |
             Library-Library-XRaySimulationVR--
@@ -42,7 +54,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          projectPath: .
+          projectPath: ./Library
           testMode: ${{ matrix.testMode }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
@@ -64,3 +76,10 @@ jobs:
         with:
           name: Coverage results
           path: ${{ steps.myTestStep.outputs.coveragePath }}
+          
+          
+          
+          
+          
+          
+          
