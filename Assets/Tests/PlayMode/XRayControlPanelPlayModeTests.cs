@@ -167,5 +167,20 @@ public class XRayControlPanelPlayModeTests
 
 
 
+	[UnityTest]
+	public IEnumerator PressPrimeButton_LocksScanUntilDoublePressDelayPasses()
+	{
+		panel.PressPrimeButton();
+		yield return null;
+
+		Assert.IsFalse(GameObject.Find("Scan").GetComponent<Collider>().enabled);
+
+		yield return new WaitForSeconds(0.9f); // just past the 0.8s delay in the real code
+
+		Assert.IsTrue(GameObject.Find("Scan").GetComponent<Collider>().enabled);
+	}
+
+
+
 
 }
