@@ -1,5 +1,6 @@
 name: Unity tests
 on: [push, pull_request]
+
 jobs:
   test:
     name: Test in ${{ matrix.testMode }}
@@ -10,15 +11,16 @@ jobs:
         testMode:
           - editmode
           - playmode
+          
+          
     steps:
       - uses: actions/checkout@v4
         with:
           lfs: true
+          
+          
       # These parts are from: https://game.ci/docs/github/test-runner/ (accessed 22/08/2026)
-
-
-
-
+      
       # Free up disk space before pulling the Unity Docker image as the image can exceed the space available
       - name: Free disk space
         run: |
@@ -27,9 +29,8 @@ jobs:
           sudo rm -rf /opt/ghc
           sudo rm -rf /opt/hostedtoolcache/CodeQL
           sudo docker image prune --all --force
-
-
-
+          
+          
       # Caching (could speed up tests by more than 50% aparently)
       - uses: actions/cache@v3
         with:
@@ -38,13 +39,25 @@ jobs:
           restore-keys: |
             Library-XRaySimulationVR-
             Library-
-
-
-
-
+            
+            
+            
+      # Only run playmode on a push to main
+      - name: Check if this matrix entry should run
+        id: shouldRun
+        run: |
+          if [ "${{ matrix.testMode }}" = "playmode" ] && { [ "${{ github.ref }}" != "refs/heads/main" ] || [ "${{ github.event_name }}" != "push" ]; }; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+          
+          
+          
       # Basic setup with Personal license + viewing test results
       - uses: game-ci/unity-test-runner@v4
         id: myTestStep
+        if: steps.shouldRun.outputs.run == 'true'
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -53,22 +66,21 @@ jobs:
           projectPath: .
           testMode: ${{ matrix.testMode }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-
-
+          
+          
+          
+          
       # Specifying artifacts folder
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && steps.shouldRun.outputs.run == 'true'
         with:
           name: Test results
           path: ${{ steps.myTestStep.outputs.artifactsPath }}
-
-
-
-
+          
+          
       # Getting coverage results
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && steps.shouldRun.outputs.run == 'true'
         with:
           name: Coverage results
           path: ${{ steps.myTestStep.outputs.coveragePath }}
