@@ -72,11 +72,11 @@ public class XRayControlPanelPlayModeTests
 
 
 		// Add everything on the hand controller we need
-		var handleControllerGO = new GameObject("HandleController");
-		handleControllerGO.AddComponent<Rigidbody>(); // ConfigurableJoint requires a Rigidbody on the same object
-		var joint = handleControllerGO.AddComponent<ConfigurableJoint>();
+		var handleControllerObject = new GameObject("HandleController");
+		handleControllerObject.AddComponent<Rigidbody>(); // ConfigurableJoint requires a Rigidbody on the same object
+		var joint = handleControllerObject.AddComponent<ConfigurableJoint>();
 
-		var handleController = handleControllerGO.AddComponent<XRayHandleController>();
+		var handleController = handleControllerObject.AddComponent<XRayHandleController>();
 		TestReflectionUtils.SetPrivateField(handleController, "configurableJoint", joint);
 
 		TestReflectionUtils.SetPrivateField(panel, "xrayHandleController", handleController);
