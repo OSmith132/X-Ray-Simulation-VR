@@ -121,4 +121,51 @@ public class XRayControlPanelPlayModeTests
 		Assert.AreNotEqual(Color.green, vertical);
 	}
 
+
+
+
+	[UnityTest]
+	public IEnumerator PressCollimatorVerticalOut_SeparatesPlates()
+	{
+		var col1 = GameObject.Find("Col 1 (Near)").transform;
+		var col2 = GameObject.Find("Col 2 (Far)").transform;
+		float startCol1X = col1.position.x;
+		float startCol2X = col2.position.x;
+
+		// held button, so simulate a few frames of it being pressed
+		for (int i = 0; i < 5; i++)
+		{
+			panel.PressCollimatorVerticalOut();
+			yield return null;
+		}
+
+		Assert.Greater(col1.position.x, startCol1X);
+		Assert.Less(col2.position.x, startCol2X);
+	}
+
+
+
+
+
+	[UnityTest]
+	public IEnumerator ReleaseCollimatorVerticalOut_RestoresButtonColour()
+	{
+		var button = GameObject.Find("Collimator Vertical Out").GetComponent<Renderer>();
+		var original = button.material.color;
+
+		panel.PressCollimatorVerticalOut();
+		yield return null;
+		Assert.AreEqual(Color.grey, button.material.color);
+
+		panel.ReleaseCollimatorVerticalOut();
+		yield return null;
+		Assert.AreEqual(original, button.material.color);
+	}
+
+
+
+
+
+
+
 }
