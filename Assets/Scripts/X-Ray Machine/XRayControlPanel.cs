@@ -4,14 +4,11 @@ using UnityEngine.SceneManagement;
 
 
 /// <summary>
-/// Single source of truth for the x-ray panel: mAs/kV readouts, click sounds,
-/// the panel handle highlight, the free-roam/fixed-vertical toggle, and the
+/// Single source of truth for the x-ray panel: mAs/kV readouts, click sounds, the panel handle highlight, the free roam/fixed vertical toggle, and the
 /// collimator width/height adjustment buttons.
 ///
-/// This is a singleton that lives once in the scene (e.g. on the panel
-/// itself, or a dedicated manager object). Each hand's
-/// Poke Point carries an `XrayPanelPoke` script, which just forwards
-/// touch events here via Instance. That way both hands can operate every
+/// This is a singleton that lives once in the scene (e.g. on the panel itself, or a dedicated manager object). Each hand's
+/// Poke Points' `XrayPanelPoke` script, which just forwards touch events here via Instance. That way both hands can operate every
 /// button without duplicating any of the Find() lookups or UI state.
 /// </summary>
 public class XRayControlPanel : MonoBehaviour

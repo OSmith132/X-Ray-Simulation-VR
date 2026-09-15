@@ -13,10 +13,6 @@ public class FrameZoneEditModeTests
 	// FrameZone<T> is abstract
 	private class TestFrameZone : FrameZone<TestSheet> { }
 
-
-
-
-
 	[Test]
 	public void TotalThicknessMM_SumsAllSheetsInStack()
 	{
@@ -33,10 +29,6 @@ public class FrameZoneEditModeTests
 		Object.DestroyImmediate(frame.gameObject);
 	}
 
-
-
-
-
 	[Test]
 	public void TotalThicknessMM_IsZero_WhenStackIsEmpty()
 	{
@@ -47,9 +39,6 @@ public class FrameZoneEditModeTests
 
 		Object.DestroyImmediate(frame.gameObject);
 	}
-
-
-
 
 	[Test]
 	public void CanAccept_RejectsSheet_WhenFrameIsFull()

@@ -6,7 +6,7 @@ using TMPro;
 
 /// <summary>
 /// Manages the multiple choice quiz. Reads the questions from the given text file, displays them on the board, tracks the
-/// score, and tells the answer/submit cubes when to change colour.
+/// score, and tells the answer/submit cubes when to update.
 ///
 /// </summary>
 public class QuizManager : MonoBehaviour
