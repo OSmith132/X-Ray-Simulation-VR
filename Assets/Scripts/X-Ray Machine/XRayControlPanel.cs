@@ -338,7 +338,7 @@ public class XRayControlPanel : MonoBehaviour
 		click.GetComponent<AudioSource>().Play();
 
 		VerticalButton.GetComponent<Renderer>().material.color = OriginalUnpressed;
-		FreeButton.GetComponent<Renderer>().material.color = Color.green;
+		FreeButton.GetComponent<Renderer>().material.color = new Color32(15, 202, 0, 255); // Darker green
 
 	}
 
@@ -348,7 +348,7 @@ public class XRayControlPanel : MonoBehaviour
 		xrayHandleController.SetVerticalMode();
 		click.GetComponent<AudioSource>().Play();
 
-		VerticalButton.GetComponent<Renderer>().material.color = Color.green;
+		VerticalButton.GetComponent<Renderer>().material.color = new Color32(15, 202, 0, 255); // Darker green
 		FreeButton.GetComponent<Renderer>().material.color = OriginalUnpressed;
 	}
 
