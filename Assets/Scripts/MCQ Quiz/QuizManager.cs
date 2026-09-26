@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,6 +21,10 @@ public class QuizManager : MonoBehaviour
 	[SerializeField] AnswerCube[] answerCubes = new AnswerCube[4];
 	[SerializeField] SubmitCube submitCube;
 	[SerializeField] RetryCube retryCube;
+
+	[Header("Timing")]
+	[Tooltip("Seconds to wait on the feedback screen before automatically moving to the next question.")]
+	[SerializeField] float feedbackPauseSeconds = 3f;
 
 
 	TextMeshPro questionText;      // Found on the 'Question Text' board object
@@ -61,7 +66,7 @@ public class QuizManager : MonoBehaviour
 		//questionText.text = "";
 		//instructionMessage.text = "Pull any cube to start";
 
-		
+
 		//ResetAllCubeColours(answerCubes.Length);
 		//submitCube.SetInteractable(false);
 
@@ -231,14 +236,14 @@ public class QuizManager : MonoBehaviour
 
 
 
-	 
+
 
 
 	void CheckAnswer()
 	{
 
 
-		int[] currentAnswers = questions[currentQuestionIndex].GetAnswers(); 
+		int[] currentAnswers = questions[currentQuestionIndex].GetAnswers();
 
 
 		//Debug.Log($"Answer len: {currentAnswers.Length}");
@@ -279,7 +284,7 @@ public class QuizManager : MonoBehaviour
 			{
 				answerCubes[i].SetGrey();
 			}
-			
+
 		}
 
 		// Display in green for correct
@@ -295,8 +300,23 @@ public class QuizManager : MonoBehaviour
 
 		float percentCorrect = (float)correctCount / (float)questions.Count;
 		ReportScoreToFaultsManager(percentCorrect); // Report after each question instead of when showing the end screen
+
+		StartCoroutine(PauseThenAdvance());
 	}
 
+
+
+
+	IEnumerator PauseThenAdvance()
+	{
+		yield return new WaitForSeconds(feedbackPauseSeconds);
+
+		// Guard against the player already pulling a cube to advance manually during the wait
+		if (state == QuizState.Feedback)
+		{
+			AdvanceToNextQuestion();
+		}
+	}
 
 
 
