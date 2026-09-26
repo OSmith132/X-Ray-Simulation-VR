@@ -15,7 +15,7 @@ public class GuideLight : MonoBehaviour
 	void Start ()
 	{
 		XrayLight = GetComponent<Light>();
-		XrayLight.intensity = 10;
+		XrayLight.intensity = 3;
 
 	}
 
@@ -33,7 +33,7 @@ public class GuideLight : MonoBehaviour
 		onoff = !onoff;
 		if (onoff)
 		{
-			XrayLight.intensity = 10;
+			XrayLight.intensity = 3;
 
 		}
 		else

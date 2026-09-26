@@ -4787,36 +4787,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4057529651891112164, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.7908025
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057529651891112164, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 6.0399895
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057529651891112164, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1.7364398
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057529651891112164, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.0047224523
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057529651891112164, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 1.35993
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057529651891112164, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.013308634
-      objectReference: {fileID: 0}
     - target: {fileID: 4798134869738499708, guid: af3b4adf961d84c4fa8c88110e72147e,
         type: 3}
       propertyPath: m_Name
@@ -4871,31 +4841,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402219123036879982, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.5000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402219123036879982, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 4.3292766
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402219123036879982, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.01557298
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402219123036879982, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.052764047
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402219123036879982, guid: af3b4adf961d84c4fa8c88110e72147e,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.00975275
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
