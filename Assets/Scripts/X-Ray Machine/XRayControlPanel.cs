@@ -76,6 +76,7 @@ public class XRayControlPanel : MonoBehaviour
 	GameObject PrimeButton;
 	GameObject ScanButton;
 	GameObject ScanReady;
+	Color32 darkGreen;
 
 	float time;
 
@@ -165,7 +166,9 @@ public class XRayControlPanel : MonoBehaviour
 		OriginalUnpressed = FreeButton.GetComponent<Renderer>().material.color;
 		OriginalColButton = ColUp.GetComponent<Renderer>().material.color;
 
-		FreeButton.GetComponent<Renderer>().material.color = Color.green; // Set to green as this is the default option.
+		darkGreen = new Color32(10, 120, 0, 255);
+
+		FreeButton.GetComponent<Renderer>().material.color = darkGreen; // Set to green as this is the default option.
 
 		
 
@@ -338,7 +341,7 @@ public class XRayControlPanel : MonoBehaviour
 		click.GetComponent<AudioSource>().Play();
 
 		VerticalButton.GetComponent<Renderer>().material.color = OriginalUnpressed;
-		FreeButton.GetComponent<Renderer>().material.color = new Color32(15, 202, 0, 255); // Darker green
+		FreeButton.GetComponent<Renderer>().material.color = darkGreen; // Darker green
 
 	}
 
@@ -348,7 +351,7 @@ public class XRayControlPanel : MonoBehaviour
 		xrayHandleController.SetVerticalMode();
 		click.GetComponent<AudioSource>().Play();
 
-		VerticalButton.GetComponent<Renderer>().material.color = new Color32(15, 202, 0, 255); // Darker green
+		VerticalButton.GetComponent<Renderer>().material.color = darkGreen; // Darker green
 		FreeButton.GetComponent<Renderer>().material.color = OriginalUnpressed;
 	}
 
