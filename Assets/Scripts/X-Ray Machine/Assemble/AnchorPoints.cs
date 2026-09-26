@@ -132,7 +132,7 @@ public class AnchorPoints : MonoBehaviour
 		// Distances of objects from their positions:
 
 
-		if (distTube <= 0.05)
+		if (distTube <= 0.2)
 		{
 			Tube.position = TubeAnchor.position;
 			Tube.rotation = TubeAnchor.rotation;
@@ -147,7 +147,7 @@ public class AnchorPoints : MonoBehaviour
 		}
 
 
-		if (distGlass <= 0.05)
+		if (distGlass <= 0.08)
 		{
 			Glass.position = GlassAnchor.position;
 			Glass.rotation = GlassAnchor.rotation;
@@ -163,7 +163,7 @@ public class AnchorPoints : MonoBehaviour
 
 
 
-		if (distCoil <= 0.05)
+		if (distCoil <= 0.08)
 		{
 			Coil.position = CoilAnchor.position;
 			Coil.rotation = CoilAnchor.rotation;
@@ -180,7 +180,7 @@ public class AnchorPoints : MonoBehaviour
 
 
 
-		if (distAnode <= 0.05)
+		if (distAnode <= 0.08)
 		{
 
 			Anode.position = AnodeAnchor.position;
@@ -197,7 +197,7 @@ public class AnchorPoints : MonoBehaviour
 
 
 
-		if (distCathode <= 0.05)
+		if (distCathode <= 0.08)
 		{
 			Cathode.position = CathodeAnchor.position;
 			Cathode.rotation = CathodeAnchor.rotation;
@@ -212,7 +212,7 @@ public class AnchorPoints : MonoBehaviour
 
 
 
-		if (distRotor <= 0.05)
+		if (distRotor <= 0.08)
 		{
 			Rotor.position = RotorAnchor.position;
 			Rotor.rotation = RotorAnchor.rotation;
@@ -227,7 +227,7 @@ public class AnchorPoints : MonoBehaviour
 		}
 
 
-		if (distCollimator <= 0.05)
+		if (distCollimator <= 0.125)
 		{
 			Collimator.position = CollimatorAnchor.position;
 			Collimator.rotation = CollimatorAnchor.rotation;
@@ -242,7 +242,7 @@ public class AnchorPoints : MonoBehaviour
 		}
 
 
-		if (distBe <= 0.05)
+		if (distBe <= 0.08)
 		{
 			Be.position = BeAnchor.position;
 			Be.rotation = BeAnchor.rotation;
@@ -260,7 +260,7 @@ public class AnchorPoints : MonoBehaviour
 
 
 
-		if (distPanel <= 0.05)
+		if (distPanel <= 0.1)
 		{
 			Panel.position = PanelAnchor.position;
 			Panel.rotation = PanelAnchor.rotation;
