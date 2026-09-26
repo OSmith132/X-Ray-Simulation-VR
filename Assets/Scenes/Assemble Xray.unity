@@ -12673,11 +12673,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: VR Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4250743868281909576, guid: c8f722272298f9246aa3ab3f004dffd4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4274614170061586766, guid: c8f722272298f9246aa3ab3f004dffd4,
         type: 3}
       propertyPath: m_LocalPosition.x

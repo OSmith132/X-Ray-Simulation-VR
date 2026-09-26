@@ -4,10 +4,10 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "ScriptsForTests",
         "Unity.TextMeshPro",
         "Unity.XR.Interaction.Toolkit",
-        "TestUtils"
+        "TestUtils",
+        "GameScripts"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
