@@ -2122,7 +2122,6 @@ MonoBehaviour:
   reloadCurrentScene: 0
   teleportPlayer: 0
   xrOrigin: {fileID: 0}
-  teleportationProvider: {fileID: 0}
   playerDestination: {fileID: 0}
   teleportHeldObjects: 1
   onTriggered:
@@ -3304,7 +3303,6 @@ MonoBehaviour:
   reloadCurrentScene: 0
   teleportPlayer: 0
   xrOrigin: {fileID: 0}
-  teleportationProvider: {fileID: 0}
   playerDestination: {fileID: 0}
   teleportHeldObjects: 1
   onTriggered:

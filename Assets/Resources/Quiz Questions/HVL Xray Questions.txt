@@ -1,5 +1,5 @@
 Please identity all possible faults (Select all that apply)
-DAP meter reading incorectly
+Dose meter reading incorectly
 Too little filtration
 Too much filtration
 X-ray voltage displaying incorrect values

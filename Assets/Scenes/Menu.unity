@@ -2729,6 +2729,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d224b1214a71ebc4284dd46ff37ab74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FaultManagerWrapper
+--- !u!114 &1285881464 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1174417024932961794, guid: c8f722272298f9246aa3ab3f004dffd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 414517032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.CoreUtils::Unity.XR.CoreUtils.XROrigin
 --- !u!1 &1353167018
 GameObject:
   m_ObjectHideFlags: 0
@@ -3246,6 +3258,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
+        type: 3}
+      propertyPath: xrOrigin
+      value: 
+      objectReference: {fileID: 1285881464}
     - target: {fileID: 8357356276970968590, guid: 5536e344e8550704781e248581ecec30,
         type: 3}
       propertyPath: loadScene
